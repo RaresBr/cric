@@ -5,14 +5,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Welcome to Cric</title>
-	<h:outputStylesheet name="css/template.css" />
+	<!-- <h:outputStylesheet name="css/template.css" /> -->
 </h:head>
 <h:body>
 
 	<!-- DEFINE HEADER -->
 	<p:outputPanel layout="block">
 		<ui:insert name="header">
-			<h:outputText value="This is the footer" />
+			<h:outputText value="This is the header" />
 		</ui:insert>
 	</p:outputPanel>
 
@@ -20,21 +20,7 @@
 	<p:outputPanel layout="block" styleClass="content">
 		<ui:insert name="content">
 			<h:outputText value="Here goes stuff" />
-			<h:form>
-				<p:growl id="message" showDetail="true" />
-
-				<p:commandButton value="Destroy the World" update="message">
-					<p:confirm header="Confirmation" message="Are you sure?"
-						icon="ui-icon-alert" />
-				</p:commandButton>
-
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Yes" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="No" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
-			</h:form>
+			
 		</ui:insert>
 	</p:outputPanel>
 
