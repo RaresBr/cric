@@ -5,14 +5,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Welcome to Cric</title>
-	<!-- <h:outputStylesheet name="css/template.css" /> -->
+	<h:outputStylesheet name="css/template.css" />
 </h:head>
 <h:body>
 
 	<!-- DEFINE HEADER -->
-	<p:outputPanel layout="block">
+	<p:outputPanel layout="block" styleClass="header">
 		<ui:insert name="header">
-			<h:outputText value="This is the header" />
+			<p:outputPanel styleClass="title-panel">
+				<h:outputText value="CriC" styleClass="title" />
+			</p:outputPanel>
+
+			<p:outputPanel layout="block" styleClass="helpMenu row">
+				<p:link value="About us" styleClass="helpMenu-item"
+					outcome="about.xhtml" />
+				<p:link value="News" styleClass="helpMenu-item" outcome="news.xhtml" />
+			</p:outputPanel>
 		</ui:insert>
 	</p:outputPanel>
 
@@ -20,7 +28,7 @@
 	<p:outputPanel layout="block" styleClass="content">
 		<ui:insert name="content">
 			<h:outputText value="Here goes stuff" />
-			
+
 		</ui:insert>
 	</p:outputPanel>
 
@@ -28,7 +36,18 @@
 	<!-- DEFINE FOOTER -->
 	<p:outputPanel layout="block" styleClass="footer row">
 		<ui:insert name="footer">
-			<h:outputText value="This is the footer" />
+			<p:outputPanel layout="block"
+				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-2 helpMenu-footer row">
+				<p:link value="FAQs" styleClass="helpMenu-item" outcome="faq.xhtml" />
+				<p:link value="Contact" styleClass="helpMenu-item"
+					outcome="contact.xhtml" />
+			</p:outputPanel>
+			<p:outputPanel layout="block"
+				styleClass="col-lg-offset-1 col-xs-offset-1 col-lg-8 col-md-8 col-sm-8 col-xs-10 copyright">
+				<span class="copyrightSpan"> <h:outputText
+						value="© 2017 FII TW Team" />
+				</span>
+			</p:outputPanel>
 		</ui:insert>
 	</p:outputPanel>
 
