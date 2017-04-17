@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Welcome to Cric</title>
+	<h:outputStylesheet name="css/bootstrap.min.css" />
 	<h:outputStylesheet name="css/template.css" />
 </h:head>
 <h:body>
@@ -12,8 +13,39 @@
 	<!-- DEFINE HEADER -->
 	<p:outputPanel layout="block" styleClass="header">
 		<ui:insert name="header">
-			<p:outputPanel styleClass="title-panel">
+			<p:outputPanel layout="block"
+				styleClass="col-lg-6 col-md-6 col-sm-6 col-xs-6 title-panel">
 				<h:outputText value="CriC" styleClass="title" />
+			</p:outputPanel>
+
+			<p:outputPanel layout="block"
+				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4 headerRight">
+				<p:outputPanel layout="block" styleClass="row userpass">
+					<h:form prependId="false">
+						<p:outputPanel
+							styleClass=" col-lg-5 col-md-4 col-sm-4 col-xs-3 loginLeft">
+							<p:inputText id="username1" placeholder="Insert your username"
+								required="true" styleClass="user inputLoginHeader"
+								requiredMessage="Username required" tabindex="1" />
+							<p:link styleClass="links" value="Forgot Password" />
+						</p:outputPanel>
+
+						<p:outputPanel
+							styleClass="col-lg-5 col-md-4 col-sm-4 col-xs-3 loginMiddle">
+							<p:password id="password1" placeholder="Insert your password"
+								required="true" styleClass="pass inputLoginHeader"
+								requiredMessage="Password required" maxlength="45" tabindex="2" />
+							<p:link styleClass="links" value="Resend activation mail" />
+						</p:outputPanel>
+
+						<p:outputPanel
+							styleClass="col-lg-1 col-md-2 col-sm-2 col-xs-1 loginRight">
+							<h:commandButton value="Log in"
+								styleClass="customBtn btnSub inputLoginHeader" />
+						</p:outputPanel>
+
+					</h:form>
+				</p:outputPanel>
 			</p:outputPanel>
 
 			<p:outputPanel layout="block" styleClass="helpMenu row">
@@ -37,13 +69,13 @@
 	<p:outputPanel layout="block" styleClass="footer row">
 		<ui:insert name="footer">
 			<p:outputPanel layout="block"
-				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-2 helpMenu-footer row">
+				styleClass="helpMenu-footer row">
 				<p:link value="FAQs" styleClass="helpMenu-item" outcome="faq.xhtml" />
 				<p:link value="Contact" styleClass="helpMenu-item"
 					outcome="contact.xhtml" />
 			</p:outputPanel>
 			<p:outputPanel layout="block"
-				styleClass="col-lg-offset-1 col-xs-offset-1 col-lg-8 col-md-8 col-sm-8 col-xs-10 copyright">
+				styleClass="copyright">
 				<span class="copyrightSpan"> <h:outputText
 						value="© 2017 FII TW Team" />
 				</span>
