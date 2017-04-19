@@ -1,0 +1,41 @@
+* {
+	color: #fff;
+}
+
+.mainWrapper {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 10px;
+	margin-bottom: 100px;
+	font-size: 17px;
+}
+
+.rightPanel {
+	border-left: 1px solid #666;
+	color: #000;
+	font-weight: normal;
+	padding: 10px 0 0 30px;
+}
+
+.signUp {
+	font-size: 3em;
+}
+
+.inputName {
+	margin: 0px 10px 5px 0px;
+}
+
+.personalContact {
+	width: 80.8%;
+}
+
+.ui-button-text {
+	color: black;
+}
+
+.registerBtn {
+	background: #fff;
+	border-radius:0;
+	font-weight:normal;
+	border:1px solid #666;
+}

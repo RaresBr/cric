@@ -8,7 +8,8 @@
 	width: 100%;
 	bottom: 40px;
 	position: absolute;
-	top: 130px;
+	top: 116px;
+	background: linear-gradient(#6C6B7D, #4B4A61, #090819,#6C6B7D);
 }
 
 .header {
@@ -83,7 +84,7 @@ a:-webkit-any-link {
 	text-align: center;
 }
 
-.title {
+#title {
 	font-size: 3em;
 	color: white;
 }
@@ -104,6 +105,7 @@ a:-webkit-any-link {
 	border-top: 1px solid #aaa;
 	position: fixed;
 	bottom: 0;
+	float: bottom;
 	z-index: 3000;
 }
 

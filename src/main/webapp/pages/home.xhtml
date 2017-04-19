@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+
+			<h:outputStylesheet name="css/home.css" />
+			<p:outputPanel styleClass="row mainWrapper">
+
+				<p:outputPanel styleClass="col-md-6 col-md-push-6 rightPanel">
+
+					<h:outputText value="Sign up"
+						styleClass="col-lg-12 col-md-12 col-md-6 signUp" />
+					<h:outputText value="Be safe, be CriC" styleClass="underSignUp" />
+
+					<h:form>
+
+						<p:growl id="growl" sticky="true" showDetail="true" />
+
+
+
+						<p:messages />
+
+						<p:inputText placeholder="First name" required="true"
+							label="Firstname" styleClass="inputName inputLoginHeader" />
+
+						<p:inputText placeholder="Last name" required="true"
+							label="Lastname" styleClass="inputName inputLoginHeader" />
+
+						<p:inputText placeholder="E-mail address" required="true"
+							label="Email"
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader" />
+
+						<p:inputText placeholder="Username" required="true"
+							label="Username"
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader" />
+
+
+						<p:password id="pwd1" placeholder="Password" match="pwd2"
+							label="Password 1" required="true"
+							styleClass="inputName inputLoginHeader" />
+						<p:password id="pwd2" placeholder="Confirm password"
+							label="Password 2" required="true"
+							styleClass="inputName inputLoginHeader" />
+
+
+						<h:outputLabel value="Account type:" styleClass="col-lg-4" />
+						<p:selectOneRadio id="console" styleClass="col-lg-8">
+							<f:selectItem itemLabel="User" itemValue="User" />
+							<f:selectItem itemLabel="Organisation" itemValue="Organisation" />
+						</p:selectOneRadio>
+
+						<p:commandButton value="Register" id="nonAjax" action="dashboard"
+							ajax="false" styleClass="col-lg-2 registerBtn" />
+
+					</h:form>
+				</p:outputPanel>
+
+
+				<p:outputPanel styleClass="col-md-6 col-md-pull-6 leftPanel">
+					some picture
+				</p:outputPanel>
+			</p:outputPanel>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>
