@@ -12,22 +12,186 @@
 	<ui:composition template="template.xhtml">
 		<ui:define name="content">
 			<h:outputStylesheet name="css/dashboard.css" />
-			<p:layout >
+			<p:layout>
 
-				<p:layoutUnit position="north" size="100" header="Top">
+				<p:layoutUnit position="north" size="90" header="Top">
+					<p:tabMenu scrollable="false" activeIndex="#{param.i}">
+						<p:menuitem value="Overview" outcome="dashboard"
+							icon="ui-icon-star">
+							<f:param name="i" value="0" />
+						</p:menuitem>
 
-					<h:outputText value="North unit content." />
+						<p:menuitem value="Demos" outcome="dashboard"
+							icon="ui-icon-search">
+							<f:param name="i" value="1" />
+						</p:menuitem>
+						<p:menuitem value="Documentation" outcome="dashboard"
+							icon="ui-icon-document">
+							<f:param name="i" value="2" />
+						</p:menuitem>
+						<p:menuitem value="Support" outcome="dashboard"
+							icon="ui-icon-wrench">
+							<f:param name="i" value="3" />
+						</p:menuitem>
+						<p:menuitem value="Social" outcome="dashboard"
+							icon="ui-icon-person">
+							<f:param name="i" value="4" />
+						</p:menuitem>
+					</p:tabMenu>
 				</p:layoutUnit>
 
-				<p:layoutUnit position="west" size="200" header="Left">
-					<h:outputText value="West unit content." />
+				<p:layoutUnit position="west" size="250" header="Left">
+					<p:accordionPanel multiple="true">
+						<p:tab title="Godfather Part I">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="2" cellpadding="5">
+										<h:outputLabel for="menu" value="Basic:" />
+										<p:selectCheckboxMenu id="menu"
+											value="#{checkboxView.selectedCities}" label="Cities"
+											filter="true" filterMatchMode="startsWith"
+											panelStyle="width:250px">
+											<f:selectItems value="#{checkboxView.cities}" />
+										</p:selectCheckboxMenu>
+
+										<h:outputLabel for="multiple" value="Multiple:" />
+										<p:selectCheckboxMenu id="multiple"
+											value="#{checkboxView.selectedCities2}" label="Cities"
+											multiple="true" filter="true" filterMatchMode="startsWith"
+											panelStyle="width:250px">
+											<f:selectItems value="#{checkboxView.cities}" />
+										</p:selectCheckboxMenu>
+									</h:panelGrid>
+
+									<p:commandButton value="Submit" update="displayCities"
+										oncomplete="PF('cityDialog').show()" style="margin-top:10px;" />
+
+
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Godfather Part II">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="2" style="margin-bottom:10px"
+										cellpadding="5">
+										<h:outputText value="Font:" />
+										<p:selectManyButton value="#{selectManyView.selectedOptions}">
+											<f:selectItem itemLabel="b" itemValue="b" />
+											<f:selectItem itemLabel="u" itemValue="u" />
+											<f:selectItem itemLabel="i" itemValue="i" />
+										</p:selectManyButton>
+
+										<p:commandButton value="Submit" update="display"
+											icon="ui-icon-check" />
+										<p:spacer />
+
+										<h:outputText value="Selected:" />
+										<p:dataList id="display"
+											value="#{selectManyView.selectedOptions}" var="font"
+											emptyMessage="No fonts selected">
+											<h:outputText value="#{font}" style="font-weight: bold" />
+										</p:dataList>
+									</h:panelGrid>
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Godfather Part III">
+							<h:panelGrid columns="2" cellpadding="10">
+
+								<h:form>
+									<h:panelGrid columns="2" style="margin-bottom:10px"
+										cellpadding="5">
+										<h:outputText value="Platform:" />
+										<p:selectOneButton value="#{selectOneView.option}">
+											<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+											<f:selectItem itemLabel="PS4" itemValue="PS4" />
+											<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+										</p:selectOneButton>
+
+										<p:commandButton value="Submit" update="display"
+											icon="ui-icon-check" />
+										<p:spacer />
+
+										<h:outputText value="Selected:" />
+										<h:outputText id="display" value="#{selectOneView.option}"
+											style="font-weight: bold" />
+									</h:panelGrid>
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
 				</p:layoutUnit>
 
-				<p:layoutUnit styleClas="Right" position="east" size="200" header="Right">
-					<h:outputText value="Right unit content." />
-				</p:layoutUnit>
+				<p:layoutUnit styleClas="Right" position="east" size="200"
+					header="Right">
+					<p:accordionPanel multiple="true">
+						<p:tab title="Godfather Part I">
+							<h:form>
+								<p:selectManyCheckbox id="grid3"
+									value="#{checkboxViewRight.selectedCars}"
+									layout="pageDirection" columns="1">
+									<f:selectItems value="#{checkboxViewRight.cars}" var="car"
+										itemLabel="#{car}" itemValue="#{car}" />
+								</p:selectManyCheckbox>
 
-				<p:layoutUnit position="center" >
+								<p:separator />
+
+								<p:commandButton value="Submit" update="display"
+									oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+
+
+							</h:form>
+						</p:tab>
+						<p:tab title="Godfather Part II">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputText value="Francis Ford Coppola's legendary..." />
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Godfather Part III">
+							<h:panelGrid columns="2" cellpadding="10">
+
+								<h:outputText value="After a break of more than 15 years...." />
+							</h:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+				</p:layoutUnit>
+				<p:dialog styleClass="dialog" header="Selected Cities" modal="true"
+					showEffect="fade" hideEffect="fade" widgetVar="cityDialog"
+					width="250">
+					<p:outputPanel id="displayCities">
+						<p:dataList value="#{checkboxView.selectedCities}" var="city"
+							emptyMessage="No cities selected" style="margin-bottom: 10px;">
+							<f:facet name="header">
+                    Basic
+                </f:facet>
+                #{city}
+            </p:dataList>
+
+						<p:dataList value="#{checkboxView.selectedCities2}" var="city"
+							emptyMessage="No cities selected">
+							<f:facet name="header">
+                    Multiple
+                </f:facet>
+                #{city}
+            </p:dataList>
+					</p:outputPanel>
+				</p:dialog>
+				
+				
+				<p:dialog header="Values" modal="true" showEffect="clip"
+					widgetVar="dlg" resizable="false">
+					<p:outputPanel id="display">
+						
+						<p:dataList value="#{checkboxViewRight.selectedCars}" var="car">
+							<f:facet name="header">
+                    Cars
+                </f:facet>
+                #{car}
+            </p:dataList>
+					</p:outputPanel>
+				</p:dialog>
+				<p:layoutUnit position="center">
 					<p:outputPanel styleClass="map">
 						<iframe width="100%" height="95%" scrolling="no" frameborder="no"
 							src="https://fusiontables.google.com/embedviz?q=select+col12+from+18JxfdSR1UkpIFLVpoL1PPpHHhUdv9lbz9QRkmW1S&amp;viz=MAP&amp;h=false&amp;lat=10.176820142221567&amp;lng=-83.837158569336&amp;t=1&amp;z=8&amp;l=col12&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG"></iframe>
