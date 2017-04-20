@@ -1,17 +1,29 @@
-.mainWrapper {
+.wrapper {
 	margin: 2em;
 }
 
-.ui-accordion-header {
+.tabView {
+	margin-top: 10px;	
+}
+
+.aboutUs {
+	font-size: 20px;
+	color: white;
+}
+
+.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
 	background: white;
-	text-decoration: none;
+	border-right: 1px solid #a8a8a8;
 }
 
-.ui-accordion .ui-accordion-content {
-	margin-bottom: 10px;
+.ui-corner-all {
+	border-radius: 0px;
 }
 
-.ui-accordion .ui-accordion-header .ui-icon {
-	left: auto;
-	right: .5em;
+.ui-state-default.ui-corner-left {
+	background: white;
+}
+
+.ui-state-default.ui-corner-left.ui-state-hover {
+	background: none;
 }

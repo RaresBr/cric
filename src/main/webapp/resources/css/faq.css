@@ -1,0 +1,26 @@
+.mainWrapper {
+	margin: 2em;
+}
+
+.ui-accordion-header {
+	background: white;
+	text-decoration: none;
+}
+
+.ui-accordion .ui-accordion-content {
+	margin-bottom: 10px;
+}
+
+.ui-accordion .ui-accordion-header .ui-icon {
+	left: auto;
+	right: .5em;
+}
+
+.accordion {
+	margin-top: 10px;
+}
+
+.faqs {
+	font-size: 20px;
+	color: white;
+}

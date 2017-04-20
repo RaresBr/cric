@@ -10,6 +10,7 @@
 	position: absolute;
 	top: 116px;
 	background: linear-gradient(#6C6B7D, #4B4A61, #090819,#6C6B7D);
+	overflow:auto;
 }
 
 .header {
