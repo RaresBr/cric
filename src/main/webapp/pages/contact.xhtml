@@ -17,17 +17,17 @@
 				<h:panelGroup layout="block" styleClass="col-md-6" id="leftPanel">
 					<h:form layout="block" id="contactForm">
 
+
 						<p:outputPanel styleClass="formRow">
-							<p:inputText placeholder="Insert your name"
-								styleClass="inputContact" />
+							<h:outputText value="Name" styleClass="textInfo" />
+							<p:inputText styleClass="inputContact" />
 						</p:outputPanel>
 
 						<p:outputPanel styleClass="formRow">
-							<p:inputText placeholder="Insert your e-mail"
-								styleClass="inputContact"
-								requiredMessage="#Field cannot be empty"
-								id="email" validatorMessage="Invalid e-mail format"
-								required="true">
+							<h:outputText value="E-mail" styleClass="textInfo" />
+							<p:inputText styleClass="inputContact"
+								requiredMessage="#Field cannot be empty" id="email"
+								validatorMessage="Invalid e-mail format" required="true">
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							</p:inputText>
@@ -36,9 +36,9 @@
 						</p:outputPanel>
 						<p:outputPanel styleClass="formRow">
 							<label for="contactForm:message"></label>
-							<p:inputTextarea rows="5"
-								id="message" placeholder="Type your message"
-								styleClass="inputContact" required="true" label="message"
+							<h:outputText value="Message" styleClass="textInfo" />
+							<p:inputTextarea rows="5" id="message" styleClass="inputContact"
+								required="true" label="message"
 								requiredMessage="Field cannot be empty" />
 							<p:message for="message" display="text" />
 
@@ -47,24 +47,29 @@
 
 						<p:commandButton value="Submit" styleClass="submitContactButton"
 							update="contactForm" />
-						<span class="mandatoryFields"> *Mandatory fields </span>
 					</h:form>
 				</h:panelGroup>
 
 				<h:panelGroup layout="block" styleClass="col-md-4" id="rightPanel">
 
+					<h:outputText styleClass="infoTitle" value="Info" escape="false" />
 
+					<p:outputPanel styleClass="contactInfo">
 
-					<h:outputText styleClass="infoTitle" value="Our site"
-						escape="false" />
+						<h:panelGrid columns="2">
+							<h:outputText styleClass="infos" value="Address:" />
+							<h:outputText styleClass="infos" value="Insert an address here"/>
+							
+							<h:outputText styleClass="infos" value="E-mail:" />
+							<h:outputText styleClass="infos" value="Insert an e-mail address here"/>
 
-					<h:outputText styleClass="infos" value="Our address" escape="false" />
+							<h:outputText styleClass="infos" value="Phone number:" />
+							<h:outputText styleClass="infos" value="Insert a phone number here" />
 
-					<h:outputText styleClass="infos" value="Our phone number"
-						escape="false" />
-
-					<h:outputText styleClass="infos" value="Our fax" escape="false" />
-
+							<h:outputText styleClass="infos" value="Fax number:" />
+							<h:outputText styleClass="infos" value="Inser a fax number here" />
+						</h:panelGrid>
+					</p:outputPanel>
 
 				</h:panelGroup>
 
