@@ -43,7 +43,7 @@
 }
 
 .infoTitle{
-	font-size: 14px;
+	font-size: 25px;
 	color:#fff;
 }
 
@@ -54,13 +54,12 @@
 .ui-widget .inputContact{
 	width:100%;
 	box-shadow: none;
-	border:none;
-	border-bottom:1px solid #666;
+	border: 1px solid #fff;
 	border-radius:0;
-	background: none;
+	background: white;
 	padding-left:15px;
 	font-size:14px;
-	color:#fff;
+	color:#000;
 	
 }
 
@@ -69,15 +68,7 @@
 }
 
 #contactForm{
-	color: #000;
-	
-}
-
-.mandatoryFields{
-	display:block;
-	font-size:12px;
-	color:#fff;
-	margin-top: 20px;
+	color: #000;	
 }
 
 .formRow{
@@ -86,5 +77,9 @@
 
 .submitContactButton:hover {
 	background:white;
+}
+
+.textInfo {
+	color: #fff;
 }
 
