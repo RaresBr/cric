@@ -18,11 +18,17 @@
 }
 
 .signUp {
+	padding-right: 0px;
+    padding-left: 0px;
 	font-size: 3em;
 }
 
 .inputName {
-	margin: 0px 10px 5px 0px;
+	margin: 5px 10px 5px 0px;
+}
+
+.accountType {
+	padding-left: 0px;
 }
 
 .personalContact {
