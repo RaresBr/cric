@@ -6,15 +6,39 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
- 
-    <h:body>
 
-    	<ui:composition template="template.xhtml">
-			<ui:define name ="content">
-				<h1> Content from dashboard</h1>
-			</ui:define>
-    	</ui:composition>
+<h:body>
 
-    </h:body>
- 
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+			<h:outputStylesheet name="css/dashboard.css" />
+			<p:layout >
+
+				<p:layoutUnit position="north" size="100" header="Top">
+
+					<h:outputText value="North unit content." />
+				</p:layoutUnit>
+
+				<p:layoutUnit position="west" size="200" header="Left">
+					<h:outputText value="West unit content." />
+				</p:layoutUnit>
+
+				<p:layoutUnit styleClas="Right" position="east" size="200" header="Right">
+					<h:outputText value="Right unit content." />
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center" >
+					<p:outputPanel styleClass="map">
+						<iframe width="100%" height="95%" scrolling="no" frameborder="no"
+							src="https://fusiontables.google.com/embedviz?q=select+col12+from+18JxfdSR1UkpIFLVpoL1PPpHHhUdv9lbz9QRkmW1S&amp;viz=MAP&amp;h=false&amp;lat=10.176820142221567&amp;lng=-83.837158569336&amp;t=1&amp;z=8&amp;l=col12&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG"></iframe>
+					</p:outputPanel>
+				</p:layoutUnit>
+
+
+			</p:layout>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
 </html>
