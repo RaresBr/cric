@@ -5,6 +5,43 @@
 	margin: 10px 10px 10px 10px;
 	
 }
-.dialog{
-	
+
+.top {
+	background: none;
+	border: none;
+}
+
+.tabMenu {
+	background: none;
+	border: none;
+}
+
+.top .ui-widget-content {
+	background: none;
+	padding: 0;
+	overflow: hidden;
+}
+
+.navigationBtn {
+	background: white;
+}
+
+.navigationBtn.ui-state-active {
+	background:black;
+}
+
+.ui-tabmenu-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+	background: none;
+}
+
+.west {
+	height: 40em !important;
+}
+
+.east {
+	height: 40em !important;
+}
+
+.center {
+	height: 40em !important;
 }
