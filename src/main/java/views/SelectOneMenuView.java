@@ -25,11 +25,11 @@ public class SelectOneMenuView {
     @PostConstruct
     public void init() {
         //cars
-        SelectItemGroup g1 = new SelectItemGroup("German Cars");
-        g1.setSelectItems(new SelectItem[] {new SelectItem("BMW", "BMW"), new SelectItem("Mercedes", "Mercedes"), new SelectItem("Volkswagen", "Volkswagen")});
+        SelectItemGroup g1 = new SelectItemGroup("Health");
+        g1.setSelectItems(new SelectItem[] {new SelectItem("RedCross", "RedCross"), new SelectItem("UNICEF", "UNICEF"), new SelectItem("UNFPA", "UNFPA")});
          
-        SelectItemGroup g2 = new SelectItemGroup("American Cars");
-        g2.setSelectItems(new SelectItem[] {new SelectItem("Chrysler", "Chrysler"), new SelectItem("GM", "GM"), new SelectItem("Ford", "Ford")});
+        SelectItemGroup g2 = new SelectItemGroup("Safety");
+        g2.setSelectItems(new SelectItem[] {new SelectItem("UN", "UN"), new SelectItem("CERF", "CERF"), new SelectItem("WFP", "WFP")});
          
         cars = new ArrayList<SelectItem>();
         cars.add(g1);

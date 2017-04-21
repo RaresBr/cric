@@ -21,7 +21,7 @@
 
 								<h:panelGrid columns="2" style="margin-bottom:10px"
 									cellpadding="5">
-									<p:outputLabel for="console" value="Basic:" />
+									<p:outputLabel for="console" value="Emergency Contact: " />
 									<p:selectOneMenu id="console"
 										value="#{selectOneMenuView.console}" style="width:125px">
 										<f:selectItem itemLabel="Select One" itemValue="" />
@@ -31,13 +31,13 @@
 									</p:selectOneMenu>
 
 
-									<p:outputLabel for="car" value="Grouping: " />
+									<p:outputLabel for="car" value="Emergency Organization: " />
 									<p:selectOneMenu id="car" value="#{selectOneMenuView.car}">
 										<f:selectItem itemLabel="Select One" itemValue="" />
 										<f:selectItems value="#{selectOneMenuView.cars}" />
 									</p:selectOneMenu>
 
-									<p:outputLabel for="city" value="Editable: " />
+									<p:outputLabel for="city" value="Secondary Email: " />
 									<p:selectOneMenu id="city" value="#{selectOneMenuView.city}"
 										effect="fold" editable="true">
 										<f:selectItem itemLabel="Select One" itemValue="" />
@@ -180,30 +180,6 @@
 					<p:tab title="Account">
 						<h:panelGrid columns="2" cellpadding="10">
 							<h:form>
-								<h:panelGrid columns="2" cellpadding="5">
-									<h:outputText value="Basic: " />
-									<p:password id="nonFeedback" value="#{passwordView.password1}" />
-
-									<h:outputText value="Feedback: " />
-									<p:password id="feedback" value="#{passwordView.password2}"
-										feedback="true" />
-
-									<h:outputText value="Feedback (Turkish): " />
-									<p:password id="turkishFeedback"
-										value="#{passwordView.password3}" feedback="true"
-										promptLabel="Lütfen şifre giriniz" weakLabel="Zayıf"
-										goodLabel="Orta seviye" strongLabel="Güçlü" />
-
-									<h:outputText value="Inline Feedback: " />
-									<p:password id="inlineFeedback"
-										value="#{passwordView.password4}" feedback="true"
-										inline="true" />
-								</h:panelGrid>
-
-								<p:spacer height="10" />
-
-								<p:separator />
-
 								<p:messages id="messages" showDetail="true" autoUpdate="true" />
 
 								<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
@@ -225,13 +201,13 @@
 			<p:dialog header="Values" modal="true" showEffect="bounce"
 				widgetVar="dlg">
 				<p:panelGrid columns="2" id="display" columnClasses="label,value">
-					<h:outputText value="Basic:" styleClass="textInfo" />
+					<h:outputText value="Emergency Contact: " styleClass="textInfo" />
 					<h:outputText value="#{selectOneMenuView.console}" />
 
-					<h:outputText value="Grouping:" styleClass="textInfo" />
+					<h:outputText value="Emergency Organization: " styleClass="textInfo" />
 					<h:outputText value="#{selectOneMenuView.car}" />
 
-					<h:outputText value="Editable" styleClass="textInfo" />
+					<h:outputText value="Secondary Email:" styleClass="textInfo" />
 					<h:outputText value="#{selectOneMenuView.city}" />
 				</p:panelGrid>
 			</p:dialog>

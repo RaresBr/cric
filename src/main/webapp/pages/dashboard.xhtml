@@ -20,8 +20,11 @@
 							icon="ui-icon-star" styleClass="navigationBtn">
 							<f:param name="i" value="0" />
 						</p:menuitem>
-
-						<p:menuitem value="Demos" outcome="dashboard"
+						<p:menuitem value="Alerts" outcome="dashboard"
+							icon="ui-icon-person" styleClass="navigationBtn">
+							<f:param name="i" value="4" />
+						</p:menuitem>
+						<p:menuitem value="History" outcome="dashboard"
 							icon="ui-icon-search" styleClass="navigationBtn">
 							<f:param name="i" value="1" />
 						</p:menuitem>
@@ -33,16 +36,13 @@
 							icon="ui-icon-wrench" styleClass="navigationBtn">
 							<f:param name="i" value="3" />
 						</p:menuitem>
-						<p:menuitem value="Social" outcome="dashboard"
-							icon="ui-icon-person" styleClass="navigationBtn">
-							<f:param name="i" value="4" />
-						</p:menuitem>
+						
 					</p:tabMenu>
 				</p:layoutUnit>
 
-				<p:layoutUnit styleClass="west" position="west" size="200" header="Left">
+				<p:layoutUnit styleClass="west" position="west" size="200" header="Viewing Options">
 					<p:accordionPanel multiple="true">
-						<p:tab title="Godfather Part I">
+						<p:tab title="Location">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:form>
 									<h:panelGrid columns="2" cellpadding="5">
@@ -70,7 +70,7 @@
 								</h:form>
 							</h:panelGrid>
 						</p:tab>
-						<p:tab title="Godfather Part II">
+						<p:tab title="Layers">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:form>
 									<h:panelGrid columns="2" style="margin-bottom:10px"
@@ -96,7 +96,7 @@
 								</h:form>
 							</h:panelGrid>
 						</p:tab>
-						<p:tab title="Godfather Part III">
+						<p:tab title="Crisis Type">
 							<h:panelGrid columns="2" cellpadding="10">
 
 								<h:form>
@@ -124,9 +124,9 @@
 				</p:layoutUnit>
 
 				<p:layoutUnit styleClass="east" position="east" size="200"
-					header="Right">
+					header="Actions and Management">
 					<p:accordionPanel multiple="true">
-						<p:tab title="Godfather Part I">
+						<p:tab title="People">
 							<h:form>
 								<p:selectManyCheckbox id="grid3"
 									value="#{checkboxViewRight.selectedCars}"
@@ -143,12 +143,12 @@
 
 							</h:form>
 						</p:tab>
-						<p:tab title="Godfather Part II">
+						<p:tab title="Shelters">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:outputText value="Francis Ford Coppola's legendary..." />
 							</h:panelGrid>
 						</p:tab>
-						<p:tab title="Godfather Part III">
+						<p:tab title="Material Resources">
 							<h:panelGrid columns="2" cellpadding="10">
 
 								<h:outputText value="After a break of more than 15 years...." />
