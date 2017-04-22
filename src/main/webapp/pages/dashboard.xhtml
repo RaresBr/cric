@@ -46,25 +46,25 @@
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:form>
 									<h:panelGrid columns="2" cellpadding="5">
-										<h:outputLabel for="menu" value="Basic:" />
+										<h:outputLabel for="menu" value="Basic:" styleClass="column"/>
 										<p:selectCheckboxMenu id="menu"
 											value="#{checkboxView.selectedCities}" label="Cities"
 											filter="true" filterMatchMode="startsWith"
-											panelStyle="width:250px">
-											<f:selectItems value="#{checkboxView.cities}" />
+											panelStyle="width:200px, height:200px;">
+											<f:selectItems value="#{checkboxView.cities}" styleClass="column"/>
 										</p:selectCheckboxMenu>
 
-										<h:outputLabel for="multiple" value="Multiple:" />
+										<h:outputLabel for="multiple" value="Multiple:" styleClass="column"/>
 										<p:selectCheckboxMenu id="multiple"
 											value="#{checkboxView.selectedCities2}" label="Cities"
 											multiple="true" filter="true" filterMatchMode="startsWith"
-											panelStyle="width:250px">
+											panelStyle="width:200px, height:200px;" styleClass="column">
 											<f:selectItems value="#{checkboxView.cities}" />
 										</p:selectCheckboxMenu>
 									</h:panelGrid>
 
 									<p:commandButton value="Submit" update="displayCities"
-										oncomplete="PF('cityDialog').show()" style="margin-top:10px;" />
+										oncomplete="PF('cityDialog').show()" styleClass="customBtn" icon="ui-icon-check" />
 
 
 								</h:form>
@@ -83,7 +83,7 @@
 										</p:selectManyButton>
 
 										<p:commandButton value="Submit" update="display"
-											icon="ui-icon-check" />
+											icon="ui-icon-check" styleClass="customBtn"/>
 										<p:spacer />
 
 										<h:outputText value="Selected:" />
@@ -110,7 +110,7 @@
 										</p:selectOneButton>
 
 										<p:commandButton value="Submit" update="display"
-											icon="ui-icon-check" />
+											icon="ui-icon-check" styleClass="customBtn" />
 										<p:spacer />
 
 										<h:outputText value="Selected:" />
@@ -138,7 +138,8 @@
 								<p:separator />
 
 								<p:commandButton value="Submit" update="display"
-									oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+									oncomplete="PF('dlg').show()" icon="ui-icon-check"
+									styleClass="customBtn" />
 
 
 							</h:form>

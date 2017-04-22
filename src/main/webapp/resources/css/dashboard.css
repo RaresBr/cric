@@ -45,3 +45,37 @@
 .center {
 	height: 40em !important;
 }
+
+.ui-widget-header {
+	background: #fff;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #000;
+	font-size: 1em;
+}
+
+.ui-accordion-header.ui-helper-reset.ui-state-default {
+	background: white;
+	text-decoration: none;
+	font-size: 13px;
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+.ui-accordion-header.ui-helper-reset.ui-state-active {
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default {
+	background: white;
+}
+
+.ui-accordion.ui-accordion-header.ui-icon {
+	left: auto;
+	right: .5em;
+}
+
+.column {
+	margin-top: 20px;
+}
