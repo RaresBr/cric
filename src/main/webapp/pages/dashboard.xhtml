@@ -40,7 +40,7 @@
 					</p:tabMenu>
 				</p:layoutUnit>
 
-				<p:layoutUnit styleClass="west" position="west" size="200" header="Viewing Options">
+				<p:layoutUnit styleClass="col-lg-2 col-md-2 west" position="west" size="200" header="Viewing Options">
 					<p:accordionPanel multiple="true">
 						<p:tab title="Location">
 							<h:panelGrid columns="2" cellpadding="10">
@@ -50,15 +50,15 @@
 										<p:selectCheckboxMenu id="menu"
 											value="#{checkboxView.selectedCities}" label="Cities"
 											filter="true" filterMatchMode="startsWith"
-											panelStyle="width:200px, height:200px;">
-											<f:selectItems value="#{checkboxView.cities}" styleClass="column"/>
+											panelStyle="width:200px, height:200px;" styleClass="column dropdown">
+											<f:selectItems value="#{checkboxView.cities}"/>
 										</p:selectCheckboxMenu>
 
 										<h:outputLabel for="multiple" value="Multiple:" styleClass="column"/>
 										<p:selectCheckboxMenu id="multiple"
 											value="#{checkboxView.selectedCities2}" label="Cities"
 											multiple="true" filter="true" filterMatchMode="startsWith"
-											panelStyle="width:200px, height:200px;" styleClass="column">
+											panelStyle="width:200px, height:200px;" styleClass="column dropdown">
 											<f:selectItems value="#{checkboxView.cities}" />
 										</p:selectCheckboxMenu>
 									</h:panelGrid>
@@ -100,7 +100,7 @@
 							<h:panelGrid columns="2" cellpadding="10">
 
 								<h:form>
-									<h:panelGrid columns="2" style="margin-bottom:10px"
+									<h:panelGrid columns="2"
 										cellpadding="5">
 										<h:outputText value="Platform:" />
 										<p:selectOneButton value="#{selectOneView.option}">
@@ -123,7 +123,7 @@
 					</p:accordionPanel>
 				</p:layoutUnit>
 
-				<p:layoutUnit styleClass="east" position="east" size="200"
+				<p:layoutUnit styleClass="col-lg-2 col-md-2 east" position="east" size="200"
 					header="Actions and Management">
 					<p:accordionPanel multiple="true">
 						<p:tab title="People">
@@ -192,7 +192,7 @@
             </p:dataList>
 					</p:outputPanel>
 				</p:dialog>
-				<p:layoutUnit styleClass="center" position="center">
+				<p:layoutUnit styleClass="col-lg-8 col-md-8 center" position="center">
 					<p:outputPanel styleClass="map">
 						<iframe width="100%" height="95%" scrolling="no" frameborder="no"
 							src="https://fusiontables.google.com/embedviz?q=select+col12+from+18JxfdSR1UkpIFLVpoL1PPpHHhUdv9lbz9QRkmW1S&amp;viz=MAP&amp;h=false&amp;lat=10.176820142221567&amp;lng=-83.837158569336&amp;t=1&amp;z=8&amp;l=col12&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG"></iframe>

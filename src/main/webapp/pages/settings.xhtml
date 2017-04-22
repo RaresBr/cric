@@ -21,9 +21,9 @@
 
 								<h:panelGrid columns="2" style="margin-bottom:10px"
 									cellpadding="5">
-									<p:outputLabel for="console" value="Emergency Contact: " />
+									<p:outputLabel for="console" value="Emergency Contact: " styleClass="optionsPanel" />
 									<p:selectOneMenu id="console"
-										value="#{selectOneMenuView.console}" style="width:125px">
+										value="#{selectOneMenuView.console}" styleClass="optionsPanel values">
 										<f:selectItem itemLabel="Select One" itemValue="" />
 										<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
 										<f:selectItem itemLabel="PS4" itemValue="PS4" />
@@ -31,22 +31,22 @@
 									</p:selectOneMenu>
 
 
-									<p:outputLabel for="car" value="Emergency Organization: " />
-									<p:selectOneMenu id="car" value="#{selectOneMenuView.car}">
+									<p:outputLabel for="car" value="Emergency Organization: " styleClass="optionsPanel" />
+									<p:selectOneMenu id="car" value="#{selectOneMenuView.car}" styleClass="optionsPanel values">
 										<f:selectItem itemLabel="Select One" itemValue="" />
 										<f:selectItems value="#{selectOneMenuView.cars}" />
 									</p:selectOneMenu>
 
-									<p:outputLabel for="city" value="Secondary Email: " />
+									<p:outputLabel for="city" value="Secondary Email: " styleClass="optionsPanel"/>
 									<p:selectOneMenu id="city" value="#{selectOneMenuView.city}"
-										effect="fold" editable="true">
+										effect="fold" editable="true" styleClass="optionsPanel values">
 										<f:selectItem itemLabel="Select One" itemValue="" />
 										<f:selectItems value="#{selectOneMenuView.cities}" />
 									</p:selectOneMenu>
 								</h:panelGrid>
 
 								<p:commandButton value="Submit" update="display"
-									oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+									oncomplete="PF('dlg').show()" icon="ui-icon-check" styleClass="customBtn" />
 
 
 							</h:form>
@@ -168,7 +168,7 @@
 
 											<p:commandButton value="Submit"
 												actionListener="#{userWizard.save}" update="growl"
-												process="@this" />
+												process="@this" styleClass="customBtn"/>
 										</p:panel>
 									</p:tab>
 								</p:wizard>
@@ -182,17 +182,21 @@
 							<h:form>
 								<p:messages id="messages" showDetail="true" autoUpdate="true" />
 
-								<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
-									<h:outputLabel for="pwd1" value="Password 1: *" />
+								<h:panelGrid columns="2" id="matchGrid">
+									
+									<h:outputLabel value="Current password: " styleClass="optionsPanel"/>
+									<p:password required="true" styleClass="optionsPanel values" />
+								
+									<h:outputLabel for="pwd1" value="New password:" styleClass="optionsPanel"/>
 									<p:password id="pwd1" value="#{passwordView.password5}"
-										match="pwd2" label="Password 1" required="true" />
+										match="pwd2" label="Password 1" required="true" styleClass="optionsPanel values" />
 
-									<h:outputLabel for="pwd2" value="Password 2: *" />
+									<h:outputLabel for="pwd2" value="Confirm password:" styleClass="optionsPanel" />
 									<p:password id="pwd2" value="#{passwordView.password5}"
-										label="Password 2" required="true" />
+										label="Password 2" required="true" styleClass="optionsPanel values"/>
 								</h:panelGrid>
 
-								<p:commandButton update="matchGrid" value="Save" />
+								<p:commandButton update="matchGrid" value="Save" styleClass="customBtn" />
 							</h:form>
 						</h:panelGrid>
 					</p:tab>

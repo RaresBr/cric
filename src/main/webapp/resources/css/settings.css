@@ -4,3 +4,36 @@
 #form{
 	margin: 0px 150px 0px 150px;
 }
+
+.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+	background: white;
+	border-right: 1px solid #a8a8a8;
+}
+
+.ui-corner-all {
+	border-radius: 0px;
+}
+
+.ui-state-default.ui-corner-left {
+	background: white;
+}
+
+.ui-state-default.ui-corner-left.ui-state-hover {
+	background: none;
+}
+
+.optionsPanel {
+	margin-top: 10px;
+}
+
+.values {
+	margin-left: 5px;
+}
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+	box-shadow: none;
+}
+
+.ui-inputfield.ui-password.ui-widget.ui-state-default.ui-corner-all {
+	box-shadow: none;
+}

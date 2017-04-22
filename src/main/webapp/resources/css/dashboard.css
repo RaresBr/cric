@@ -79,3 +79,20 @@
 .column {
 	margin-top: 20px;
 }
+
+.ui-selectcheckboxmenu.ui-widget.ui-state-default.ui-corner-all {
+	background: #fff;
+}
+
+.ui-selectcheckboxmenu-label.ui-corner-all.ui-state-hover {
+	background: #fff;
+	border: none;
+}
+
+.dropdown {
+	margin-left: 10px;
+}
+
+.ui-accordion-content.ui-helper-reset.ui-widget-content {
+	border-bottom: 1px solid #000;
+}
