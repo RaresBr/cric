@@ -1,8 +1,18 @@
 .textInfo{
 	color: black;
 }
-#form{
-	margin: 0px 150px 0px 150px;
+
+.wrapper {
+	margin: 2em 3em 2em 3em;
+}
+
+.settings {
+	font-size: 20px;
+	color: white;
+}
+
+.tabView {
+	margin-top: 10px;	
 }
 
 .ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
@@ -36,4 +46,29 @@
 
 .ui-inputfield.ui-password.ui-widget.ui-state-default.ui-corner-all {
 	box-shadow: none;
+}
+
+.ui-panel-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+	background: #fff;
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+.wizardForm .ui-button-text.ui-c {
+	background: #fff;
+	border-radius:0;
+	color:#666;
+	font-weight: normal;
+}
+
+.ui-wizard-step-title.ui-state-default.ui-state-highlight.ui-corner-all {
+	background: #928E9F;
+}
+
+.ui-wizard-step-title.ui-state-default.ui-corner-all {
+	background: #fff;	
+}
+
+.wizardInput {
+	margin-bottom: 0.5em;
 }

@@ -12,203 +12,226 @@
 	<ui:composition template="template.xhtml">
 		<ui:define name="content">
 			<h:outputStylesheet name="css/settings.css" />
-			<h:form id = "form">
-				<p:tabView orientation="left">
-					<p:tab title="Security">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:form>
-								<p:messages autoUpdate="true" />
+			<p:outputPanel styleClass="row wrapper">
+				<h:outputText value="Settings" styleClass="settings" />
+				<h:form styleClass="tabView">
+					<p:tabView orientation="left">
+						<p:tab title="Security">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<p:messages autoUpdate="true" />
 
-								<h:panelGrid columns="2" style="margin-bottom:10px"
-									cellpadding="5">
-									<p:outputLabel for="console" value="Emergency Contact: " styleClass="optionsPanel" />
-									<p:selectOneMenu id="console"
-										value="#{selectOneMenuView.console}" styleClass="optionsPanel values">
-										<f:selectItem itemLabel="Select One" itemValue="" />
-										<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-										<f:selectItem itemLabel="PS4" itemValue="PS4" />
-										<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-									</p:selectOneMenu>
-
-
-									<p:outputLabel for="car" value="Emergency Organization: " styleClass="optionsPanel" />
-									<p:selectOneMenu id="car" value="#{selectOneMenuView.car}" styleClass="optionsPanel values">
-										<f:selectItem itemLabel="Select One" itemValue="" />
-										<f:selectItems value="#{selectOneMenuView.cars}" />
-									</p:selectOneMenu>
-
-									<p:outputLabel for="city" value="Secondary Email: " styleClass="optionsPanel"/>
-									<p:selectOneMenu id="city" value="#{selectOneMenuView.city}"
-										effect="fold" editable="true" styleClass="optionsPanel values">
-										<f:selectItem itemLabel="Select One" itemValue="" />
-										<f:selectItems value="#{selectOneMenuView.cities}" />
-									</p:selectOneMenu>
-								</h:panelGrid>
-
-								<p:commandButton value="Submit" update="display"
-									oncomplete="PF('dlg').show()" icon="ui-icon-check" styleClass="customBtn" />
+									<h:panelGrid columns="2" style="margin-bottom:10px"
+										cellpadding="5">
+										<p:outputLabel for="console" value="Emergency Contact: "
+											styleClass="optionsPanel" />
+										<p:selectOneMenu id="console"
+											value="#{selectOneMenuView.console}"
+											styleClass="optionsPanel values">
+											<f:selectItem itemLabel="Select One" itemValue="" />
+											<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+											<f:selectItem itemLabel="PS4" itemValue="PS4" />
+											<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+										</p:selectOneMenu>
 
 
-							</h:form>
-						</h:panelGrid>
-					</p:tab>
-					<p:tab title="Personal">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:form>
+										<p:outputLabel for="car" value="Emergency Organization: "
+											styleClass="optionsPanel" />
+										<p:selectOneMenu id="car" value="#{selectOneMenuView.car}"
+											styleClass="optionsPanel values">
+											<f:selectItem itemLabel="Select One" itemValue="" />
+											<f:selectItems value="#{selectOneMenuView.cars}" />
+										</p:selectOneMenu>
 
-								<p:growl id="growl" sticky="true" showDetail="true" />
+										<p:outputLabel for="city" value="Secondary Email: "
+											styleClass="optionsPanel" />
+										<p:selectOneMenu id="city" value="#{selectOneMenuView.city}"
+											effect="fold" editable="true"
+											styleClass="optionsPanel values">
+											<f:selectItem itemLabel="Select One" itemValue="" />
+											<f:selectItems value="#{selectOneMenuView.cities}" />
+										</p:selectOneMenu>
+									</h:panelGrid>
 
-								<p:wizard flowListener="#{userWizard.onFlowProcess}">
-									<p:tab id="personal" title="Personal">
-										<p:panel header="Personal Details">
-											<p:messages />
-											<h:panelGrid columns="2" columnClasses="label, value">
-												<h:outputText value="Firstname: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.firstname}"
-													label="Firstname" />
+									<p:commandButton value="Submit" update="display"
+										oncomplete="PF('dlg').show()" icon="ui-icon-check"
+										styleClass="customBtn" />
 
-												<h:outputText value="Lastname: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.lastname}"
-													label="Lastname" />
 
-												<h:outputText value="Age: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.age}" />
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Personal">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form styleClass="wizardForm">
 
-												<h:outputText value="Skip to last: " styleClass="textInfo" />
-												<h:selectBooleanCheckbox value="#{userWizard.skip}" />
-											</h:panelGrid>
-										</p:panel>
-									</p:tab>
+									<p:growl id="growl" sticky="true" showDetail="true" />
 
-									<p:tab id="address" title="Address">
-										<p:panel header="Address Details">
-											<p:messages />
-											<h:panelGrid columns="2" columnClasses="label, value">
-												<h:outputText value="Street: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.street}" />
-
-												<h:outputText value="Postal Code: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.postalCode}" />
-
-												<h:outputText value="City: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.city}" />
-
-												<h:outputText value="Skip to last: " styleClass="textInfo" />
-												<h:selectBooleanCheckbox value="#{userWizard.skip}" />
-											</h:panelGrid>
-										</p:panel>
-									</p:tab>
-
-									<p:tab id="contact" title="Contact">
-										<p:panel header="Contact Information">
-											<p:messages />
-											<h:panelGrid columns="2" columnClasses="label, value">
-												<h:outputText value="Email: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.email}" label="Email" />
-
-												<h:outputText value="Phone: " styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.phone}" />
-
-												<h:outputText value="Additional Info: "
-													styleClass="textInfo" />
-												<p:inputText value="#{userWizard.user.info}" />
-											</h:panelGrid>
-										</p:panel>
-									</p:tab>
-
-									<p:tab id="confirm" title="Confirmation">
-										<p:panel header="Confirmation">
-											<h:panelGrid id="confirmation" columns="3"
-												columnClasses="grid,grid,grid">
+									<p:wizard flowListener="#{userWizard.onFlowProcess}">
+										<p:tab id="personal" title="Personal">
+											<p:panel header="Personal Details">
+												<p:messages />
 												<h:panelGrid columns="2" columnClasses="label, value">
-													<h:outputText value="Firstname: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.firstname}"
-														styleClass="outputLabel" />
+													<h:outputText value="First name: " styleClass="textInfo" />
+													<p:inputText value="#{userWizard.user.firstname}"
+														label="Firstname" styleClass="wizardInput" />
 
-													<h:outputText value="Lastname: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.lastname}"
-														styleClass="outputLabel" />
+													<h:outputText value="Last name: " styleClass="textInfo" />
+													<p:inputText value="#{userWizard.user.lastname}"
+														label="Lastname" styleClass="wizardInput" />
 
 													<h:outputText value="Age: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.age}"
-														styleClass="outputLabel" />
-												</h:panelGrid>
+													<p:inputText value="#{userWizard.user.age}"
+														styleClass="wizardInput" />
 
+													<h:outputText value="Skip to last: " styleClass="textInfo" />
+													<h:selectBooleanCheckbox value="#{userWizard.skip}" />
+												</h:panelGrid>
+											</p:panel>
+										</p:tab>
+
+										<p:tab id="address" title="Address">
+											<p:panel header="Address Details">
+												<p:messages />
 												<h:panelGrid columns="2" columnClasses="label, value">
 													<h:outputText value="Street: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.street}"
-														styleClass="outputLabel" />
+													<p:inputText value="#{userWizard.user.street}"
+														styleClass="wizardInput" />
 
-													<h:outputText value="Postal: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.postalCode}"
-														styleClass="outputLabel" />
+													<h:outputText value="Postal Code: " styleClass="textInfo" />
+													<p:inputText value="#{userWizard.user.postalCode}"
+														styleClass="wizardInput" />
 
 													<h:outputText value="City: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.city}"
-														styleClass="outputLabel" />
-												</h:panelGrid>
+													<p:inputText value="#{userWizard.user.city}"
+														styleClass="wizardInput" />
 
+													<h:outputText value="Skip to last: " styleClass="textInfo" />
+													<h:selectBooleanCheckbox value="#{userWizard.skip}" />
+												</h:panelGrid>
+											</p:panel>
+										</p:tab>
+
+										<p:tab id="contact" title="Contact">
+											<p:panel header="Contact Information">
+												<p:messages />
 												<h:panelGrid columns="2" columnClasses="label, value">
 													<h:outputText value="Email: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.email}"
-														styleClass="outputLabel" />
+													<p:inputText value="#{userWizard.user.email}" label="Email"
+														styleClass="wizardInput" />
 
-													<h:outputText value="Phone " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.phone}"
-														styleClass="outputLabel" />
+													<h:outputText value="Phone: " styleClass="textInfo" />
+													<p:inputText value="#{userWizard.user.phone}"
+														styleClass="wizardInput" />
 
-													<h:outputText value="Info: " styleClass="textInfo" />
-													<h:outputText value="#{userWizard.user.info}"
-														styleClass="outputLabel" />
-
-													<h:outputText />
-													<h:outputText />
+													<h:outputText value="Additional Info: "
+														styleClass="textInfo" />
+													<p:inputText value="#{userWizard.user.info}" />
 												</h:panelGrid>
-											</h:panelGrid>
+											</p:panel>
+										</p:tab>
 
-											<p:commandButton value="Submit"
-												actionListener="#{userWizard.save}" update="growl"
-												process="@this" styleClass="customBtn"/>
-										</p:panel>
-									</p:tab>
-								</p:wizard>
+										<p:tab id="confirm" title="Confirmation">
+											<p:panel header="Confirmation">
+												<h:panelGrid id="confirmation" columns="3"
+													columnClasses="grid,grid,grid">
+													<h:panelGrid columns="2" columnClasses="label, value">
+														<h:outputText value="Firstname: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.firstname}"
+															styleClass="outputLabel" />
 
-							</h:form>
+														<h:outputText value="Lastname: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.lastname}"
+															styleClass="outputLabel" />
 
-						</h:panelGrid>
-					</p:tab>
-					<p:tab title="Account">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:form>
-								<p:messages id="messages" showDetail="true" autoUpdate="true" />
+														<h:outputText value="Age: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.age}"
+															styleClass="outputLabel" />
+													</h:panelGrid>
 
-								<h:panelGrid columns="2" id="matchGrid">
-									
-									<h:outputLabel value="Current password: " styleClass="optionsPanel"/>
-									<p:password required="true" styleClass="optionsPanel values" />
-								
-									<h:outputLabel for="pwd1" value="New password:" styleClass="optionsPanel"/>
-									<p:password id="pwd1" value="#{passwordView.password5}"
-										match="pwd2" label="Password 1" required="true" styleClass="optionsPanel values" />
+													<h:panelGrid columns="2" columnClasses="label, value">
+														<h:outputText value="Street: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.street}"
+															styleClass="outputLabel" />
 
-									<h:outputLabel for="pwd2" value="Confirm password:" styleClass="optionsPanel" />
-									<p:password id="pwd2" value="#{passwordView.password5}"
-										label="Password 2" required="true" styleClass="optionsPanel values"/>
-								</h:panelGrid>
+														<h:outputText value="Postal: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.postalCode}"
+															styleClass="outputLabel" />
 
-								<p:commandButton update="matchGrid" value="Save" styleClass="customBtn" />
-							</h:form>
-						</h:panelGrid>
-					</p:tab>
-				</p:tabView>
-			</h:form>
+														<h:outputText value="City: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.city}"
+															styleClass="outputLabel" />
+													</h:panelGrid>
+
+													<h:panelGrid columns="2" columnClasses="label, value">
+														<h:outputText value="Email: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.email}"
+															styleClass="outputLabel" />
+
+														<h:outputText value="Phone " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.phone}"
+															styleClass="outputLabel" />
+
+														<h:outputText value="Info: " styleClass="textInfo" />
+														<h:outputText value="#{userWizard.user.info}"
+															styleClass="outputLabel" />
+
+														<h:outputText />
+														<h:outputText />
+													</h:panelGrid>
+												</h:panelGrid>
+
+												<p:commandButton value="Submit"
+													actionListener="#{userWizard.save}" update="growl"
+													process="@this" styleClass="customBtn" />
+											</p:panel>
+										</p:tab>
+									</p:wizard>
+
+								</h:form>
+
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Account">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+									<h:panelGrid columns="2" id="matchGrid">
+
+										<h:outputLabel value="Current password: "
+											styleClass="optionsPanel" />
+										<p:password required="true" styleClass="optionsPanel values" />
+
+										<h:outputLabel for="pwd1" value="New password:"
+											styleClass="optionsPanel" />
+										<p:password id="pwd1" value="#{passwordView.password5}"
+											match="pwd2" label="Password 1" required="true"
+											styleClass="optionsPanel values" />
+
+										<h:outputLabel for="pwd2" value="Confirm password:"
+											styleClass="optionsPanel" />
+										<p:password id="pwd2" value="#{passwordView.password5}"
+											label="Password 2" required="true"
+											styleClass="optionsPanel values" />
+									</h:panelGrid>
+
+									<p:commandButton update="matchGrid" value="Save"
+										styleClass="customBtn" />
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+					</p:tabView>
+				</h:form>
+			</p:outputPanel>
 			<p:dialog header="Values" modal="true" showEffect="bounce"
 				widgetVar="dlg">
 				<p:panelGrid columns="2" id="display" columnClasses="label,value">
 					<h:outputText value="Emergency Contact: " styleClass="textInfo" />
 					<h:outputText value="#{selectOneMenuView.console}" />
 
-					<h:outputText value="Emergency Organization: " styleClass="textInfo" />
+					<h:outputText value="Emergency Organization: "
+						styleClass="textInfo" />
 					<h:outputText value="#{selectOneMenuView.car}" />
 
 					<h:outputText value="Secondary Email:" styleClass="textInfo" />

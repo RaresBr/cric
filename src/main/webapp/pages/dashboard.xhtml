@@ -12,9 +12,9 @@
 	<ui:composition template="template.xhtml">
 		<ui:define name="content">
 			<h:outputStylesheet name="css/dashboard.css" />
-			<p:layout>
+			<p:layout fullPage="true">
 
-				<p:layoutUnit position="north" size="45" styleClass="top">
+				<p:layoutUnit position="north" size="45"  styleClass="top">
 					<p:tabMenu scrollable="false" activeIndex="#{param.i}" styleClass="tabMenu">
 						<p:menuitem value="Overview" outcome="dashboard"
 							icon="ui-icon-star" styleClass="navigationBtn">
@@ -40,7 +40,7 @@
 					</p:tabMenu>
 				</p:layoutUnit>
 
-				<p:layoutUnit styleClass="col-lg-2 col-md-2 west" position="west" size="200" header="Viewing Options">
+				<p:layoutUnit styleClass="col-lg-2 col-md-2 west" position="west"  size="200" header="Viewing Options">
 					<p:accordionPanel multiple="true">
 						<p:tab title="Location">
 							<h:panelGrid columns="2" cellpadding="10">
@@ -124,7 +124,7 @@
 				</p:layoutUnit>
 
 				<p:layoutUnit styleClass="col-lg-2 col-md-2 east" position="east" size="200"
-					header="Actions and Management">
+					header="Actions and Management"  >
 					<p:accordionPanel multiple="true">
 						<p:tab title="People">
 							<h:form>
@@ -192,7 +192,7 @@
             </p:dataList>
 					</p:outputPanel>
 				</p:dialog>
-				<p:layoutUnit styleClass="col-lg-8 col-md-8 center" position="center">
+				<p:layoutUnit styleClass="col-lg-8 col-md-8 center" position="center" >
 					<p:outputPanel styleClass="map">
 						<iframe width="100%" height="95%" scrolling="no" frameborder="no"
 							src="https://fusiontables.google.com/embedviz?q=select+col12+from+18JxfdSR1UkpIFLVpoL1PPpHHhUdv9lbz9QRkmW1S&amp;viz=MAP&amp;h=false&amp;lat=10.176820142221567&amp;lng=-83.837158569336&amp;t=1&amp;z=8&amp;l=col12&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG"></iframe>
