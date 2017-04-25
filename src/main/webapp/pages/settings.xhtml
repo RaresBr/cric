@@ -28,10 +28,8 @@
 										<p:selectOneMenu id="console"
 											value="#{selectOneMenuView.console}"
 											styleClass="optionsPanel values">
-											<f:selectItem itemLabel="Select One" itemValue="" />
-											<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-											<f:selectItem itemLabel="PS4" itemValue="PS4" />
-											<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+											<f:selectItem itemLabel="Select One" />
+											<f:selectItem itemLabel="Select emergancy contact from list" />
 										</p:selectOneMenu>
 
 
@@ -49,13 +47,11 @@
 											effect="fold" editable="true"
 											styleClass="optionsPanel values">
 											<f:selectItem itemLabel="Select One" itemValue="" />
-											<f:selectItems value="#{selectOneMenuView.cities}" />
 										</p:selectOneMenu>
 									</h:panelGrid>
 
 									<p:commandButton value="Submit" update="display"
-										oncomplete="PF('dlg').show()" icon="ui-icon-check"
-										styleClass="customBtn" />
+										icon="ui-icon-check" styleClass="customBtn" />
 
 
 								</h:form>
