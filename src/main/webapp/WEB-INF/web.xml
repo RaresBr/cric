@@ -6,7 +6,7 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 	id="WebApp_ID" version="3.0">
  
-  <display-name>JavaServerFaces</display-name>
+  <display-name>cric</display-name>
  
   <!-- Add Support for Spring -->
   <listener>

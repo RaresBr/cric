@@ -18,19 +18,21 @@ public class CheckboxViewRight {
     public void init() {
          
         cars = new ArrayList<SelectItem>();
-        SelectItemGroup germanCars = new SelectItemGroup("German Cars");
-        germanCars.setSelectItems(new SelectItem[] {
+        SelectItemGroup germanCars = new SelectItemGroup("Lost people");
+        /*germanCars.setSelectItems(new SelectItem[] {
             new SelectItem("BMW", "BMW"),
             new SelectItem("Mercedes", "Mercedes"),
             new SelectItem("Volkswagen", "Volkswagen")
         });
+        */
          
-        SelectItemGroup americanCars = new SelectItemGroup("American Cars");
-        americanCars.setSelectItems(new SelectItem[]{
+        SelectItemGroup americanCars = new SelectItemGroup("Crisis");
+        /*americanCars.setSelectItems(new SelectItem[]{
             new SelectItem("Chrysler", "Chrysler"),
             new SelectItem("GM", "GM"),
             new SelectItem("Ford", "Ford")
         });
+        */
  
         cars.add(germanCars);
         cars.add(americanCars);

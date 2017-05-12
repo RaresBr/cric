@@ -93,7 +93,7 @@
 											<h:outputText value="#{font}" style="font-weight: bold" />
 										</p:dataList>
 									</h:panelGrid>
-									
+
 								</h:form>
 							</h:panelGrid>
 						</p:tab>
@@ -127,7 +127,7 @@
 				<p:layoutUnit styleClass="col-lg-2 col-md-2 east" position="east" size="200"
 					header="Actions and Management"  >
 					<p:accordionPanel multiple="true">
-						<p:tab title="People">
+						<p:tab title="Resources">
 							<h:form>
 								<p:selectManyCheckbox id="grid3"
 									value="#{checkboxViewRight.selectedCars}"
@@ -147,13 +147,10 @@
 						</p:tab>
 						<p:tab title="Shelters">
 							<h:panelGrid columns="2" cellpadding="10">
-								<h:outputText value="Francis Ford Coppola's legendary..." />
 							</h:panelGrid>
 						</p:tab>
 						<p:tab title="Material Resources">
 							<h:panelGrid columns="2" cellpadding="10">
-
-								<h:outputText value="After a break of more than 15 years...." />
 							</h:panelGrid>
 						</p:tab>
 					</p:accordionPanel>
@@ -187,7 +184,7 @@
 						
 						<p:dataList value="#{checkboxViewRight.selectedCars}" var="car">
 							<f:facet name="header">
-                    Cars
+                    Manage crisis
                 </f:facet>
                 #{car}
             </p:dataList>
