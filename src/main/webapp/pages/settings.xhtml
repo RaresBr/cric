@@ -59,6 +59,7 @@
 						</p:tab>
 						<p:tab title="Personal">
 							<h:panelGrid columns="2" cellpadding="10">
+							<!--  
 								<h:form styleClass="wizardForm">
 
 									<p:growl id="growl" sticky="true" showDetail="true" />
@@ -69,19 +70,16 @@
 												<p:messages />
 												<h:panelGrid columns="2" columnClasses="label, value">
 													<h:outputText value="First name: " styleClass="textInfo" />
-													<p:inputText value="#{userWizard.user.firstname}"
-														label="Firstname" styleClass="wizardInput" />
+													<p:inputText label="Firstname" styleClass="wizardInput" />
 
 													<h:outputText value="Last name: " styleClass="textInfo" />
-													<p:inputText value="#{userWizard.user.lastname}"
-														label="Lastname" styleClass="wizardInput" />
+													<p:inputText label="Lastname" styleClass="wizardInput" />
 
 													<h:outputText value="Age: " styleClass="textInfo" />
-													<p:inputText value="#{userWizard.user.age}"
-														styleClass="wizardInput" />
+													<p:inputText styleClass="wizardInput" />
 
 													<h:outputText value="Skip to last: " styleClass="textInfo" />
-													<h:selectBooleanCheckbox value="#{userWizard.skip}" />
+													<h:selectBooleanCheckbox />
 												</h:panelGrid>
 											</p:panel>
 										</p:tab>
@@ -185,6 +183,8 @@
 									</p:wizard>
 
 								</h:form>
+								-->
+								
 
 							</h:panelGrid>
 						</p:tab>
