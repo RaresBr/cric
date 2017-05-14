@@ -30,23 +30,28 @@
 						<p:messages />
 
 						<p:inputText placeholder="First name" required="true"
-							label="Firstname" styleClass="inputName inputLoginHeader" />
+							label="Firstname" styleClass="inputName inputLoginHeader"
+							value="#{registerUser.user.firstName}" />
 
 						<p:inputText placeholder="Last name" required="true"
-							label="Lastname" styleClass="inputName inputLoginHeader" />
+							label="Lastname" styleClass="inputName inputLoginHeader" 
+							value="#{registerUser.user.lastName}" />
 
 						<p:inputText placeholder="E-mail address" required="true"
 							label="Email"
-							styleClass="col-lg-12 personalContact inputName inputLoginHeader" />
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader" 
+							value="#{registerUser.user.email}" />
 
 						<p:inputText placeholder="Username" required="true"
 							label="Username"
-							styleClass="col-lg-12 personalContact inputName inputLoginHeader" />
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader" 
+							value="#{registerUser.user.loginId}" />
 
 
 						<p:password id="pwd1" placeholder="Password" match="pwd2"
 							label="Password 1" required="true"
-							styleClass="inputName inputLoginHeader" />
+							styleClass="inputName inputLoginHeader"
+							value="#{registerUser.user.loginPasswd}" />
 						<p:password id="pwd2" placeholder="Confirm password"
 							label="Password 2" required="true"
 							styleClass="inputName inputLoginHeader" />
@@ -58,7 +63,7 @@
 							<f:selectItem itemLabel="Organisation" itemValue="Organisation" />
 						</p:selectOneRadio>
 
-						<p:commandButton value="Register" id="nonAjax" action="dashboard"
+						<p:commandButton value="Register" id="nonAjax" action="#{registerUser.register}" 
 							ajax="false" styleClass="col-lg-2 registerBtn" />
 
 					</h:form>

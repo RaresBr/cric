@@ -21,6 +21,8 @@
 	</repositories>
 
 	<dependencies>
+	
+	
 
 		<!-- PrimeFaces -->
 		<dependency>
@@ -29,18 +31,20 @@
 			<version>5.3</version>
 		</dependency>
 
-		<!-- Spring framework -->
+		<!-- Spring ORM -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>3.1.2.RELEASE</version>
+			<artifactId>spring-orm</artifactId>
+			<version>4.0.3.RELEASE</version>
 		</dependency>
 
+		<!-- Spring Web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>3.1.2.RELEASE</version>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.0.3.RELEASE</version>
 		</dependency>
+
 
 		<!-- JSF -->
 		<dependency>
@@ -79,7 +83,7 @@
 			<version>2.2</version>
 		</dependency>
 
-		<!-- Tomcat 6 need this -->
+		<!-- Tomcat 6 needs this -->
 		<dependency>
 			<groupId>com.sun.el</groupId>
 			<artifactId>el-ri</artifactId>
@@ -93,20 +97,20 @@
 			<version>1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<!-- Hibernate Library-->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>3.6.10.Final</version>
 		</dependency>
-		
+
 		<!-- MySQL driver connector library -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
 		</dependency>
-		
+
 		<!-- Required By Hibernate -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
