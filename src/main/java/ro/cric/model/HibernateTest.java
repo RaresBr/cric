@@ -23,9 +23,7 @@ public class HibernateTest {
 		usr.setLoginId("qwerty");
 		usr.setLoginPasswd("qwerty123");
 		usr.setEmail("qwerty@dummy.com");
-//		emp.setEmployeeName("Peter Jousha");
-//		emp.setEmployeeSalary(2000);
-//		emp.setEmployeeHireDate(new Date());
+
 		// Save
 		session.save(usr);
 		// Commit, calling of commit will cause save an instance of employee
