@@ -18,6 +18,11 @@
 			<url>http://repository.primefaces.org</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<id>project-common</id>
+			<name>Project Common</name>
+			<url>https://github.com/RaresBr/cap/raw/master</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -98,6 +103,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>3.6.10.Final</version>
+		</dependency>
+		<!-- google cap lib -->
+		<dependency>
+			<groupId>cap-library</groupId>
+			<artifactId>cap-library</artifactId>
+			<version>r11</version>
 		</dependency>
 
 
