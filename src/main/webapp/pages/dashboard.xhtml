@@ -13,13 +13,15 @@
 		<ui:define name="content">
 			<h:outputStylesheet name="css/dashboard.css" />
 			<p:layout fullPage="true">
-
+				
+				
 				<p:layoutUnit position="north" size="45" styleClass="top">
 					<p:tabMenu scrollable="false" activeIndex="#{param.i}"
 						styleClass="tabMenu">
 						<p:menuitem value="Overview" outcome="dashboard"
 							icon="ui-icon-star" styleClass="navigationBtn">
 							<f:param name="i" value="0" />
+							
 						</p:menuitem>
 						<p:menuitem value="Alerts" outcome="dashboard"
 							icon="ui-icon-person" styleClass="navigationBtn">
@@ -37,7 +39,7 @@
 							icon="ui-icon-wrench" styleClass="navigationBtn">
 							<f:param name="i" value="3" />
 						</p:menuitem>
-
+						
 					</p:tabMenu>
 				</p:layoutUnit>
 
@@ -57,7 +59,8 @@
 									</h:panelGrid>
 
 									<p:commandButton value="Submit" update="fusionTable" icon="ui-icon-check" />
-									<h:commandButton action="#{caplib.callCap(delete)}" />
+									<h:commandButton value ="Cap" action="#{caplib.callCap(delete)}" />
+									<h:commandButton value ="Sendpushnotif" action="#{sendpushbeannot.sendNotification(delete)}" />
 
 								</h:form>
 							</h:panelGrid>

@@ -25,12 +25,6 @@
 	</repositories>
 
 	<dependencies>
-		<!-- google cap lib -->
-		<dependency>
-			<groupId>cap-library</groupId>
-			<artifactId>cap-library</artifactId>
-			<version>r11</version>
-		</dependency>
 
 		<!-- PrimeFaces -->
 		<dependency>
@@ -109,6 +103,26 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>3.6.10.Final</version>
 		</dependency>
+		<!-- google cap lib -->
+		<dependency>
+			<groupId>cap-library</groupId>
+			<artifactId>cap-library</artifactId>
+			<version>r11</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- pushpad -->
+		<dependency>
+			<groupId>pushpad</groupId>
+			<artifactId>pushpad</artifactId>
+			<version>v0.4.0</version>
+		</dependency>
+
 
 
 	</dependencies>
