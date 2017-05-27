@@ -1,79 +1,51 @@
 package ro.cric.model;
 
 public class User {
-
-	private String firstname;
-
-	private String lastname;
-
-	private Integer age;
-
-	private String street;
-
-	private String city;
-
-	private String postalCode;
-
-	private String info;
-
+	private int userId;
+	private String firstName;
+	private String lastName;
+	private String loginId;
+	private String loginPasswd;
 	private String email;
 
-	private String phone;
-
-	public String getFirstname() {
-		return firstname;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public Integer getAge() {
-		return age;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getStreet() {
-		return street;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setStreet(String street) {
-		this.street = street;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
-	public String getCity() {
-		return city;
+	public String getLoginPasswd() {
+		return loginPasswd;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
-
-	public String getInfo() {
-		return info;
-	}
-
-	public void setInfo(String info) {
-		this.info = info;
+	public void setLoginPasswd(String loginPasswd) {
+		this.loginPasswd = loginPasswd;
 	}
 
 	public String getEmail() {
@@ -84,11 +56,4 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 }
