@@ -1,4 +1,4 @@
-package ro.cric.cap;
+package ro.cric.pushpad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -12,34 +12,17 @@ import com.google.publicalerts.cap.CapXmlParser;
 import com.google.publicalerts.cap.NotCapException;
 import com.google.publicalerts.cap.XmlSigner;
 
-@ManagedBean(name="caplib")
+import xyz.pushpad.DeliveryException;
+import xyz.pushpad.Pushpad;
+
+@ManagedBean(name="sendpushbeannot")
 @SessionScoped
-public class CapMain {
-	public String callCap(String id) throws SAXParseException, NotCapException, CapException {
-		// Generate a CAP document
-        Alert alert = CapTestUtil.getValidAlertBuilder().build();
-
-        // Write it out to XML
-        CapXmlBuilder builder = new CapXmlBuilder();
-        String xml = builder.toXml(alert);
-
-        // Sign it
-        XmlSigner signer = XmlSigner.newInstanceWithRandomKeyPair();
-        String signedXml = signer.sign(xml);
-
-        // Parse it, with validation
-        CapXmlParser parser = new CapXmlParser(true);
-        Alert parsedAlert = parser.parseFrom(signedXml);
-        System.out.println(parsedAlert.getSender());
-        System.out.println(parsedAlert.toString());
-		return id;
-		  //id = "delete"
-		}
+public class PushMain {
 	public String sendNotification(String id){
 		String authToken = "9061dd8893ecb319f043c926fd257cf7";
 		String projectId = "3675";
-		//Pushpad pushpad = new Pushpad(authToken, projectId);
-		//xyz.pushpad.Notification notification = pushpad.buildNotification("Title", "Message", "http://example.com");
+		Pushpad pushpad = new Pushpad(authToken, projectId);
+		xyz.pushpad.Notification notification = pushpad.buildNotification("Title", "Message", "http://example.com");
 	
 		// optional, defaults to the project icon
 		//notification.iconUrl = "http://example.com/assets/icon.png";
@@ -53,7 +36,7 @@ public class CapMain {
 //		button1.action = "myActionName"; // optional
 //		notification.actionButtons = new ActionButton[]{button1};
 		System.out.println("test");
-		//try {
+		try {
 			
 //		  // deliver the notification to a user
 //		  notification.deliverTo("user100");
@@ -80,12 +63,13 @@ public class CapMain {
 //		  notification.deliverTo(users, tags4);
 	
 		  // deliver to everyone
-		  //notification.broadcast();
-//		} catch (DeliveryException e) {
-//		  e.printStackTrace();
-//		}
+		  notification.broadcast();
+		} catch (DeliveryException e) {
+		  e.printStackTrace();
+		}
 		return id;
 	}
 
 }
+
 
