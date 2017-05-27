@@ -13,10 +13,9 @@
 
 	<repositories>
 		<repository>
-			<id>prime-repo</id>
-			<name>Prime Repo</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
+			<id>primefaces-repo</id>
+			<name>Primefaces repository</name>
+			<url>https://mvnrepository.com/artifact/org.primefaces/primefaces</url>
 		</repository>
 		<repository>
 			<id>project-common</id>
@@ -26,6 +25,12 @@
 	</repositories>
 
 	<dependencies>
+		<!-- google cap lib -->
+		<dependency>
+			<groupId>cap-library</groupId>
+			<artifactId>cap-library</artifactId>
+			<version>r11</version>
+		</dependency>
 
 		<!-- PrimeFaces -->
 		<dependency>
@@ -103,12 +108,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>3.6.10.Final</version>
-		</dependency>
-		<!-- google cap lib -->
-		<dependency>
-			<groupId>cap-library</groupId>
-			<artifactId>cap-library</artifactId>
-			<version>r11</version>
 		</dependency>
 
 
