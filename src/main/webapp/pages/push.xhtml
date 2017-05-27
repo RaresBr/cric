@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Welcome to Cric</title>
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/template.css" />
+</h:head>
+<h:body>
+
+	<!-- DEFINE HEADER -->
+	<p:outputPanel layout="block" styleClass="header">
+		<ui:insert name="header">
+			<p:outputPanel layout="block"
+				styleClass="col-lg-6 col-md-6 col-sm-6 col-xs-6 title-panel">
+				<p:link outcome="home" value="CriC" id="title"/>
+			</p:outputPanel>
+
+			<p:outputPanel layout="block"
+				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4 headerRight">
+				<p:outputPanel layout="block" styleClass="row userpass">
+					<h:form prependId="false">
+						<p:outputPanel
+							styleClass=" col-lg-5 col-md-4 col-sm-4 col-xs-3 loginLeft">
+							<p:inputText id="username1" placeholder="Insert your username"
+								required="true" styleClass="user inputLoginHeader"
+								requiredMessage="Username required" tabindex="1" />
+							<p:link styleClass="links" value="Forgot Password" />
+						</p:outputPanel>
+
+						<p:outputPanel
+							styleClass="col-lg-5 col-md-4 col-sm-4 col-xs-3 loginMiddle">
+							<p:password id="password1" placeholder="Insert your password"
+								required="true" styleClass="pass inputLoginHeader"
+								requiredMessage="Password required" maxlength="45" tabindex="2" />
+							<p:link styleClass="links" value="Resend activation mail" />
+						</p:outputPanel>
+
+						<p:outputPanel
+							styleClass="col-lg-1 col-md-2 col-sm-2 col-xs-1 loginRight">
+							<h:commandButton value="Log in"
+								styleClass="customBtn btnSub inputLoginHeader" />
+						</p:outputPanel>
+
+					</h:form>
+				</p:outputPanel>
+			</p:outputPanel>
+
+			<p:outputPanel layout="block" styleClass="helpMenu row">
+				<p:link value="About us" styleClass="helpMenu-item"
+					outcome="about.xhtml" />
+				<p:link value="Dashboard" styleClass="helpMenu-item" outcome="dashboard.xhtml" />
+				<p:link value="Settings" styleClass="helpMenu-item" outcome="settings.xhtml" />
+			</p:outputPanel>
+		</ui:insert>
+	</p:outputPanel>
+
+	<!-- DEFINE CONTENT -->
+	<p:outputPanel layout="block" styleClass="content">
+		<ui:insert name="content">
+			<a href="https://cric.pushpad.xyz/p/3675">Push Notifications</a>
+			<h:commandButton action="#{sendpushbean.sendNotification(delete)}" />
+
+		</ui:insert>
+	</p:outputPanel>
+
+
+	<!-- DEFINE FOOTER -->
+	<p:outputPanel layout="block" styleClass="footer row">
+		<ui:insert name="footer">
+			<p:outputPanel layout="block"
+				styleClass="helpMenu-footer row">
+				<p:link value="FAQs" styleClass="helpMenu-item" outcome="faq.xhtml" />
+				<p:link value="Contact" styleClass="helpMenu-item"
+					outcome="contact.xhtml" />
+					
+			</p:outputPanel>
+			<p:outputPanel layout="block"
+				styleClass="copyright">
+				<span class="copyrightSpan"> <h:outputText
+						value="© 2017 FII TW Team" />
+				</span>
+			</p:outputPanel>
+		</ui:insert>
+	</p:outputPanel>
+
+</h:body>
+</html>
