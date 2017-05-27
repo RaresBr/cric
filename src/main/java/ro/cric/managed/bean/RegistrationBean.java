@@ -1,17 +1,19 @@
-package ro.cric;
+package ro.cric.managed.bean;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import ro.cric.model.User;
-import ro.cric.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
-@ManagedBean
-@SessionScoped
-public class RegisterUser {
+import ro.cric.model.User;
+import ro.cric.service.UserService;
+
+@ManagedBean(name = "registrationBean")
+@ViewScoped
+public class RegistrationBean {
 
 	@ManagedProperty("#{userService}")
 	private UserService userService;
@@ -35,12 +37,9 @@ public class RegisterUser {
 	}
 
 	public String register() {
-		// Calling Business Service
 		userService.register(user);
-		// Add message
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("The user "+ this.user.getFirstName() + " " +  this.user.getLastName() + 
-						" Is Registered Successfully"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The user " + this.user.getFirstName() + " "
+				+ this.user.getLastName() + " Is Registered Successfully"));
 		return "";
 	}
 }

@@ -1,4 +1,4 @@
-package ro.cric.views;
+package ro.cric.view;
  
 import java.util.List;
 
