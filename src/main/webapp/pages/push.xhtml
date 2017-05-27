@@ -61,8 +61,9 @@
 	<p:outputPanel layout="block" styleClass="content">
 		<ui:insert name="content">
 			<a href="https://cric.pushpad.xyz/p/3675">Push Notifications</a>
-			<h:commandButton action="#{sendpushbean.sendNotification(delete)}" />
-
+			<h:form>
+				<h:commandButton value ="Sendpushnotif" action="#{sendpushbeannot.sendNotification(delete)}" />
+			</h:form>
 		</ui:insert>
 	</p:outputPanel>
 
