@@ -15,18 +15,20 @@
 		<ui:insert name="header">
 			<p:outputPanel layout="block"
 				styleClass="col-lg-6 col-md-6 col-sm-6 col-xs-6 title-panel">
-				<p:link outcome="home" value="CriC" id="title"/>
+				<p:link outcome="#{userBean.home()}" value="CriC" id="title" />
 			</p:outputPanel>
 
 			<p:outputPanel layout="block"
-				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4 headerRight">
+				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4 headerRight"
+				rendered="#{!userBean.loggedIn}">
 				<p:outputPanel layout="block" styleClass="row userpass">
 					<h:form prependId="false">
 						<p:outputPanel
 							styleClass=" col-lg-5 col-md-4 col-sm-4 col-xs-3 loginLeft">
 							<p:inputText id="username1" placeholder="Insert your username"
 								required="true" styleClass="user inputLoginHeader"
-								requiredMessage="Username required" tabindex="1" />
+								requiredMessage="Username required" tabindex="1"
+								value="#{loginBean.username}" />
 							<p:link styleClass="links" value="Forgot Password" />
 						</p:outputPanel>
 
@@ -34,25 +36,40 @@
 							styleClass="col-lg-5 col-md-4 col-sm-4 col-xs-3 loginMiddle">
 							<p:password id="password1" placeholder="Insert your password"
 								required="true" styleClass="pass inputLoginHeader"
-								requiredMessage="Password required" maxlength="45" tabindex="2" />
+								requiredMessage="Password required" maxlength="45" tabindex="2"
+								value="#{loginBean.password}" />
 							<p:link styleClass="links" value="Resend activation mail" />
 						</p:outputPanel>
 
 						<p:outputPanel
 							styleClass="col-lg-1 col-md-2 col-sm-2 col-xs-1 loginRight">
 							<h:commandButton value="Log in"
-								styleClass="customBtn btnSub inputLoginHeader" />
+								styleClass="customBtn btnSub inputLoginHeader"
+								action="#{loginBean.login}" />
 						</p:outputPanel>
 
 					</h:form>
 				</p:outputPanel>
+
+
+			</p:outputPanel>
+
+			<p:outputPanel layout="block"
+				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+				rendered="#{userBean.loggedIn}">
+				<h:form styleClass="logout">
+					<h:commandLink styleClass="row"
+						value="Log out" action="#{loginBean.logout}" />
+				</h:form>
 			</p:outputPanel>
 
 			<p:outputPanel layout="block" styleClass="helpMenu row">
 				<p:link value="About us" styleClass="helpMenu-item"
 					outcome="about.xhtml" />
-				<p:link value="Dashboard" styleClass="helpMenu-item" outcome="dashboard.xhtml" />
-				<p:link value="Settings" styleClass="helpMenu-item" outcome="settings.xhtml" />
+				<p:link value="Dashboard" styleClass="helpMenu-item"
+					outcome="dashboard.xhtml" rendered="#{userBean.loggedIn}" />
+				<p:link value="Settings" styleClass="helpMenu-item"
+					outcome="settings.xhtml" rendered="#{userBean.loggedIn}" />
 			</p:outputPanel>
 		</ui:insert>
 	</p:outputPanel>
@@ -68,14 +85,12 @@
 	<!-- DEFINE FOOTER -->
 	<p:outputPanel layout="block" styleClass="footer row">
 		<ui:insert name="footer">
-			<p:outputPanel layout="block"
-				styleClass="helpMenu-footer row">
+			<p:outputPanel layout="block" styleClass="helpMenu-footer row">
 				<p:link value="FAQs" styleClass="helpMenu-item" outcome="faq.xhtml" />
 				<p:link value="Contact" styleClass="helpMenu-item"
 					outcome="contact.xhtml" />
 			</p:outputPanel>
-			<p:outputPanel layout="block"
-				styleClass="copyright">
+			<p:outputPanel layout="block" styleClass="copyright">
 				<span class="copyrightSpan"> <h:outputText
 						value="© 2017 FII TW Team" />
 				</span>

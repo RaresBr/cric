@@ -126,6 +126,10 @@ a:-webkit-any-link {
 	border:1px solid #666;
 }
 
+.logout {
+	text-align: right;
+}
+
 input.ui-inputfield.ui-widget.user, .ui-inputfield.ui-password.ui-widget.ui-state-default.ui-corner-all.pass.pass {
 	margin-top: 0px;
 	margin-bottom: 0px;
