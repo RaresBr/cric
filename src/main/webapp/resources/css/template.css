@@ -126,6 +126,137 @@ a:-webkit-any-link {
 	border:1px solid #666;
 }
 
+input.ui-inputfield.ui-widget.user, .ui-inputfield.ui-password.ui-widget.ui-state-default.ui-corner-all.pass.pass {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 100%;
+	margin: 0;
+	font-family: "Corbel", "Andalus", "Arial Narrow", Arial, monospace;
+	box-sizing: border-box;
+}
+
+.content {
+	width: 100%;
+	bottom: 50px;
+	position: absolute;
+	top: 116px;
+	background: linear-gradient(#6C6B7D, #4B4A61, #090819,#6C6B7D);
+	overflow:auto;
+}
+
+.header {
+	background-color: #090819; 
+	width: 100%;
+	align-items: center;
+	height: 100px;
+	float: top;
+	padding-top: 1%;
+	border-bottom: 1px solid #000;
+}
+
+.headerRight {
+	float: right;
+}
+
+.loginLeft, .loginMiddle {
+	display: inline-block;
+}
+
+.inputLoginHeader {
+	box-shadow: none;
+	border-radius: 0;
+	display: inline;
+}
+
+.userpass {
+	margin-right: 12px;
+}
+
+.buttons>a {
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.helpMenu {
+	border-bottom: 1px solid #000;
+	background: #0C052C;
+	height: 40px;
+	width: 100%;
+	text-align: left;
+	line-height: 27px;
+	display: flex;
+}
+
+.helpMenu-footer {
+	background: #black;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.helpMenu-item {
+	margin: 8px;
+	text-decoration:none;
+}
+
+a:-webkit-any-link {
+	color: white;
+	text-decoration: none;
+}
+
+.title-panel {
+	margin-left: 15%;
+	text-align: center;
+}
+
+#title {
+	font-size: 3em;
+	color: white;
+}
+
+.copyright {
+	white-space: nowrap;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+}
+
+.footer {
+	padding-right: 0;
+	background-color: black;
+	height: 70px;
+	min-height: 30px;
+	width: 100%;
+	border-top: 1px solid #fff;
+	position: fixed;
+	bottom: 0;
+	float: bottom;
+	z-index: 3000;
+}
+
+.ui-widget .ui-widget.links {
+	display : block;
+	white-space: nowrap;
+	text-decoration: none;
+	color: white;
+	font-size: 10px;
+}
+
+.ui-widget .customBtn {
+	background: #fff;
+	border-radius:0;
+	margin-top: 20%;
+	color:#666;
+	font-weight:normal;
+	border:1px solid #666;
+}
+
 .logout {
 	text-align: right;
 }
