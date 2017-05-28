@@ -35,4 +35,18 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 		return true;
 	}
 
+	@Override
+	public User getByCredentials(String password, String username) {
+		TypedQuery<User> query = entityManager
+				.createQuery("select u From User as u where u.username=:searched_username and u.password=:searched_password",
+						User.class)
+				.setParameter("searched_username", username).setParameter("searched_password", password);
+		List<User> list = query.getResultList();
+		
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
+	}
+
 }

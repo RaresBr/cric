@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
 		userDao.persist(user);
 	}
 
+	@Override
+	public User getUserByCredentials(String password, String username) {
+		return userDao.getByCredentials(password, username);
+	}
+
 }
