@@ -1,7 +1,11 @@
 package ro.cric.pushpad;
 
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.xml.sax.SAXParseException;
 
@@ -16,14 +20,19 @@ import xyz.pushpad.DeliveryException;
 import xyz.pushpad.Pushpad;
 
 @ManagedBean(name="sendpushbeannot")
-@SessionScoped
+@ViewScoped
 public class PushMain {
-	public String sendNotification(String id){
+	public String sendNotification(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		
+		String message = params.get("message");
+		String title = params.get("title");
 		String authToken = "9061dd8893ecb319f043c926fd257cf7";
 		String projectId = "3675";
 		Pushpad pushpad = new Pushpad(authToken, projectId);
-		xyz.pushpad.Notification notification = pushpad.buildNotification("Title", "Message", "http://example.com");
-	
+		xyz.pushpad.Notification notification = pushpad.buildNotification(title, message, "http://example.com");
+		
 		// optional, defaults to the project icon
 		//notification.iconUrl = "http://example.com/assets/icon.png";
 		// optional, drop the notification after this number of seconds if a device is offline 
@@ -35,9 +44,13 @@ public class PushMain {
 //		button1.icon = "http://example.com/assets/button-icon.png"; // optional
 //		button1.action = "myActionName"; // optional
 //		notification.actionButtons = new ActionButton[]{button1};
-		System.out.println("test");
-		try {
-			
+		System.out.println("Called pushnotification method");
+		System.out.println(message);
+		System.out.println(title);
+//		
+//		
+//		try {
+//			
 //		  // deliver the notification to a user
 //		  notification.deliverTo("user100");
 //	
@@ -61,13 +74,13 @@ public class PushMain {
 //		  notification.broadcast(tags3);
 //		  String[] tags4 = {"tag1 && tag2", "tag3"}; // equal to "tag1 && tag2 || tag3"
 //		  notification.deliverTo(users, tags4);
-	
-		  // deliver to everyone
-		  notification.broadcast();
-		} catch (DeliveryException e) {
-		  e.printStackTrace();
-		}
-		return id;
+//	
+//		  // deliver to everyone
+//		  notification.broadcast();
+//		} catch (DeliveryException e) {
+//		  e.printStackTrace();
+//		}
+		return "";
 	}
 
 }

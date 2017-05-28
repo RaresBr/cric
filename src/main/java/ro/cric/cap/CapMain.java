@@ -1,91 +1,67 @@
 package ro.cric.cap;
 
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.xml.sax.SAXParseException;
 
 import com.google.publicalerts.cap.Alert;
 import com.google.publicalerts.cap.CapException;
+import com.google.publicalerts.cap.CapValidator;
 import com.google.publicalerts.cap.CapXmlBuilder;
 import com.google.publicalerts.cap.CapXmlParser;
+import com.google.publicalerts.cap.Group;
 import com.google.publicalerts.cap.NotCapException;
 import com.google.publicalerts.cap.XmlSigner;
 
-@ManagedBean(name="caplib")
-@SessionScoped
+@ManagedBean(name = "caplib")
+@RequestScoped
 public class CapMain {
-	public String callCap(String id) throws SAXParseException, NotCapException, CapException {
+	
+	private String capXml ="placeholder";
+	public String callCap() throws SAXParseException, NotCapException, CapException {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+	  String sender = params.get("sender");
+	  String message = params.get("message");
 		// Generate a CAP document
-        Alert alert = CapTestUtil.getValidAlertBuilder().build();
+		Alert alert = Alert.newBuilder().setXmlns(CapValidator.CAP_LATEST_XMLNS).setIdentifier("43b080713727")
+				.setSender(sender).setSent("2003-04-02T14:39:01-05:00").setStatus(Alert.Status.ACTUAL)
+				.setMsgType(Alert.MsgType.ALERT).setSource("a source").setScope(Alert.Scope.PUBLIC)
+				.setAddresses(Group.newBuilder().addValue("address 1").addValue("address2").build()).addCode("abcde")
+				.addCode("fghij").setNote("a note")
+				.setNote(message)
+				.setIncidents(Group.newBuilder().addValue("incident1").addValue("incident2").build()).buildPartial();
 
-        // Write it out to XML
-        CapXmlBuilder builder = new CapXmlBuilder();
-        String xml = builder.toXml(alert);
+		// Write it out to XML
+		CapXmlBuilder builder = new CapXmlBuilder();
+		String xml = builder.toXml(alert);
 
-        // Sign it
-        XmlSigner signer = XmlSigner.newInstanceWithRandomKeyPair();
-        String signedXml = signer.sign(xml);
+		// Sign it
+		XmlSigner signer = XmlSigner.newInstanceWithRandomKeyPair();
+		String signedXml = signer.sign(xml);
 
-        // Parse it, with validation
-        CapXmlParser parser = new CapXmlParser(true);
-        Alert parsedAlert = parser.parseFrom(signedXml);
-        System.out.println(parsedAlert.getSender());
-        System.out.println(parsedAlert.toString());
-		return id;
-		  //id = "delete"
-		}
-	public String sendNotification(String id){
-		String authToken = "9061dd8893ecb319f043c926fd257cf7";
-		String projectId = "3675";
-		//Pushpad pushpad = new Pushpad(authToken, projectId);
-		//xyz.pushpad.Notification notification = pushpad.buildNotification("Title", "Message", "http://example.com");
-	
-		// optional, defaults to the project icon
-		//notification.iconUrl = "http://example.com/assets/icon.png";
-		// optional, drop the notification after this number of seconds if a device is offline 
-		//notification.ttl = 604800;
-		// optional, add some action buttons to the notification
-		// see https://pushpad.xyz/docs/action_buttons
-//		ActionButton button1 = new ActionButton("My Button 1"); // Title (max length is 20 characters)
-//		button1.targetUrl = "http://example.com/button-link"; // optional
-//		button1.icon = "http://example.com/assets/button-icon.png"; // optional
-//		button1.action = "myActionName"; // optional
-//		notification.actionButtons = new ActionButton[]{button1};
-		System.out.println("test");
-		//try {
-			
-//		  // deliver the notification to a user
-//		  notification.deliverTo("user100");
-//	
-//		  // deliver the notification to a group of users
-//		  String[] users = {"user123", "user100"};
-//		  notification.deliverTo(users);
-//	
-//		  // deliver to some users only if they have a given preference
-//		  // e.g. only "users" who have a interested in "events" will be reached
-//		  String[] tags1 = {"events"};
-//		  notification.deliverTo(users, tags1);
-//	
-//		  // deliver to segments
-//		  // e.g. any subscriber that has the tag "segment1" OR "segment2"
-//		  String[] tags2 = {"segment1", "segment2"};
-//		  notification.broadcast(tags2);
-//		  
-//		  // you can use boolean expressions 
-//		  // they must be in the disjunctive normal form (without parenthesis)
-//		  String[] tags3 = {"zip_code:28865 && !optout:local_events || friend_of:Organizer123"};
-//		  notification.broadcast(tags3);
-//		  String[] tags4 = {"tag1 && tag2", "tag3"}; // equal to "tag1 && tag2 || tag3"
-//		  notification.deliverTo(users, tags4);
-	
-		  // deliver to everyone
-		  //notification.broadcast();
-//		} catch (DeliveryException e) {
-//		  e.printStackTrace();
-//		}
-		return id;
+		// Parse it, with validation
+		CapXmlParser parser = new CapXmlParser(true);
+		Alert parsedAlert = parser.parseFrom(signedXml);
+		System.out.println(sender);
+		System.out.println(message);
+		capXml = xml.toString();
+		 return xml.toString();
+		// id = "delete"
+	}
+	public String getCapXml() {
+		return capXml;
+	}
+	public void setCapXml(String capXml) {
+		this.capXml = capXml;
 	}
 
-}
 
+}
