@@ -22,13 +22,13 @@ public class User {
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@Column(name = "USERNAME")
+	@Column(name = "USERNAME", unique = true)
 	private String username;
 	
 	@Column(name = "PASSWORD")
 	private String password;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", unique = true)
 	private String email;
 
 	public long getUserId() {

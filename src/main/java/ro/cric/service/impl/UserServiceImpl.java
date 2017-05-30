@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public boolean doesUsernameExist(String username, Long id) {
-		return userDao.doesUsernameExist(username, id);
+	public boolean doesUsernameExist(String username) {
+		return userDao.doesUsernameExist(username);
 	}
 
 	@Override
