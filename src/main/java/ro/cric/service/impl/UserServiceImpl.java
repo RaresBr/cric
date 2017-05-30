@@ -28,14 +28,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public boolean doesUsernameExist(String username, Long id) {
-		return userDao.doesUsernameExist(username, id);
+	public boolean doesUsernameExist(String username) {
+		return userDao.doesUsernameExist(username);
 	}
 
 	@Override
 	@Transactional
 	public void register(User user) {
 		userDao.persist(user);
+	}
+
+	@Override
+	public User getUserByCredentials(String password, String username) {
+		return userDao.getByCredentials(password, username);
 	}
 
 }

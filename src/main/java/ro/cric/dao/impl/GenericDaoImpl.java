@@ -50,4 +50,53 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 		return persistedEntity;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean doesEmailExist(String email) {
+		String entityName = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]
+				.getTypeName();
+		Query query = entityManager.createQuery("from " + entityName + " as u where u.email=:email")
+				.setParameter("email", email);
+
+		List<T> list = query.getResultList();
+
+		if (list.isEmpty())
+			return false;
+
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean doesUsernameExist(String username) {
+		String entityName = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]
+				.getTypeName();
+		Query query = entityManager.createQuery("from " + entityName + " as u where u.username=:username")
+				.setParameter("username", username);
+
+		List<T> list = query.getResultList();
+
+		if (list.isEmpty())
+			return false;
+
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public T getByCredentials(String password, String username) {
+		String entityName = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]
+				.getTypeName();
+		Query query = entityManager
+				.createQuery("from " + entityName
+						+ " as u where u.username=:searched_username and u.password=:searched_password")
+				.setParameter("searched_username", username).setParameter("searched_password", password);
+		List<T> list = query.getResultList();
+
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
+	}
+
 }
