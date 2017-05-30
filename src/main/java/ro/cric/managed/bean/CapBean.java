@@ -3,6 +3,7 @@ package ro.cric.managed.bean;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -44,9 +45,13 @@ public class CapBean {
 	}
 
 	public String callCap() throws SAXParseException, NotCapException, CapException {
+		TimeZone tz = TimeZone.getTimeZone("UTC");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		dateFormat.setTimeZone(tz);
+		
 		// Generate a CAP document
 		Alert alert = Alert.newBuilder().setXmlns(CapValidator.CAP_LATEST_XMLNS).setIdentifier("43b080713727")
-				.setSender(user.getUsername()).setSent("2003-04-02T14:39:01-05:00").setStatus(Alert.Status.ACTUAL)
+				.setSender(user.getEmail()).setSent(dateFormat.format(new Date())).setStatus(Alert.Status.ACTUAL)
 				.setMsgType(Alert.MsgType.ALERT).setScope(Alert.Scope.PUBLIC)
 				.setAddresses(Group.newBuilder().addValue("address 1").addValue("address2").build()).addCode("abcde")
 				.addCode("fghij").setNote("a note").setNote(message)
@@ -61,8 +66,8 @@ public class CapBean {
 		String signedXml = signer.sign(xml);
 
 		// Parse it, with validation
-		CapXmlParser parser = new CapXmlParser(true);
-		Alert parsedAlert = parser.parseFrom(signedXml);
+		//CapXmlParser parser = new CapXmlParser(true);
+		//Alert parsedAlert = parser.parseFrom(signedXml);
 		System.out.println(user.getUsername());
 		System.out.println(message);
 		capXml = xml.toString();
