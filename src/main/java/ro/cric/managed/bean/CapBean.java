@@ -1,13 +1,14 @@
-package ro.cric.cap;
+package ro.cric.managed.bean;
 
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import javax.swing.text.DateFormatter;
 
 import org.xml.sax.SAXParseException;
 
@@ -20,23 +21,35 @@ import com.google.publicalerts.cap.Group;
 import com.google.publicalerts.cap.NotCapException;
 import com.google.publicalerts.cap.XmlSigner;
 
-@ManagedBean(name = "caplib")
+import ro.cric.component.SessionData;
+import ro.cric.model.User;
+
+@ManagedBean(name = "capBean")
 @RequestScoped
-public class CapMain {
-	
-	private String capXml ="placeholder";
+public class CapBean {
+
+	@ManagedProperty("#{sessionComponent}")
+	private SessionData session;
+
+	private User user;
+
+	private String capXml = "placeholder";
+
+	private String message;
+
+	@PostConstruct
+	private void init() {
+		user = session.getLoggedUser();
+
+	}
+
 	public String callCap() throws SAXParseException, NotCapException, CapException {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-	  String sender = params.get("sender");
-	  String message = params.get("message");
 		// Generate a CAP document
 		Alert alert = Alert.newBuilder().setXmlns(CapValidator.CAP_LATEST_XMLNS).setIdentifier("43b080713727")
-				.setSender(sender).setSent("2003-04-02T14:39:01-05:00").setStatus(Alert.Status.ACTUAL)
-				.setMsgType(Alert.MsgType.ALERT).setSource("a source").setScope(Alert.Scope.PUBLIC)
+				.setSender(user.getUsername()).setSent("2003-04-02T14:39:01-05:00").setStatus(Alert.Status.ACTUAL)
+				.setMsgType(Alert.MsgType.ALERT).setScope(Alert.Scope.PUBLIC)
 				.setAddresses(Group.newBuilder().addValue("address 1").addValue("address2").build()).addCode("abcde")
-				.addCode("fghij").setNote("a note")
-				.setNote(message)
+				.addCode("fghij").setNote("a note").setNote(message)
 				.setIncidents(Group.newBuilder().addValue("incident1").addValue("incident2").build()).buildPartial();
 
 		// Write it out to XML
@@ -50,18 +63,47 @@ public class CapMain {
 		// Parse it, with validation
 		CapXmlParser parser = new CapXmlParser(true);
 		Alert parsedAlert = parser.parseFrom(signedXml);
-		System.out.println(sender);
+		System.out.println(user.getUsername());
 		System.out.println(message);
 		capXml = xml.toString();
-		 return xml.toString();
+		return xml.toString();
 		// id = "delete"
 	}
+
+	public CapBean() {
+
+	}
+
 	public String getCapXml() {
 		return capXml;
 	}
+
 	public void setCapXml(String capXml) {
 		this.capXml = capXml;
 	}
 
+	public SessionData getSession() {
+		return session;
+	}
+
+	public void setSession(SessionData session) {
+		this.session = session;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 }

@@ -14,31 +14,28 @@
 		<ui:define name="content">
 			<a href="https://cric.pushpad.xyz/p/3675">Push Notifications</a>
 			<h:form>
-				
-				
+
+
 				<h3>Sender</h3>
-				<h:inputText value="Sender"  binding="#{sender}" />
+				<h:inputText value="#{capBean.user.email}" />
 				<h3>Message</h3>
-				<h:inputText value="Message" binding="#{message}" />
-				<h:commandButton value="Cap" action="#{caplib.callCap}">
-					<f:param name="sender" value="#{sender.value}" />
-					<f:param name="message" value="#{message.value}" />
-				</h:commandButton>
-				
-			
-				
+				<h:inputText placeholder="Insert your message"
+					value="#{capBean.message}" />
+				<h:commandButton value="Cap" action="#{capBean.callCap}" />
+
+
+
 				<p:fieldset legend="Basic" style="margin-bottom:20px">
 					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputText
-							value="#{caplib.capXml}" />
+						<h:outputText value="#{capBean.capXml}" />
 					</h:panelGrid>
 				</p:fieldset>
 			</h:form>
 			<h:form>
 				<h:commandButton value="Sendpushnotif"
-					action="#{sendpushbeannot.sendNotification}" >
-					<f:param name="message" value="va"/>
-					<f:param name="title" value="#{sender.value}"/>
+					action="#{sendpushbeannot.sendNotification}">
+					<f:param name="message" value="va" />
+					<f:param name="title" value="#{sender.value}" />
 				</h:commandButton>
 			</h:form>
 
