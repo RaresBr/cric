@@ -13,23 +13,11 @@
 </h:head>
 
 <h:body>
-	<h:commandButton value="submit1" onclick="geoFindMe()"
-		action="#{geoBean.submit}" />
-	<h:form id="formId">
-		<h:inputHidden id="x" value="#{geoBean.longitude}" />
-		<h:inputHidden id="y" value="#{geoBean.latitude}" />
-		<p:outputPanel>
-			<h:outputText value="#{geoBean.latitude}" />
-		</p:outputPanel>
-	</h:form>
-	
+	<h:commandButton value="Find Me!" onclick="geoFindMe()" />
 	<h:form id="myForm">
-		<p:inputText id="userId" value="#{geoBean.longitude}" />
-		<input id = "z" type="text" name="hidden1" />		
-		<h:commandButton value="submit2" action="#{geoBean.action}" />
-		<p:outputPanel>
-			<h:outputText value="#{geoBean.longitude}" />
-		</p:outputPanel>
+		<p:inputText id="longitude" value="#{geoBean.longitude}" />
+		<p:inputText id = "latitude" value="#{geoBean.latitude}"/>		
+		<h:commandButton value="Persist Me!" action="#{geoBean.updateLocation}" />
 	</h:form>
 	
 	<script >
@@ -38,8 +26,8 @@
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
 				alert(latitude);
-				document.getElementById("z").value = latitude;
-				document.getElementById("myForm:userId").value = longitude;
+				document.getElementById("myForm:latitude").value = latitude;
+				document.getElementById("myForm:longitude").value = longitude;
 			});
 		}
 	</script>
