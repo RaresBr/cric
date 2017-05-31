@@ -1,4 +1,4 @@
-package ro.cric.dao.impl;
+ package ro.cric.dao.impl;
 
 import org.springframework.stereotype.Repository;
 

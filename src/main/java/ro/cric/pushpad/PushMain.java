@@ -49,8 +49,8 @@ public class PushMain {
 		System.out.println(title);
 //		
 //		
-//		try {
-//			
+		try {
+			
 //		  // deliver the notification to a user
 //		  notification.deliverTo("user100");
 //	
@@ -75,11 +75,11 @@ public class PushMain {
 //		  String[] tags4 = {"tag1 && tag2", "tag3"}; // equal to "tag1 && tag2 || tag3"
 //		  notification.deliverTo(users, tags4);
 //	
-//		  // deliver to everyone
-//		  notification.broadcast();
-//		} catch (DeliveryException e) {
-//		  e.printStackTrace();
-//		}
+		  // deliver to everyone
+		  notification.broadcast();
+		} catch (DeliveryException e) {
+		  e.printStackTrace();
+		}
 		return "";
 	}
 

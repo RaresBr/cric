@@ -37,7 +37,7 @@
 			<h:form>
 				<h:commandButton value="Sendpushnotif"
 					action="#{sendpushbeannot.sendNotification}" >
-					<f:param name="message" value="va"/>
+					<f:param name="message" value="#{message.value}"/>
 					<f:param name="title" value="#{sender.value}"/>
 				</h:commandButton>
 			</h:form>
