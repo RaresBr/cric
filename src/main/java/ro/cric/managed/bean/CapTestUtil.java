@@ -1,4 +1,4 @@
-package ro.cric.cap;
+package ro.cric.managed.bean;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.publicalerts.cap.Alert;

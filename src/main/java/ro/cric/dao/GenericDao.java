@@ -12,9 +12,4 @@ public interface GenericDao<T> {
 
 	void deleteById(long id);
 
-	boolean doesEmailExist(String email);
-
-	boolean doesUsernameExist(String username);
-
-	T getByCredentials(String password, String username);
 }
