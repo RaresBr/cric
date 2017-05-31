@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>JSF Tutorial!</title>
+</h:head>
+
+<h:body>
+	<h:commandButton value="submit1" onclick="geoFindMe()"
+		action="#{geoBean.submit}" />
+	<h:form id="formId">
+		<h:inputHidden id="x" value="#{geoBean.longitude}" />
+		<h:inputHidden id="y" value="#{geoBean.latitude}" />
+		<p:outputPanel>
+			<h:outputText value="#{geoBean.latitude}" />
+		</p:outputPanel>
+	</h:form>
+	
+	<h:form id="myForm">
+		<p:inputText id="userId" value="#{geoBean.longitude}" />
+		<input id = "z" type="text" name="hidden1" />		
+		<h:commandButton value="submit2" action="#{geoBean.action}" />
+		<p:outputPanel>
+			<h:outputText value="#{geoBean.longitude}" />
+		</p:outputPanel>
+	</h:form>
+	
+	<script >
+		function geoFindMe() {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				alert(latitude);
+				document.getElementById("z").value = latitude;
+				document.getElementById("myForm:userId").value = longitude;
+			});
+		}
+	</script>
+</h:body>
+</html>

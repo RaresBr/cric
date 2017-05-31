@@ -1,30 +1,19 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
 <head>
-<title>Geolocation</title>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<meta charset="utf-8">
-<style>
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-	height: 100%;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-</style>
+<title>HTML(5) Friendly Markup in JSF 2.2</title>
 </head>
 <body>
-	<div id="map">
-		<p>
-			<button onclick="geoFindMe()">Show my location</button>
-		</p>
-		<div id="out"></div>
-	</div>
+
+	<div id="out"></div>
+	<form jsf:id="myForm" jsf:prependId="false">
+		<button onclick="geoFindMe()">Show my location</button>
+		<input type="hidden" name="ID" value="'+id+'"/>
+	</form>
+	<button onclick="geoFindMe()">Show my location</button>
+	
 	<script>
 		function geoFindMe() {
 			var output = document.getElementById("out");
@@ -40,7 +29,7 @@ html, body {
 				var longitude = position.coords.longitude;
 
 				output.innerHTML = '<p>Latitude is ' + latitude
-						+ '° <br>Longitude is ' + longitude + '°</p>';
+						+ '° Longitude is ' + longitude + '°</p>';
 
 			}
 
