@@ -1,8 +1,6 @@
-#personfinder-container {
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 10px;
-	margin-bottom: 100px;
+.personfinder-container {
+	text-align: center;
+	color: white;
 }
 
 #personfinder-iframe {

@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 import ro.cric.model.User;
 import ro.cric.service.UserService;
@@ -35,7 +35,7 @@ public class RegistrationBean {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
 	public String register() {
 		userService.register(user);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The user " + this.user.getFirstName() + " "

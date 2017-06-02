@@ -11,8 +11,9 @@
 
 	<ui:composition template="template.xhtml">
 		<ui:define name="content">
+		<h:outputStylesheet name="css/personFinder.css" />
 			<h:form>
-				<p:outputPanel deferred="true" id="personfinder-container">
+				<p:outputPanel styleClass="personfinder-container">
 					<h3>Google Person Finder</h3>
 					<p> Type the name of the person you are trying to find </p>
 					<iframe src="http://google.org/personfinder/test/?ui=small"

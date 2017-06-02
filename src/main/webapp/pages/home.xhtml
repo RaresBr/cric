@@ -56,15 +56,10 @@
 							label="Password 2" required="true"
 							styleClass="inputName inputLoginHeader" />
 
-
-						<h:outputLabel value="Account type:" styleClass="col-lg-4 accountType" />
-						<p:selectOneRadio id="console" styleClass="col-lg-8">
-							<f:selectItem itemLabel="User" itemValue="User" />
-							<f:selectItem itemLabel="Organisation" itemValue="Organisation" />
-						</p:selectOneRadio>
-
 						<p:commandButton value="Register" id="nonAjax" action="#{registrationBean.register}" 
 							ajax="false" styleClass="col-lg-2 registerBtn" />
+						
+						<p:commandButton value="Register as company" icon="ui-icon-extlink" actionListener="#{registerCompanyView.viewRegisterForm}" />
 
 					</h:form>
 				</p:outputPanel>
