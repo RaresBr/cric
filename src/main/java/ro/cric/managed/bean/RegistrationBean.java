@@ -4,9 +4,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-
-//import org.springframework.transaction.annotation.Transactional;
 
 import ro.cric.model.User;
 import ro.cric.service.UserService;
@@ -37,9 +36,21 @@ public class RegistrationBean {
 	}
 	
 	public String register() {
-		userService.register(user);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The user " + this.user.getFirstName() + " "
-				+ this.user.getLastName() + " Is Registered Successfully"));
-		return "";
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		FacesMessage message = null;
+		if ((userService.doesEmailExist(user.getEmail()))) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Register error", "Email already in use");
+		} else if (userService.doesUsernameExist(user.getUsername())) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Register error", "Username already in use");
+		} else {
+			userService.register(user);
+			message = new FacesMessage("The user " + this.user.getFirstName() + " " + this.user.getLastName()
+					+ " Is Registered Successfully");
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		ec.getFlash().setKeepMessages(true);
+
+		return "/pages/home";
 	}
 }

@@ -7,6 +7,7 @@
 	<title>Welcome to Cric</title>
 	<h:outputStylesheet name="css/bootstrap.min.css" />
 	<h:outputStylesheet name="css/template.css" />
+	<ui:insert name="scripts"/>
 </h:head>
 <h:body>
 
@@ -58,8 +59,8 @@
 				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4"
 				rendered="#{userBean.loggedIn}">
 				<h:form styleClass="logout">
-					<h:commandLink styleClass="row"
-						value="Log out" action="#{loginBean.logout}" />
+					<h:commandLink styleClass="row" value="Log out"
+						action="#{loginBean.logout}" />
 				</h:form>
 			</p:outputPanel>
 
@@ -70,7 +71,13 @@
 					outcome="dashboard.xhtml" rendered="#{userBean.loggedIn}" />
 				<p:link value="Settings" styleClass="helpMenu-item"
 					outcome="settings.xhtml" rendered="#{userBean.loggedIn}" />
-				<p:link value="PersonFinder" styleClass="helpMenu-item" outcome="personFinder.xhtml" rendered = "#{userBean.loggedIn}"/>
+				<p:link value="PersonFinder" styleClass="helpMenu-item"
+					outcome="personFinder.xhtml" rendered="#{userBean.loggedIn}" />
+				<p:link value="Common Alerting Protocol" styleClass="helpMenu-item"
+					outcome="cap.xhtml" rendered="#{userBean.loggedIn}" />
+				<p:link value="Location Services" styleClass="helpMenu-item"
+					outcome="geolocation.xhtml" rendered="#{userBean.loggedIn}" />
+
 			</p:outputPanel>
 		</ui:insert>
 	</p:outputPanel>

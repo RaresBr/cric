@@ -1,4 +1,4 @@
-package ro.cric.dao.impl;
+ package ro.cric.dao.impl;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 	}
 
 	@Override
-	public boolean doesUsernameExist(String username, Long id) {
+	public boolean doesUsernameExist(String username) {
 		TypedQuery<User> query = entityManager
-				.createQuery("select u From User as u where u.username=:id_username and u.id!=:user_id", User.class)
-				.setParameter("id_username", username).setParameter("user_id", id);
+				.createQuery("select u From User as u where u.username=:id_username", User.class)
+				.setParameter("id_username", username);
 
 		List<User> list = query.getResultList();
 
@@ -38,11 +38,12 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 	@Override
 	public User getByCredentials(String password, String username) {
 		TypedQuery<User> query = entityManager
-				.createQuery("select u From User as u where u.username=:searched_username and u.password=:searched_password",
+				.createQuery(
+						"select u From User as u where u.username=:searched_username and u.password=:searched_password",
 						User.class)
 				.setParameter("searched_username", username).setParameter("searched_password", password);
 		List<User> list = query.getResultList();
-		
+
 		if (list.isEmpty()) {
 			return null;
 		}

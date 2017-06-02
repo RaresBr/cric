@@ -10,32 +10,54 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 public class User {
-	
+
 	@Id
 	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userId;
-	
+	private Long userId;
+
 	@Column(name = "FIRST_NAME")
 	private String firstName;
-	
+
 	@Column(name = "LAST_NAME")
 	private String lastName;
-	
-	@Column(name = "USERNAME")
+
+	@Column(name = "USERNAME", unique = true)
 	private String username;
-	
+
 	@Column(name = "PASSWORD")
 	private String password;
-	
-	@Column(name = "EMAIL")
-	private String email;
 
-	public long getUserId() {
+	@Column(name = "EMAIL", unique = true)
+	private String email;
+	
+	@Column(name = "LONGITUDE", nullable = true)
+	private Double longitude;
+
+	@Column(name = "LATITUDE", nullable= true)
+	private Double latitude;
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
