@@ -1,4 +1,4 @@
-package ro.cric.managed.bean;
+package ro.cric.managed.bean.geo;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
