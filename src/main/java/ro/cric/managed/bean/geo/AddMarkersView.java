@@ -71,7 +71,6 @@ public class AddMarkersView implements Serializable {
     public void addMarker() {
         Marker marker = new Marker(new LatLng(lat, lng), title);
         emptyModel.addOverlay(marker);
-          
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Lat:" + lat + ", Lng:" + lng));
     }
 }

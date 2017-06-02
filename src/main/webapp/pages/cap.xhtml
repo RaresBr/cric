@@ -8,20 +8,100 @@
 </h:head>
 <h:body>
 
+
 	<ui:composition template="template.xhtml">
+		<ui:define name="scripts">
+			<script
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkul31Cz9qXfQu182syyxak3OmEh_s_08&amp;callback=initMap"
+				type="text/javascript"></script>
+			<script type="text/javascript">
+				var currentMarker = null;
+
+				function handlePointClick(event) {
+					if (currentMarker === null) {
+						document.getElementById('lat').value = event.latLng
+								.lat();
+						document.getElementById('lng').value = event.latLng
+								.lng();
+
+						currentMarker = new google.maps.Marker({
+							position : new google.maps.LatLng(event.latLng
+									.lat(), event.latLng.lng())
+						});
+
+						PF('map').addOverlay(currentMarker);
+
+						PF('dlg').show();
+					}
+				}
+
+				function markerAddComplete() {
+					var title = document.getElementById('title_');
+					currentMarker.setTitle(title.value);
+					title.value = "";
+
+					currentMarker = null;
+					PF('dlg').hide();
+				}
+
+				function cancel() {
+					PF('dlg').hide();
+					currentMarker.setMap(null);
+					currentMarker = null;
+
+					return false;
+				}
+			</script>
+
+		</ui:define>
 		<ui:define name="content">
 			<h:outputStylesheet name="css/cap.css" />
 			<p:outputPanel styleClass="row mainWrapper">
-				<h:commandButton id="pushpad-button" value="Subscribe" />
+				<f:view contentType="text/html">
+					<p:gmap id="gmap" center="36.890257,30.707417" zoom="13"
+						type="HYBRID" style="width:100%;height:400px"
+						model="#{addMarkersView.emptyModel}"
+						onPointClick="handlePointClick(event);" widgetVar="map" />
+				</f:view>
+
+				<p:growl id="messages" showDetail="true" />
+
+				<p:dialog widgetVar="dlg" showEffect="fade">
+					<h:form prependId="false">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="title_" value="Title:" />
+							<p:inputText id="title_" value="#{addMarkersView.title}" />
+							<f:facet name="footer">
+								<p:commandButton value="Add"
+									actionListener="#{addMarkersView.addMarker}" update=":messages"
+									oncomplete="markerAddComplete()" />
+								<p:commandButton value="Cancel" onclick="return cancel()" />
+							</f:facet>
+						</h:panelGrid>
+
+						<p:outputPanel styleClass="row">
+							<h:outputText value="Latitude:" styleClass="infoTextBlack" />
+							<h:inputText id="lat" value="#{capBean.latitude}" />
+							<h:outputText value="Longitude:" styleClass="infoTextBlack" />
+							<h:inputText id="lng" value="#{capBean.longitude}" />
+							<h:outputText value="Radius:" styleClass="infoTextBlack" />
+							<h:inputText value="#{capBean.radius}" />
+							<h:outputText value="Event description:" styleClass="infoTextBlack" />
+							<h:inputText value="#{capBean.event}" />
+							<h:outputText value="Area description:" styleClass="infoTextBlack" />
+							<h:inputText value="#{capBean.areaDescription}" />
+							<h:outputText value="Message:" styleClass="infoTextBlack" />
+							<h:inputText value="#{capBean.message}" />
+						</p:outputPanel>
+
+					</h:form>
+				</p:dialog>
+
+
+
+
 				<h:form>
-					<p:outputPanel styleClass="row">
-						<h:outputText value="Message:" styleClass="infoText" />
-						<h:inputText placeholder="Insert your message"
-							value="#{capBean.message}" />
-					</p:outputPanel>
 					<h:commandButton value="Cap" action="#{capBean.callCap}" />
-
-
 
 					<p:outputPanel styleClass="fieldset">
 						<p:fieldset legend="Alert output:">
@@ -31,19 +111,12 @@
 						</p:fieldset>
 					</p:outputPanel>
 				</h:form>
-				<h:form>
-					<h:commandButton value="Sendpushnotif"
-						action="#{sendpushbeannot.sendNotification}">
-						<f:param name="message" value="va" />
-						<f:param name="title" value="#{sender.value}" />
-					</h:commandButton>
-				</h:form>
+				<h:commandButton id="pushpad-button" value="Subscribe" />
 			</p:outputPanel>
 
 
 		</ui:define>
 	</ui:composition>
-
 
 
 

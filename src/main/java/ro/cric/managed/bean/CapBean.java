@@ -8,10 +8,8 @@ import java.util.TimeZone;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.swing.text.DateFormatter;
+import javax.faces.bean.ViewScoped;
 
-import org.primefaces.event.map.GeocodeEvent;
 import org.xml.sax.SAXParseException;
 
 import com.google.publicalerts.cap.Alert;
@@ -21,22 +19,19 @@ import com.google.publicalerts.cap.CapValidator;
 import com.google.publicalerts.cap.CapXmlBuilder;
 import com.google.publicalerts.cap.CapXmlParser;
 import com.google.publicalerts.cap.Circle;
-import com.google.publicalerts.cap.Group;
 import com.google.publicalerts.cap.Info;
-import com.google.publicalerts.cap.NotCapException;
-import com.google.publicalerts.cap.Point;
-import com.google.publicalerts.cap.ValuePair;
-import com.google.publicalerts.cap.XmlSigner;
 import com.google.publicalerts.cap.Info.Category;
 import com.google.publicalerts.cap.Info.ResponseType;
-import com.google.publicalerts.cap.Info.Urgency;
+import com.google.publicalerts.cap.NotCapException;
+import com.google.publicalerts.cap.Point;
+import com.google.publicalerts.cap.XmlSigner;
 
 import ro.cric.component.SessionData;
 import ro.cric.model.User;
 import ro.cric.service.AlertService;
 
 @ManagedBean(name = "capBean")
-@RequestScoped
+@ViewScoped
 public class CapBean {
 
 	@ManagedProperty("#{sessionComponent}")
@@ -50,11 +45,15 @@ public class CapBean {
 	private String capXml;
 
 	private String message;
-	
+
 	private String areaDescription;
-	
+
+	private double latitude;
+
+	private double longitude;
+
 	private double radius;
-	
+
 	private String event;
 
 	@PostConstruct
@@ -71,41 +70,49 @@ public class CapBean {
 
 		// Generate a CAP document
 		String date;
-		Alert alert = Alert.newBuilder().setXmlns(CapValidator.CAP_LATEST_XMLNS).setIdentifier("43b080713727")
-				.setSender(user.getEmail()).setSent(date = dateFormat.format(sentDate = new Date()).concat("-00:00"))
-				.setStatus(Alert.Status.ACTUAL).setMsgType(Alert.MsgType.ALERT).setScope(Alert.Scope.PUBLIC)
-				.setAddresses(Group.newBuilder().addValue("address 1").addValue("address2").build()).addCode("abcde")
-				.addCode("fghij").setNote("a note").setNote(message)
-				.setIncidents(Group.newBuilder().addValue("incident1").addValue("incident2").build()).buildPartial();
+		/*
+		 * Alert alert =
+		 * Alert.newBuilder().setXmlns(CapValidator.CAP_LATEST_XMLNS).
+		 * setIdentifier("43b080713727")
+		 * .setSender(user.getEmail()).setSent(date = dateFormat.format(sentDate
+		 * = new Date()).concat("-00:00"))
+		 * .setStatus(Alert.Status.ACTUAL).setMsgType(Alert.MsgType.ALERT).
+		 * setScope(Alert.Scope.PUBLIC)
+		 * .setAddresses(Group.newBuilder().addValue("address 1").addValue(
+		 * "address2").build()).addCode("abcde")
+		 * .addCode("fghij").setNote("a note").setNote(message)
+		 * .setIncidents(Group.newBuilder().addValue("incident1").addValue(
+		 * "incident2").build()).buildPartial();
+		 */
+		
 		Alert alert1 = Alert.newBuilder().setXmlns(CapValidator.CAP_LATEST_XMLNS)
 				.setIdentifier(user.getUserId().toString()).setSender(user.getEmail())
 				.setSent(date = dateFormat.format(sentDate = new Date()).concat("-00:00"))
 				.setStatus(Alert.Status.ACTUAL).setMsgType(Alert.MsgType.ALERT).setScope(Alert.Scope.PUBLIC)
 				.addInfo(
-						Info.newBuilder().setEvent("Homeland Security Advisory System Update")
-								.setUrgency(Info.Urgency.IMMEDIATE).setSeverity(Info.Severity.SEVERE).setCertainty(
-										Info.Certainty.LIKELY)
+						Info.newBuilder().setEvent(event).setUrgency(Info.Urgency.IMMEDIATE)
+								.setSeverity(Info.Severity.SEVERE).setCertainty(Info.Certainty.LIKELY)
 								.addCategory(Category.FIRE).addResponseType(ResponseType.EVACUATE)
-								.addArea(Area.newBuilder().setAreaDesc("Iasi").addCircle(Circle.newBuilder()
-										.setPoint(Point.newBuilder().setLatitude(47.157972).setLongitude(27.60520935))
-										.setRadius(3).build()))
+								.addArea(Area.newBuilder().setAreaDesc(areaDescription).addCircle(Circle.newBuilder()
+										.setPoint(Point.newBuilder().setLatitude(latitude).setLongitude(longitude))
+										.setRadius(radius).build()))
 								.build())
 				.buildPartial();
 
 		// Write it out to XML
 		CapXmlBuilder builder = new CapXmlBuilder();
-		String xml = builder.toXml(alert);
+		//String xml = builder.toXml(alert);
 		capXml = builder.toXml(alert1);
 
 		// Sign it
 		XmlSigner signer = XmlSigner.newInstanceWithRandomKeyPair();
-		String signedXml = signer.sign(xml);
+		//String signedXml = signer.sign(xml);
 
 		// Parse it, with validation
 		CapXmlParser parser = new CapXmlParser(true);
-		Alert parsedAlert = parser.parseFrom(signedXml);
+		//Alert parsedAlert = parser.parseFrom(signedXml);
 
-		//capXml = parsedAlert.toString();
+		// capXml = parsedAlert.toString();
 		return capXml;
 		// id = "delete"
 	}
@@ -113,7 +120,23 @@ public class CapBean {
 	public CapBean() {
 
 	}
-	
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 	public String getAreaDescription() {
 		return areaDescription;
 	}
