@@ -21,5 +21,4 @@ public class RegisterOrganizationView {
         options.put("headerElement", "customheader");
 		RequestContext.getCurrentInstance().openDialog("/pages/registerOrganization.xhtml", options, null);
 	}
-
 }

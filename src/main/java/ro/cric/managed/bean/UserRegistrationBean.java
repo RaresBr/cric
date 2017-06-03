@@ -51,6 +51,6 @@ public class UserRegistrationBean {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		ec.getFlash().setKeepMessages(true);
 
-		return "/pages/home";
+		return "home?faces-redirect=true";
 	}
 }

@@ -1,5 +1,7 @@
 package ro.cric.service;
 
+import com.google.publicalerts.cap.Alert;
+
 import ro.cric.model.Organization;
 
 public interface OrganizationService {
@@ -9,5 +11,6 @@ public interface OrganizationService {
 	public boolean doesUsernameExist(String username);
 	public Organization getOrganizationByCredentials(String password, String username);
 	public void register(Organization organization);
+	
 
 }

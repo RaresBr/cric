@@ -34,6 +34,39 @@ public class Alert {
 
 	@Column(name = "CATEGORY")
 	private String category;
+	
+	@Column(name = "LATITUDE")
+	private double latitude;
+	
+	@Column(name = "LONGITUDE")
+	private double longitude;
+	
+	@Column(name = "RADIUS")
+	private double radius;
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+
+	public void setRadius(double radius) {
+		this.radius = radius;
+	}
 
 	public Alert() {
 

@@ -9,7 +9,7 @@ import ro.cric.model.User;
 import ro.cric.service.UserService;
 
 @ManagedBean(name = "userBean")
-@SessionScoped
+@SessionScoped 
 public class UserBean {
 
 	private User user;

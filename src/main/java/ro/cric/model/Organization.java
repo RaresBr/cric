@@ -46,7 +46,7 @@ public class Organization {
 		this.email = email;
 	}
 
-	public long getOrganizationId() {
+	public Long getOrganizationId() {
 		return organizationId;
 	}
 

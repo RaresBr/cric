@@ -36,7 +36,7 @@
 				}
 
 				function markerAddComplete() {
-					var title = document.getElementById('title_');
+					var title = document.getElementById('event');
 					currentMarker.setTitle(title.value);
 					title.value = "";
 
@@ -58,9 +58,9 @@
 			<h:outputStylesheet name="css/cap.css" />
 			<p:outputPanel styleClass="row mainWrapper">
 				<f:view contentType="text/html">
-					<p:gmap id="gmap" center="36.890257,30.707417" zoom="13"
+					<p:gmap id="gmap" center="46.8451644,27.00679779" zoom="7"
 						type="HYBRID" style="width:100%;height:400px"
-						model="#{addMarkersView.emptyModel}"
+						model="#{capBean.emptyModel}"
 						onPointClick="handlePointClick(event);" widgetVar="map" />
 				</f:view>
 
@@ -69,30 +69,52 @@
 				<p:dialog widgetVar="dlg" showEffect="fade">
 					<h:form prependId="false">
 						<h:panelGrid columns="2">
-							<h:outputLabel for="title_" value="Title:" />
-							<p:inputText id="title_" value="#{addMarkersView.title}" />
 							<f:facet name="footer">
 								<p:commandButton value="Add"
-									actionListener="#{addMarkersView.addMarker}" update=":messages"
-									oncomplete="markerAddComplete()" />
+									actionListener="#{capBean.addMarker}" update=":messages"
+									oncomplete="markerAddComplete()">
+									<!--<p:ajax update="form:outputPanelField:cap_xml_output" />-->
+								</p:commandButton>
 								<p:commandButton value="Cancel" onclick="return cancel()" />
 							</f:facet>
-						</h:panelGrid>
 
-						<p:outputPanel styleClass="row">
+
 							<h:outputText value="Latitude:" styleClass="infoTextBlack" />
 							<h:inputText id="lat" value="#{capBean.latitude}" />
 							<h:outputText value="Longitude:" styleClass="infoTextBlack" />
 							<h:inputText id="lng" value="#{capBean.longitude}" />
 							<h:outputText value="Radius:" styleClass="infoTextBlack" />
 							<h:inputText value="#{capBean.radius}" />
-							<h:outputText value="Event description:" styleClass="infoTextBlack" />
+							<h:outputText value="Event description:" id="event"
+								styleClass="infoTextBlack" />
 							<h:inputText value="#{capBean.event}" />
-							<h:outputText value="Area description:" styleClass="infoTextBlack" />
+							<h:outputText value="Area description:"
+								styleClass="infoTextBlack" />
 							<h:inputText value="#{capBean.areaDescription}" />
 							<h:outputText value="Message:" styleClass="infoTextBlack" />
 							<h:inputText value="#{capBean.message}" />
-						</p:outputPanel>
+							<h:outputText value="Certainty:" styleClass="infoTextBlack" />
+							<h:selectOneMenu value="#{capBean.certainty}">
+								<f:selectItems value="#{capBean.getCertainties()}"
+									itemValue="#{certainty}" itemLabel="#{certainty.name}" />
+							</h:selectOneMenu>
+
+							<h:outputText value="Urgency:" styleClass="infoTextBlack" />
+							<h:selectOneMenu value="#{capBean.urgency}">
+								<f:selectItems value="#{capBean.getUrgencies()}"
+									itemValue="#{urgency}" itemLabel="#{urgency.name}" />
+							</h:selectOneMenu>
+							<h:outputText value="Response type:" styleClass="infoTextBlack" />
+							<h:selectOneMenu value="#{capBean.responseType}">
+								<f:selectItems value="#{capBean.getResponseTypes()}"
+									itemValue="#{responseType}" itemLabel="#{responseType.name}" />
+							</h:selectOneMenu>
+							<h:outputText value="Category:" styleClass="infoTextBlack" />
+							<h:selectOneMenu value="#{capBean.category}">
+								<f:selectItems value="#{capBean.getCategories()}"
+									itemValue="#{category}" itemLabel="#{category.name}" />
+							</h:selectOneMenu>
+						</h:panelGrid>
 
 					</h:form>
 				</p:dialog>
@@ -100,13 +122,13 @@
 
 
 
-				<h:form>
-					<h:commandButton value="Cap" action="#{capBean.callCap}" />
+				<h:form id="form">
+					<h:commandButton value="Generate cap" action="#{capBean.callCap}" />
 
-					<p:outputPanel styleClass="fieldset">
+					<p:outputPanel id="outputPanelField" styleClass="fieldset">
 						<p:fieldset legend="Alert output:">
 							<h:panelGrid columns="2" cellpadding="5">
-								<h:outputText value="#{capBean.capXml}" />
+								<h:outputText value="#{capBean.capXml}" id="cap_xml_output"/>
 							</h:panelGrid>
 						</p:fieldset>
 					</p:outputPanel>
