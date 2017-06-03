@@ -14,7 +14,7 @@ import ro.cric.service.UserService;
 @ManagedBean(name = "loginBean")
 @ViewScoped
 public class LoginBean {
-
+	
 	private String username;
 	private String password;
 

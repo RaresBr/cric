@@ -9,4 +9,6 @@ public interface UserService {
 	public boolean doesUsernameExist(String username);
 	public User getUserByCredentials(String password, String username);
 	public void register(User user);
+	public User getUserByUsername(String username);
+	public void addFriend(User requestee, User toBeFriended);
 }
