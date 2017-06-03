@@ -30,43 +30,42 @@
 
 						<p:inputText placeholder="First name" required="true"
 							label="Firstname" styleClass="inputName inputLoginHeader"
-							value="#{registrationBean.user.firstName}" />
+							value="#{userRegistrationBean.user.firstName}" />
 
 						<p:inputText placeholder="Last name" required="true"
-							label="Lastname" styleClass="inputName inputLoginHeader" 
-							value="#{registrationBean.user.lastName}" />
+							label="Lastname" styleClass="inputName inputLoginHeader"
+							value="#{userRegistrationBean.user.lastName}" />
 
 						<p:inputText placeholder="E-mail address" required="true"
 							label="Email"
-							styleClass="col-lg-12 personalContact inputName inputLoginHeader" 
-							value="#{registrationBean.user.email}" />
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader"
+							value="#{userRegistrationBean.user.email}" />
 
 						<p:inputText placeholder="Username" required="true"
 							label="Username"
-							styleClass="col-lg-12 personalContact inputName inputLoginHeader" 
-							value="#{registrationBean.user.username}" />
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader"
+							value="#{userRegistrationBean.user.username}" />
 
 
 						<p:password id="pwd1" placeholder="Password" match="pwd2"
 							label="Password 1" required="true"
 							styleClass="inputName inputLoginHeader"
-							value="#{registrationBean.user.password}" />
+							value="#{userRegistrationBean.user.password}" />
 						<p:password id="pwd2" placeholder="Confirm password"
 							label="Password 2" required="true"
 							styleClass="inputName inputLoginHeader" />
 
-
-						<h:outputLabel value="Account type:" styleClass="col-lg-4 accountType" />
-						<p:selectOneRadio id="console" styleClass="col-lg-8">
-							<f:selectItem itemLabel="User" itemValue="User" />
-							<f:selectItem itemLabel="Organisation" itemValue="Organisation" />
-						</p:selectOneRadio>
-
-						<p:commandButton value="Register" id="nonAjax" action="#{registrationBean.register}" 
-							ajax="false" styleClass="col-lg-2 registerBtn" />
+						<p:commandButton value="Register" id="nonAjax"
+							action="#{userRegistrationBean.register}" ajax="false"
+							styleClass="col-lg-2 registerBtn" />
 
 					</h:form>
 				</p:outputPanel>
+
+				<h:form>
+					<p:commandButton value="RegisterAsOrganization" icon="ui-icon-extlink"
+						actionListener="#{registerOrganizationView.viewRegisterForm}" />
+				</h:form>
 
 
 				<p:outputPanel styleClass="col-md-6 col-md-pull-6 leftPanel">
@@ -79,6 +78,4 @@
 	</ui:composition>
 
 </h:body>
-
->>>>>>> 3deff3b13c0e99e493991631ff5f937a21263ff3
 </html>
