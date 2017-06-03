@@ -7,7 +7,7 @@
 	<title>Welcome to Cric</title>
 	<h:outputStylesheet name="css/bootstrap.min.css" />
 	<h:outputStylesheet name="css/template.css" />
-	<ui:insert name="scripts"/>
+	<ui:insert name="scripts" />
 </h:head>
 <h:body>
 
@@ -16,12 +16,12 @@
 		<ui:insert name="header">
 			<p:outputPanel layout="block"
 				styleClass="col-lg-6 col-md-6 col-sm-6 col-xs-6 title-panel">
-				<p:link outcome="#{userBean.home()}" value="CriC" id="title" />
+				<p:link value="CriC" id="title" />
 			</p:outputPanel>
 
 			<p:outputPanel layout="block"
 				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4 headerRight"
-				rendered="#{!userBean.loggedIn}">
+				rendered="#{!userBean.loggedIn and !organizationBean.loggedIn}">
 				<p:outputPanel layout="block" styleClass="row userpass">
 					<h:form prependId="false">
 						<p:outputPanel
@@ -30,7 +30,6 @@
 								required="true" styleClass="user inputLoginHeader"
 								requiredMessage="Username required" tabindex="1"
 								value="#{loginBean.username}" />
-							<p:link styleClass="links" value="Forgot Password" />
 						</p:outputPanel>
 
 						<p:outputPanel
@@ -39,7 +38,6 @@
 								required="true" styleClass="pass inputLoginHeader"
 								requiredMessage="Password required" maxlength="45" tabindex="2"
 								value="#{loginBean.password}" />
-							<p:link styleClass="links" value="Resend activation mail" />
 						</p:outputPanel>
 
 						<p:outputPanel
@@ -47,6 +45,34 @@
 							<h:commandButton value="Log in"
 								styleClass="customBtn btnSub inputLoginHeader"
 								action="#{loginBean.login}" />
+						</p:outputPanel>
+
+					</h:form>
+				</p:outputPanel>
+				
+				<p:outputPanel layout="block" styleClass="row userpass">
+					<h:form prependId="false">
+						<p:outputPanel
+							styleClass=" col-lg-5 col-md-4 col-sm-4 col-xs-3 loginLeft">
+							<p:inputText id="username_org" placeholder="Insert your org username"
+								required="true" styleClass="user inputLoginHeader"
+								requiredMessage="Username required" tabindex="1"
+								value="#{organizationLoginBean.username}" />
+						</p:outputPanel>
+
+						<p:outputPanel
+							styleClass="col-lg-5 col-md-4 col-sm-4 col-xs-3 loginMiddle">
+							<p:password id="password_org" placeholder="Insert your org password"
+								required="true" styleClass="pass inputLoginHeader"
+								requiredMessage="Password required" maxlength="45" tabindex="2"
+								value="#{organizationLoginBean.password}" />
+						</p:outputPanel>
+
+						<p:outputPanel
+							styleClass="col-lg-1 col-md-2 col-sm-2 col-xs-1 loginRight">
+							<h:commandButton value="Log in"
+								styleClass="customBtn btnSub inputLoginHeader"
+								action="#{organizationLoginBean.login}" />
 						</p:outputPanel>
 
 					</h:form>
@@ -63,20 +89,29 @@
 						action="#{loginBean.logout}" />
 				</h:form>
 			</p:outputPanel>
+			
+			<p:outputPanel layout="block"
+				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+				rendered="#{organizationBean.loggedIn}">
+				<h:form styleClass="logout">
+					<h:commandLink styleClass="row" value="Log out"
+						action="#{loginBean.logout}" />
+				</h:form>
+			</p:outputPanel>
 
 			<p:outputPanel layout="block" styleClass="helpMenu row">
 				<p:link value="About us" styleClass="helpMenu-item"
 					outcome="about.xhtml" />
 				<p:link value="Dashboard" styleClass="helpMenu-item"
-					outcome="dashboard.xhtml" rendered="#{userBean.loggedIn}" />
+					outcome="dashboard.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 				<p:link value="Settings" styleClass="helpMenu-item"
-					outcome="settings.xhtml" rendered="#{userBean.loggedIn}" />
+					outcome="settings.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 				<p:link value="PersonFinder" styleClass="helpMenu-item"
-					outcome="personFinder.xhtml" rendered="#{userBean.loggedIn}" />
+					outcome="personFinder.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 				<p:link value="Common Alerting Protocol" styleClass="helpMenu-item"
-					outcome="cap.xhtml" rendered="#{userBean.loggedIn}" />
+					outcome="cap.xhtml" rendered="#{organizationBean.loggedIn}" />
 				<p:link value="Location Services" styleClass="helpMenu-item"
-					outcome="geolocation.xhtml" rendered="#{userBean.loggedIn}" />
+					outcome="geolocation.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 
 			</p:outputPanel>
 		</ui:insert>
