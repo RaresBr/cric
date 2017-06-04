@@ -6,5 +6,5 @@ import ro.cric.model.Organization;
 public interface AlertService {
 
 	public Alert getAlertById(Long id);
-	public void addAlert(Organization organization, com.google.publicalerts.cap.Alert alert);
+	public boolean addAlert(Organization organization, com.google.publicalerts.cap.Alert alert);
 }

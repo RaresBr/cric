@@ -26,7 +26,7 @@ public class AlertServiceImpl implements AlertService {
 
 	@Override
 	@Transactional
-	public void addAlert(Organization organization, com.google.publicalerts.cap.Alert alert) {
+	public boolean addAlert(Organization organization, com.google.publicalerts.cap.Alert alert) {
 		String sentAt = alert.getSent();
 		List<Info> info = alert.getInfoList();
 		String urgency = info.get(0).getUrgency().toString();
@@ -47,7 +47,10 @@ public class AlertServiceImpl implements AlertService {
 
 		alertModel.setOrganization(organization);
 
-		alertDao.persist(alertModel);
+		Alert alertPersisted = alertDao.persist(alertModel);
+		if(alertPersisted != null)
+			return true;
+		return false;
 
 	}
 }

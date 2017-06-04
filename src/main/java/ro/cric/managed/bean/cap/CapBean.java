@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.model.map.DefaultMapModel;
@@ -39,6 +40,7 @@ import ro.cric.component.SessionData;
 import ro.cric.model.Organization;
 import ro.cric.service.AlertService;
 import ro.cric.service.OrganizationService;
+import ro.cric.service.UserService;
 
 @ManagedBean(name = "capBean")
 @ViewScoped
@@ -54,6 +56,9 @@ public class CapBean implements Serializable {
 
 	@ManagedProperty("#{alertService}")
 	private AlertService alertService;
+
+	@ManagedProperty("#{userService}")
+	private UserService userService;
 
 	private MapModel emptyModel = new DefaultMapModel();
 
@@ -134,7 +139,7 @@ public class CapBean implements Serializable {
 
 		capXmlParsed = parsedAlert.toString();
 		System.out.println(capXml);
-		alertService.addAlert(organization, alert);
+		persistAlert(alert);
 		return "cap?faces-redirect=true";
 	}
 
@@ -160,6 +165,20 @@ public class CapBean implements Serializable {
 				.buildPartial();
 
 		return alert;
+	}
+
+	public void persistAlert(Alert alert) {
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		FacesMessage message = null;
+		if (alertService.addAlert(organization, alert)) {
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alert added", null);
+			userService.notifyUsersInTheArea(latitude, longitude, radius);
+		}
+		else
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error adding the alert", null);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		ec.getFlash().setKeepMessages(true);
+
 	}
 
 	public CapBean() {
@@ -300,6 +319,14 @@ public class CapBean implements Serializable {
 
 	public void setEmptyModel(MapModel emptyModel) {
 		this.emptyModel = emptyModel;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 }

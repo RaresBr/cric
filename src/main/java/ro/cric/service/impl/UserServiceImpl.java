@@ -1,5 +1,7 @@
 package ro.cric.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +41,29 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User getUserByCredentials(String password, String username) {
 		return userDao.getByCredentials(password, username);
+	}
+
+	@Override
+	@Transactional
+	public void notifyUsersInTheArea(double latitude, double longitude, double radius) {
+		List<User> allUsers = userDao.getAll();
+		for (User currentUser : allUsers) {
+			if (currentUser.getLatitude() != null && currentUser.getLongitude() != null) {
+				double distanceFromAlertLocation = 0;
+				double dx = currentUser.getLatitude() - latitude;
+				double dy = currentUser.getLongitude() - longitude;
+				distanceFromAlertLocation = dx * dx + dy * dy;
+				if (distanceFromAlertLocation <= radius * radius)
+					System.out.println("User " + currentUser.getEmail() + " inside the radius");
+				else
+					System.out.println("User " + currentUser.getEmail() + " outside the radius");
+			}
+
+		}
+
 	}
 
 }
