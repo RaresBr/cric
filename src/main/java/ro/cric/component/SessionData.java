@@ -19,6 +19,8 @@ public class SessionData {
 	@Autowired
 	private OrganizationService organizationService;
 	
+	private String sessionId;
+	
 	private User loggedUser;
 	
 	private Organization loggedOrganization;
@@ -71,6 +73,14 @@ public class SessionData {
 		else
 			isLogged = false;
 		return isLogged;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 }

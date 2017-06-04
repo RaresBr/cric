@@ -19,7 +19,7 @@ import com.google.publicalerts.cap.XmlSigner;
 import xyz.pushpad.DeliveryException;
 import xyz.pushpad.Pushpad;
 
-@ManagedBean(name = "sendpushbeannot")
+@ManagedBean(name = "pushBean")
 @ViewScoped
 public class PushMain {
 	public String sendNotification() {
@@ -54,8 +54,8 @@ public class PushMain {
 		//
 		try {
 
-			// // deliver the notification to a user
-			// notification.deliverTo("user100");
+			// deliver the notification to a user
+			//notification.deliverTo("user100");
 			//
 			// // deliver the notification to a group of users
 			// String[] users = {"user123", "user100"};
