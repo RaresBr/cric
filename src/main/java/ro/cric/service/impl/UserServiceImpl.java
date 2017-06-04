@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.cric.dao.UserDao;
 import ro.cric.model.User;
 import ro.cric.service.UserService;
+import ro.cric.util.Haversine;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
@@ -52,11 +53,9 @@ public class UserServiceImpl implements UserService {
 		List<User> allUsers = userDao.getAll();
 		for (User currentUser : allUsers) {
 			if (currentUser.getLatitude() != null && currentUser.getLongitude() != null) {
-				double distanceFromAlertLocation = 0;
-				double dx = currentUser.getLatitude() - latitude;
-				double dy = currentUser.getLongitude() - longitude;
-				distanceFromAlertLocation = dx * dx + dy * dy;
-				if (distanceFromAlertLocation <= radius * radius)
+				double distanceBetweenUserAndAlertLocation = Haversine.distance(currentUser.getLatitude(),
+						currentUser.getLongitude(), latitude, longitude);
+				if (distanceBetweenUserAndAlertLocation <= radius)
 					System.out.println("User " + currentUser.getEmail() + " inside the radius");
 				else
 					System.out.println("User " + currentUser.getEmail() + " outside the radius");
