@@ -1,6 +1,5 @@
 package ro.cric.managed.bean;
 
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,28 +10,21 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 import ro.cric.component.SessionData;
-import ro.cric.model.Organization;
-import ro.cric.service.OrganizationService;
+import ro.cric.model.User;
+import ro.cric.service.UserService;
 
-@ManagedBean(name = "organizationLoginBean")
+@ManagedBean(name = "userLoginBean")
 @ViewScoped
-public class OrganizationLoginBean {
+public class UserLoginBean {
+
 	private String username;
 	private String password;
 
-	@ManagedProperty("#{organizationService}")
-	private OrganizationService organizationService;
+	@ManagedProperty("#{userService}")
+	private UserService userService;
 
 	@ManagedProperty("#{sessionComponent}")
 	private SessionData session;
-
-	public OrganizationService getOrganizationService() {
-		return organizationService;
-	}
-
-	public void setOrganizationService(OrganizationService organizationService) {
-		this.organizationService = organizationService;
-	}
 
 	public String getUsername() {
 		return username;
@@ -50,6 +42,14 @@ public class OrganizationLoginBean {
 		this.password = password;
 	}
 
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	public SessionData getSession() {
 		return session;
 	}
@@ -58,28 +58,32 @@ public class OrganizationLoginBean {
 		this.session = session;
 	}
 
-	public void login() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ExternalContext ec = fc.getExternalContext();
+	public String login() {
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		FacesMessage message = null;
 		boolean loggedIn = false;
 		if (username != null && password != null) {
-			Organization organization = organizationService.getOrganizationByCredentials(password, username);
-			if (organization != null) {
+			User user = userService.getUserByCredentials(password, username);
+			if (user != null) {
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
 				loggedIn = true;
-				session.setLoggedOrganization(organization);
-				System.out.println(session.getLoggedOrganization().getEmail());
+				session.setLoggedUser(user);
+				System.out.println(session.getLoggedUser().getFirstName());
 
 			} else
 				message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login error", "Invalid credentials");
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, message);
+		
+		RequestContext.getCurrentInstance().closeDialog(null);
 
 		if (loggedIn) {
-			RequestContext.getCurrentInstance().closeDialog(loggedIn);
+			ec.getFlash().setKeepMessages(true);
+			return "dashboard?faces-redirect=true";
 		}
+
+		return null;
 	}
 
 	public String logout() {
@@ -92,4 +96,5 @@ public class OrganizationLoginBean {
 
 		return "home?faces-redirect=true";
 	}
+
 }
