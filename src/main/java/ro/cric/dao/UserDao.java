@@ -1,6 +1,7 @@
 package ro.cric.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import ro.cric.model.User;
 
@@ -12,7 +13,7 @@ public interface UserDao extends GenericDao<User> {
 
 	public User getByCredentials(String password, String username);
 	
-	public List<User> getAllFriends(User user);
+	public Set<User> getAllFriends(User user);
 	
 	public void addFriend(User requestee, User toBeFriended);
 	

@@ -1,19 +1,19 @@
 package ro.cric.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "USERS")
@@ -24,16 +24,14 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long userId;
 
-	@ElementCollection
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "USERS_FRIENDS", joinColumns = { @JoinColumn(name = "USERS_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "FRIEND_ID") })
-	private List<User> friends = new ArrayList<User>();
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinTable(name = "USERS_FRIENDS", joinColumns = {
+			@JoinColumn(name = "USERS_ID", referencedColumnName = "USER_ID") }, inverseJoinColumns = {
+					@JoinColumn(name = "FRIEND_ID", referencedColumnName = "USER_ID") })
+	private Set<User> friends = new HashSet<User>();
 
-	@ElementCollection
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "USERS_FRIENDS", joinColumns = @JoinColumn(name = "FRIEND_ID"), inverseJoinColumns = @JoinColumn(name = "USERS_ID"))
-	private List<User> friendOf = new ArrayList<User>();
+	@ManyToMany(mappedBy = "friends", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Set<User> friendOf = new HashSet<User>();
 
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -56,19 +54,19 @@ public class User {
 	@Column(name = "LATITUDE", nullable = true)
 	private Double latitude;
 
-	public List<User> getFriends() {
+	public Set<User> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(List<User> friends) {
+	public void setFriends(Set<User> friends) {
 		this.friends = friends;
 	}
 
-	public List<User> getFriendOf() {
+	public Set<User> getFriendOf() {
 		return friendOf;
 	}
 
-	public void setFriendOf(List<User> friendOf) {
+	public void setFriendOf(Set<User> friendOf) {
 		this.friendOf = friendOf;
 	}
 

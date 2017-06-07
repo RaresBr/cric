@@ -1,7 +1,8 @@
- package ro.cric.dao.impl;
+package ro.cric.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -52,30 +53,29 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 		}
 		return list.get(0);
 	}
-	public List<User> getAllFriends(User user){
+
+	public Set<User> getAllFriends(User user) {
 		return user.getFriends();
 	}
-	
-	public void addFriend(User requestee, User toBeFriended) throws DataIntegrityViolationException {
-		if(!doesUsernameExist(toBeFriended.getUsername()))
+
+	public void addFriend(User requestee, User toBeFriended) {
+		if (!doesUsernameExist(toBeFriended.getUsername()))
 			return;
-		if(requestee.getFriends().contains(toBeFriended))
-			return;
-		System.out.println("IM AFTER RETURN IN DAO");
+		for (User user : requestee.getFriends()) {
+			if (user.getUsername().equals(toBeFriended.getUsername())) {
+				return;
+			}
+		}
 		requestee.getFriends().add(toBeFriended);
 		requestee.getFriendOf().add(toBeFriended);
-		System.out.println("IM AFTER ADD IN DAO");
-		this.persist(requestee);
-		System.out.println("IM AFTER PERSIST IN DAO");
-	}
+		entityManager.merge(requestee);
 
+	}
 
 	@Override
 	public User getUserByUsername(String username) {
 		TypedQuery<User> query = entityManager
-				.createQuery(
-						"select u From User as u where u.username=:searched_username",
-						User.class)
+				.createQuery("select u From User as u where u.username=:searched_username", User.class)
 				.setParameter("searched_username", username);
 		List<User> list = query.getResultList();
 
@@ -84,6 +84,5 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 		}
 		return list.get(0);
 	}
-
 
 }

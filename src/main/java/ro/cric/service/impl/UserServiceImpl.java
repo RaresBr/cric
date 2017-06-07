@@ -1,6 +1,7 @@
 package ro.cric.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.getByCredentials(password, username);
 	}
 
-	public List<User> getAllFriends(User user) {
+	public Set<User> getAllFriends(User user) {
 		return userDao.getAllFriends(user);
 	}
 	@Transactional

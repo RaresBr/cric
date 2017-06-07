@@ -6,7 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,7 +18,7 @@ import ro.cric.model.User;
 import ro.cric.service.UserService;
 
 @ManagedBean(name = "friendshipBean")
-@SessionScoped
+@ViewScoped
 public class FriendshipBean {
 	private User user;
 	private String friendUsername;
@@ -42,22 +44,11 @@ public class FriendshipBean {
 
 	public void addUser() {
 		User friend = userService.getUserByUsername(friendUsername);
-	
-
-		if (user.getFriends().contains(friend)) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Friend request error",
-					"User is already a friend.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-
-			return;
-		}
-
 		userService.addFriend(user, friend);
 
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("friendship.xhtml");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
