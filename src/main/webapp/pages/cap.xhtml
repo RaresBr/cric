@@ -123,20 +123,24 @@
 
 
 				<h:form id="form">
-					<h:commandButton value="Generate cap" action="#{capBean.callCap}" />
+					<h:commandButton value="Generate cap and send emails" action="#{capBean.callCap}" />
 
 					<p:outputPanel id="outputPanelField" styleClass="fieldset">
 						<p:fieldset legend="Alert output:">
 							<h:panelGrid columns="2" cellpadding="5">
-								<h:outputText value="#{capBean.capXml}" id="cap_xml_output"/>
+								<h:outputText value="#{capBean.capXml}" id="cap_xml_output" />
 							</h:panelGrid>
 						</p:fieldset>
 					</p:outputPanel>
 				</h:form>
 				<h:commandButton id="pushpad-button" value="Subscribe" />
+				<h:form>
+				<h:commandButton value="Send push notification"
+					action="#{pushBean.sendNotification()}" />
+			</h:form>
 			</p:outputPanel>
 
-
+			
 		</ui:define>
 	</ui:composition>
 

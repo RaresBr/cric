@@ -10,7 +10,7 @@
 
 	<ui:composition template="template.xhtml">
 		<ui:define name="content">
-		<h:outputStylesheet name="css/personFinder.css" />
+			<h:outputStylesheet name="css/personFinder.css" />
 			<h:form>
 				<p:outputPanel styleClass="personfinder-container">
 					<h3>Google Person Finder</h3>
@@ -22,6 +22,21 @@
 					</p:outputPanel>
 				</p:outputPanel>
 			</h:form>
+
+			<h:form id="myForm">
+				<p:inputText id="username" value="#{friendshipBean.friendUsername}" />
+				<h:commandButton value="Add friend!"
+					action="#{friendshipBean.addUser}" />
+
+			</h:form>
+			<p:dataList value="#{friendshipBean.user.friends}" var="friend"
+				type="unordered">
+				<f:facet name="header">
+            Basic
+        </f:facet>
+        Name: #{friend.firstName} #{friend.lastName}, Username: #{friend.username}, Longitude: #{friend.longitude}, Latitude: #{friend.latitude}
+    </p:dataList>
+
 		</ui:define>
 	</ui:composition>
 

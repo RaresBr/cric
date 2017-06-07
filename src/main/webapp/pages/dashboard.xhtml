@@ -52,14 +52,13 @@
 									<h:panelGrid columns="2" style="margin-bottom:10px"
 										cellpadding="5">
 										<p:outputLabel for="console" value="Console:" />
-										<p:selectOneRadio id="console" value="#{radioView.console}">
+										<p:selectOneRadio id="console" value="#{fusionTableBean.console}">
 											<f:selectItem itemLabel="Fires"
 												itemValue="https://fusiontables.google.com/embedviz?q=select+col0+from+1SRI7zre4JJvBVwJJbGYAcZhme5sgfYJZMUb9byXr&amp;viz=MAP&amp;h=false&amp;lat=25.874586044069243&amp;lng=33.63231139087679&amp;t=3&amp;z=3&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
 											<f:selectItem itemLabel="Earthquakes"
 												itemValue="https://fusiontables.google.com/embedviz?q=select+col1+from+1ieugQ1QVtAu5iLXmknOe1KjxCitc4SJEGflpPtJ1&amp;viz=MAP&amp;h=false&amp;lat=52.54548373479522&amp;lng=-508.04130673135546&amp;t=1&amp;z=3&amp;l=col1&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
 											<f:selectItem itemLabel="Volcanoes"
-												itemValue="https://fusiontables.google.com/embedviz?q=select+col5+from+1tZIzI5AjVIj6U10XsEyZ_62XQQZVWTteAH3KiG0n&amp;viz=MAP&amp;h=false&amp;lat=8.503668613405686&amp;lng=44.72085105657584&amp;t=1&amp;z=4&amp;l=col5&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG
-										" />
+												itemValue="https://fusiontables.google.com/embedviz?q=select+col5+from+1tZIzI5AjVIj6U10XsEyZ_62XQQZVWTteAH3KiG0n&amp;viz=MAP&amp;h=false&amp;lat=8.503668613405686&amp;lng=44.72085105657584&amp;t=1&amp;z=4&amp;l=col5&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
 
 										</p:selectOneRadio>
 									</h:panelGrid>
@@ -76,7 +75,7 @@
 									<h:panelGrid columns="2" style="margin-bottom:10px"
 										cellpadding="5">
 										<p:outputLabel for="console" value="Console:" />
-										<p:selectOneRadio id="console" value="#{radioView.console}">
+										<p:selectOneRadio id="console" value="#{fusionTableBean.console}">
 											<f:selectItem itemLabel="Crisis Map"
 												itemValue="http://google.org/crisismap/a/gmail.com/crictw?hl=en&amp;llbox=84.1%2C-84.1%2C180%2C-180&amp;t=HYBRID&amp;layers=2%2C1&amp;embedded=true" />
 
@@ -93,43 +92,6 @@
 						</p:tab>
 					</p:accordionPanel>
 				</p:layoutUnit>
-
-
-				<p:dialog styleClass="dialog" header="Selected Cities" modal="true"
-					showEffect="fade" hideEffect="fade" widgetVar="cityDialog"
-					width="250">
-					<p:outputPanel id="displayCities">
-						<p:dataList value="#{checkboxView.selectedCities}" var="city"
-							emptyMessage="No cities selected" style="margin-bottom: 10px;">
-							<f:facet name="header">
-                    Basic
-                </f:facet>
-                #{city}
-            </p:dataList>
-
-						<p:dataList value="#{checkboxView.selectedCities2}" var="city"
-							emptyMessage="No cities selected">
-							<f:facet name="header">
-                    Multiple
-                </f:facet>
-                #{city}
-            </p:dataList>
-					</p:outputPanel>
-				</p:dialog>
-
-
-				<p:dialog header="Values" modal="true" showEffect="clip"
-					widgetVar="dlg" resizable="false">
-					<p:outputPanel id="display">
-
-						<p:dataList value="#{checkboxViewRight.selectedCars}" var="car">
-							<f:facet name="header">
-                    Manage crisis
-                </f:facet>
-                #{car}
-            </p:dataList>
-					</p:outputPanel>
-				</p:dialog>
 				<p:layoutUnit styleClass="col-lg-8 col-md-8 center"
 					position="center">
 					<p:outputPanel styleClass="map" id="fusionTable">
@@ -137,8 +99,6 @@
 							src="#{fusionTableBean.console}"></iframe>
 					</p:outputPanel>
 				</p:layoutUnit>
-
-
 			</p:layout>
 		</ui:define>
 	</ui:composition>

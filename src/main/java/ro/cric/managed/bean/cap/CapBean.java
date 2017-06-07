@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -43,7 +44,7 @@ import ro.cric.service.OrganizationService;
 import ro.cric.service.UserService;
 
 @ManagedBean(name = "capBean")
-@ViewScoped
+@SessionScoped
 public class CapBean implements Serializable {
 
 	/**
