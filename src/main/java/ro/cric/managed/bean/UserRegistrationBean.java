@@ -13,7 +13,7 @@ import ro.cric.service.UserService;
 @ManagedBean(name = "userRegistrationBean")
 @ViewScoped
 public class UserRegistrationBean {
-
+	
 	@ManagedProperty("#{userService}")
 	private UserService userService;
 

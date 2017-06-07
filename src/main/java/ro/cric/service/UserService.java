@@ -3,17 +3,31 @@ package ro.cric.service;
 import java.util.List;
 
 import com.google.publicalerts.cap.Alert;
+import java.util.Set;
 
 import ro.cric.model.User;
 
 public interface UserService {
-	
-	public User getUserById(long id);
-	public boolean doesEmailExist(String email);
-	public boolean doesUsernameExist(String username);
-	public User getUserByCredentials(String password, String username);
-	public void register(User user);
-	public void notifyUsersInTheArea(Alert area, String capXml);
-	public List<User> getAllUsers();
-	public boolean changePassword(Long id, String oldPassword, String newPassword);
+
+	User getUserById(long id);
+
+	boolean doesEmailExist(String email);
+
+	boolean doesUsernameExist(String username);
+
+	User getUserByCredentials(String password, String username);
+
+	void register(User user);
+
+	void notifyUsersInTheArea(Alert area, String capXml);
+
+	List<User> getAllUsers();
+
+	boolean changePassword(Long id, String oldPassword, String newPassword);
+
+	User getUserByUsername(String username);
+
+	Set<User> getAllFriends(User user);
+
+	void addFriend(User requestee, User toBeFriended);
 }

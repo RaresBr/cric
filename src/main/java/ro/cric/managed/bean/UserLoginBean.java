@@ -7,8 +7,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.RequestContext;
-
 import ro.cric.component.SessionData;
 import ro.cric.model.User;
 import ro.cric.service.UserService;

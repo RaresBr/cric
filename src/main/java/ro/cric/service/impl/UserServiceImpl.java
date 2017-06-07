@@ -1,6 +1,7 @@
 package ro.cric.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,22 @@ public class UserServiceImpl implements UserService {
 		return userDao.getByCredentials(password, username);
 	}
 
+    @Override
+    @Transactional
+	public Set<User> getAllFriends(User user) {
+		return userDao.getAllFriends(user);
+	}
+    
+	@Transactional
+	public void addFriend(User requestee, User toBeFriended) {
+		userDao.addFriend(requestee, toBeFriended);
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		return userDao.getUserByUsername(username);
+	}
+	
 	@Override
 	@Transactional
 	public void notifyUsersInTheArea(Alert alert, String capXml) {
@@ -74,7 +91,6 @@ public class UserServiceImpl implements UserService {
 			}
 
 		}
-
 	}
 
 	@Override

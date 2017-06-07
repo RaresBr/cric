@@ -123,9 +123,14 @@
 
 
 				<h:form id="form">
-					<h:commandButton value="Generate cap" action="#{capBean.callCap}" />
+					<h:commandButton value="Generate cap and send emails"
+						action="#{capBean.callCap}" />
 				</h:form>
 				<h:commandButton id="pushpad-button" value="Subscribe" />
+				<h:form>
+					<h:commandButton value="Send push notification"
+						action="#{pushBean.sendNotification()}" />
+				</h:form>
 			</p:outputPanel>
 
 
