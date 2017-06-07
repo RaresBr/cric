@@ -2,9 +2,12 @@ package ro.cric.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,12 +33,16 @@ public class User {
 
 	@Column(name = "EMAIL", unique = true)
 	private String email;
-	
+
 	@Column(name = "LONGITUDE", nullable = true)
 	private Double longitude;
 
-	@Column(name = "LATITUDE", nullable= true)
+	@Column(name = "LATITUDE", nullable = true)
 	private Double latitude;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ORGANIZATION_ID")
+	private Organization organization;
 
 	public Double getLongitude() {
 		return longitude;
@@ -99,6 +106,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 }

@@ -125,6 +125,7 @@ public class CapBean implements Serializable {
 		CapXmlBuilder builder = new CapXmlBuilder();
 		// String xml = builder.toXml(alert);
 		capXml = builder.toXml(alert);
+		String parsedXml;
 
 		// Sign it
 		try {
@@ -171,8 +172,8 @@ public class CapBean implements Serializable {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		FacesMessage message = null;
 		if (alertService.addAlert(organization, alert)) {
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alert added", null);
-			userService.notifyUsersInTheArea(latitude, longitude, radius);
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alert added", "Users notified");
+			userService.notifyUsersInTheArea(alert, capXml);
 		}
 		else
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error adding the alert", null);
