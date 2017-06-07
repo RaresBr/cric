@@ -13,15 +13,15 @@
 		<ui:define name="content">
 			<h:outputStylesheet name="css/dashboard.css" />
 			<p:layout fullPage="true">
-				
-				
+
+
 				<p:layoutUnit position="north" size="45" styleClass="top">
 					<p:tabMenu scrollable="false" activeIndex="#{param.i}"
 						styleClass="tabMenu">
 						<p:menuitem value="Overview" outcome="dashboard"
 							icon="ui-icon-star" styleClass="navigationBtn">
 							<f:param name="i" value="0" />
-							
+
 						</p:menuitem>
 						<p:menuitem value="Alerts" outcome="dashboard"
 							icon="ui-icon-person" styleClass="navigationBtn">
@@ -39,116 +39,64 @@
 							icon="ui-icon-wrench" styleClass="navigationBtn">
 							<f:param name="i" value="3" />
 						</p:menuitem>
-						
+
 					</p:tabMenu>
 				</p:layoutUnit>
 
 				<p:layoutUnit styleClass="col-lg-2 col-md-2 west" position="west"
 					size="200" header="Viewing Options">
 					<p:accordionPanel multiple="true">
-						<p:tab title="Location">
+						<p:tab title="Fusion Layer">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:form>
 									<h:panelGrid columns="2" style="margin-bottom:10px"
 										cellpadding="5">
 										<p:outputLabel for="console" value="Console:" />
 										<p:selectOneRadio id="console" value="#{radioView.console}">
-											<f:selectItem itemLabel="Fires" itemValue="https://fusiontables.google.com/embedviz?q=select+col0+from+1SRI7zre4JJvBVwJJbGYAcZhme5sgfYJZMUb9byXr&amp;viz=MAP&amp;h=false&amp;lat=17.8110712281262&amp;lng=-61.202171874999976&amp;t=1&amp;z=2&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
-											<f:selectItem itemLabel="Earthquakes" itemValue="https://fusiontables.google.com/embedviz?q=select+col1%2C+col2+from+1ieugQ1QVtAu5iLXmknOe1KjxCitc4SJEGflpPtJ1+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=59.91744099322791&amp;lng=-140.92191666091708&amp;t=1&amp;z=4&amp;l=col1&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.6&amp;hmr=10&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG" />
+											<f:selectItem itemLabel="Fires"
+												itemValue="https://fusiontables.google.com/embedviz?q=select+col0+from+1SRI7zre4JJvBVwJJbGYAcZhme5sgfYJZMUb9byXr&amp;viz=MAP&amp;h=false&amp;lat=25.874586044069243&amp;lng=33.63231139087679&amp;t=3&amp;z=3&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
+											<f:selectItem itemLabel="Earthquakes"
+												itemValue="https://fusiontables.google.com/embedviz?q=select+col1+from+1ieugQ1QVtAu5iLXmknOe1KjxCitc4SJEGflpPtJ1&amp;viz=MAP&amp;h=false&amp;lat=52.54548373479522&amp;lng=-508.04130673135546&amp;t=1&amp;z=3&amp;l=col1&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
+											<f:selectItem itemLabel="Volcanoes"
+												itemValue="https://fusiontables.google.com/embedviz?q=select+col5+from+1tZIzI5AjVIj6U10XsEyZ_62XQQZVWTteAH3KiG0n&amp;viz=MAP&amp;h=false&amp;lat=8.503668613405686&amp;lng=44.72085105657584&amp;t=1&amp;z=4&amp;l=col5&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG
+										" />
+										
 										</p:selectOneRadio>
 									</h:panelGrid>
 
-									<p:commandButton value="Submit" update="fusionTable" icon="ui-icon-check" />
-									<h:commandButton value ="Cap" action="#{caplib.callCap(delete)}" />
-									
+									<p:commandButton value="Submit" update="fusionTable"
+										icon="ui-icon-check" />
+
+
 
 								</h:form>
 							</h:panelGrid>
 						</p:tab>
-						<p:tab title="Layers">
+						<p:tab title="Crisis Map">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:form>
 									<h:panelGrid columns="2" style="margin-bottom:10px"
 										cellpadding="5">
-										<h:outputText value="Font:" />
-										<p:selectManyButton value="#{selectManyView.selectedOptions}">
-											<f:selectItem itemLabel="b" itemValue="b" />
-											<f:selectItem itemLabel="u" itemValue="u" />
-											<f:selectItem itemLabel="i" itemValue="i" />
-										</p:selectManyButton>
+										<p:outputLabel for="console" value="Console:" />
+										<p:selectOneRadio id="console" value="#{radioView.console}">
+											<f:selectItem itemLabel="Crisis Map"
+												itemValue="http://google.org/crisismap/a/gmail.com/crictw?hl=en&amp;llbox=84.1%2C-84.1%2C180%2C-180&amp;t=HYBRID&amp;layers=2%2C1&amp;embedded=true" />
 
-										<p:commandButton value="Submit" update="display"
-											icon="ui-icon-check" styleClass="customBtn" />
-										<p:spacer />
-
-										<h:outputText value="Selected:" />
-										<p:dataList id="display"
-											value="#{selectManyView.selectedOptions}" var="font"
-											emptyMessage="No fonts selected">
-											<h:outputText value="#{font}" style="font-weight: bold" />
-										</p:dataList>
+										</p:selectOneRadio>
 									</h:panelGrid>
 
-								</h:form>
-							</h:panelGrid>
-						</p:tab>
-						<p:tab title="Crisis Type">
-							<h:panelGrid columns="2" cellpadding="10">
+									<p:commandButton value="Submit" update="fusionTable"
+										icon="ui-icon-check" />
 
-								<h:form>
-									<h:panelGrid columns="2" cellpadding="5">
-										<h:outputText value="Platform:" />
-										<p:selectOneButton value="#{selectOneView.option}">
-											<f:selectItem itemLabel="Earthquake" itemValue="Earthquake" />
-											<f:selectItem itemLabel="Draught" itemValue="Draught" />
-											<f:selectItem itemLabel="Tsunami" itemValue="Tsunami" />
-										</p:selectOneButton>
 
-										<p:commandButton value="Submit" update="display"
-											icon="ui-icon-check" styleClass="customBtn" />
-										<p:spacer />
 
-										<h:outputText value="Selected:" />
-										<h:outputText id="display" value="#{selectOneView.option}"
-											style="font-weight: bold" />
-									</h:panelGrid>
 								</h:form>
 							</h:panelGrid>
 						</p:tab>
 					</p:accordionPanel>
 				</p:layoutUnit>
 
-				<p:layoutUnit styleClass="col-lg-2 col-md-2 east" position="east"
-					size="200" header="Actions and Management">
-					<p:accordionPanel multiple="true">
-						<p:tab title="Resources">
-							<h:form>
-								<p:selectManyCheckbox id="grid3"
-									value="#{checkboxViewRight.selectedCars}"
-									layout="pageDirection" columns="1">
-									<f:selectItems value="#{checkboxViewRight.cars}" var="car"
-										itemLabel="#{car}" itemValue="#{car}" />
-								</p:selectManyCheckbox>
 
-								<p:separator />
-
-								<p:commandButton value="Submit" update="display"
-									oncomplete="PF('dlg').show()" icon="ui-icon-check"
-									styleClass="customBtn" />
-
-
-							</h:form>
-						</p:tab>
-						<p:tab title="Shelters">
-							<h:panelGrid columns="2" cellpadding="10">
-							</h:panelGrid>
-						</p:tab>
-						<p:tab title="Material Resources">
-							<h:panelGrid columns="2" cellpadding="10">
-							</h:panelGrid>
-						</p:tab>
-					</p:accordionPanel>
-				</p:layoutUnit>
 				<p:dialog styleClass="dialog" header="Selected Cities" modal="true"
 					showEffect="fade" hideEffect="fade" widgetVar="cityDialog"
 					width="250">

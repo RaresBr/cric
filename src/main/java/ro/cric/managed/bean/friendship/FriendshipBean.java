@@ -42,10 +42,7 @@ public class FriendshipBean {
 
 	public void addUser() {
 		User friend = userService.getUserByUsername(friendUsername);
-		if (user.getFriends().stream().filter(o -> o.getUsername().equals(friend.getUsername())).findFirst()
-				.isPresent()) {
-			return;
-		}
+	
 
 		if (user.getFriends().contains(friend)) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Friend request error",
