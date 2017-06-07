@@ -75,8 +75,6 @@ public class UserLoginBean {
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, message);
-		
-		RequestContext.getCurrentInstance().closeDialog(null);
 
 		if (loggedIn) {
 			ec.getFlash().setKeepMessages(true);

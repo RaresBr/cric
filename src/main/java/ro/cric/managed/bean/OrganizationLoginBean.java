@@ -1,5 +1,6 @@
 package ro.cric.managed.bean;
 
+import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +17,11 @@ import ro.cric.service.OrganizationService;
 
 @ManagedBean(name = "organizationLoginBean")
 @ViewScoped
-public class OrganizationLoginBean {
+public class OrganizationLoginBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
 
@@ -58,7 +63,7 @@ public class OrganizationLoginBean {
 		this.session = session;
 	}
 
-	public void login() {
+	public String login() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		FacesMessage message = null;
@@ -78,8 +83,10 @@ public class OrganizationLoginBean {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 
 		if (loggedIn) {
-			RequestContext.getCurrentInstance().closeDialog(loggedIn);
+			ec.getFlash().setKeepMessages(true);
+			return "dashboard?faces-redirect=true";
 		}
+		return null;
 	}
 
 	public String logout() {

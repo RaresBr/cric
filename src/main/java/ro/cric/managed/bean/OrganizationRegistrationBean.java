@@ -37,7 +37,7 @@ public class OrganizationRegistrationBean {
 		this.organization = organization;
 	}
 
-	public void register() {
+	public String register() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		FacesMessage message = null;
@@ -54,6 +54,8 @@ public class OrganizationRegistrationBean {
 
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		ec.getFlash().setKeepMessages(true);
+		
+		return "home?faces-redirect=true";
 		
 	}
 }

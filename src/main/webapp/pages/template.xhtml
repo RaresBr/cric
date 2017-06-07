@@ -51,17 +51,6 @@
 					</h:form>
 				</p:outputPanel>
 
-				<p:outputPanel layout="block" styleClass="row userpass">
-					<h:form prependId="false">			
-						<p:commandLink 
-							actionListener="#{dialogView.viewOrganizationLoginForm}">
-							<h:outputText value="LogIn as organization" />
-							<p:ajax event="dialogReturn" listener="#{dialogView.onReturnFromDialog}"/>
-						</p:commandLink>
-					</h:form>
-				</p:outputPanel>
-
-
 			</p:outputPanel>
 
 			<p:outputPanel layout="block"
@@ -79,6 +68,38 @@
 				<h:form styleClass="logout">
 					<h:commandLink styleClass="row" value="Log out"
 						action="#{userLoginBean.logout}" />
+				</h:form>
+			</p:outputPanel>
+
+			<p:outputPanel
+				rendered="#{!organizationBean.loggedIn and !userBean.loggedIn}">
+				<h:form>
+					<p:commandLink onclick="PF('dialogOrganizationLogin').show();"
+						value="Or login as organization" process="@this"
+						style="margin-left: 4em; font-size:13px;" />
+					<p:dialog header="Login as organization" widgetVar="dialogOrganizationLogin"
+						resizable="false">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="username_org" value="Username:"
+								styleClass="credentialsBlack" />
+							<p:inputText id="username_org" required="true"
+								styleClass="user inputLoginHeader"
+								requiredMessage="Username required" tabindex="1"
+								value="#{organizationLoginBean.username}" />
+							<h:outputLabel for="password_org" value="Password:"
+								styleClass="credentialsBlack" />
+							<p:password id="password_org" required="true"
+								styleClass="pass inputLoginHeader"
+								requiredMessage="Password required" maxlength="45" tabindex="2"
+								value="#{organizationLoginBean.password}" />
+							<f:facet name="footer">
+								<p:commandButton value="Login"
+									styleClass="customBtn btnSub inputLoginHeader"
+									action="#{organizationLoginBean.login}"
+									oncomplete="PF('dialogOrganizationLogin').hide();" />
+							</f:facet>
+						</h:panelGrid>
+					</p:dialog>
 				</h:form>
 			</p:outputPanel>
 

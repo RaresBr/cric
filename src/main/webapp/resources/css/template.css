@@ -266,3 +266,7 @@ input.ui-inputfield.ui-widget.user, .ui-inputfield.ui-password.ui-widget.ui-stat
 	margin-bottom: 0px;
 	width: 100%;
 }
+
+.credentialsBlack {
+	color: black;
+}

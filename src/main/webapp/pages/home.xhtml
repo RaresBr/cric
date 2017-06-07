@@ -60,15 +60,48 @@
 							styleClass="col-lg-2 registerBtn" />
 
 					</h:form>
+					<p:outputPanel styleClass="col-lg-12 registerLinkContainer">
+						<h:form>
+							<p:commandLink onclick="PF('dialogOrganizationRegister').show();"
+								value="Or register as organization" process="@this"
+								style="font-size:13px;" />
+							<p:dialog header="Register as organization"
+								widgetVar="dialogOrganizationRegister" resizable="false">
+								<h:panelGrid columns="2" cellpadding="5">
+									<h:outputLabel for="username_org" value="E-mail address:"
+										styleClass="credentialsBlack" />
+									<p:inputText required="true" label="Email"
+										value="#{organizationRegistrationBean.organization.email}" />
+
+									<h:outputLabel for="username_org" value="Username:"
+										styleClass="credentialsBlack" />
+									<p:inputText required="true" label="Username"
+										styleClass="personalContact inputName inputLoginHeader"
+										value="#{organizationRegistrationBean.organization.username}" />
+
+									<h:outputLabel for="username_org" value="Password"
+										styleClass="credentialsBlack" />
+									<p:password id="pwd1" match="pwd2" label="Password 1"
+										required="true" styleClass="inputName inputLoginHeader"
+										value="#{organizationRegistrationBean.organization.password}" />
+
+									<h:outputLabel for="username_org" value="Confirm password"
+										styleClass="credentialsBlack" />
+									<p:password id="pwd2" label="Password 2" required="true"
+										styleClass="inputName inputLoginHeader" />
+									<f:facet name="footer">
+										<p:commandButton value="Register"
+											styleClass="customBtn btnSub inputLoginHeader"
+											action="#{organizationRegistrationBean.register}"
+											oncomplete="PF('dialogOrganizationRegister').hide();" />
+									</f:facet>
+								</h:panelGrid>
+							</p:dialog>
+						</h:form>
+					</p:outputPanel>
 				</p:outputPanel>
 
-				<p:outputPanel styleClass="col-md-6 col-md-push-6 rightPanel">
-					<h:form>
-						<p:commandLink actionListener="#{dialogView.viewOrganizationRegisterForm}">
-							<h:outputText value="Or register as organization" />
-						</p:commandLink>
-					</h:form>
-				</p:outputPanel>
+
 
 				<p:outputPanel styleClass="col-md-6 col-md-pull-6 leftPanel">
 					<iframe width="400" height="400"

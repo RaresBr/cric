@@ -1,15 +1,11 @@
 package ro.cric.view;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 
 
 @ManagedBean(name = "dialogView")
@@ -35,12 +31,5 @@ public class DialogView {
         options.put("contentHeight", "100%");
         options.put("headerElement", "customheader");
 		RequestContext.getCurrentInstance().openDialog("/pages/loginOrganization" , options, null);
-	}
-	
-	public void onReturnFromDialog(SelectEvent event) throws IOException {
-		if(event.getObject().toString().equals("true")) {
-			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-			ec.redirect("/pages/dashboard.xhtml");
-		}
 	}
 }
