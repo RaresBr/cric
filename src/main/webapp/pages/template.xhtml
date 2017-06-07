@@ -22,6 +22,7 @@
 			<p:outputPanel layout="block"
 				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4 headerRight"
 				rendered="#{!userBean.loggedIn and !organizationBean.loggedIn}">
+
 				<p:outputPanel layout="block" styleClass="row userpass">
 					<h:form prependId="false">
 						<p:outputPanel
@@ -29,7 +30,7 @@
 							<p:inputText id="username1" placeholder="Insert your username"
 								required="true" styleClass="user inputLoginHeader"
 								requiredMessage="Username required" tabindex="1"
-								value="#{loginBean.username}" />
+								value="#{userLoginBean.username}" />
 						</p:outputPanel>
 
 						<p:outputPanel
@@ -37,47 +38,18 @@
 							<p:password id="password1" placeholder="Insert your password"
 								required="true" styleClass="pass inputLoginHeader"
 								requiredMessage="Password required" maxlength="45" tabindex="2"
-								value="#{loginBean.password}" />
+								value="#{userLoginBean.password}" />
 						</p:outputPanel>
 
 						<p:outputPanel
 							styleClass="col-lg-1 col-md-2 col-sm-2 col-xs-1 loginRight">
 							<h:commandButton value="Log in"
 								styleClass="customBtn btnSub inputLoginHeader"
-								action="#{loginBean.login}" />
+								action="#{userLoginBean.login}" />
 						</p:outputPanel>
 
 					</h:form>
 				</p:outputPanel>
-				
-				<p:outputPanel layout="block" styleClass="row userpass">
-					<h:form prependId="false">
-						<p:outputPanel
-							styleClass=" col-lg-5 col-md-4 col-sm-4 col-xs-3 loginLeft">
-							<p:inputText id="username_org" placeholder="Insert your org username"
-								required="true" styleClass="user inputLoginHeader"
-								requiredMessage="Username required" tabindex="1"
-								value="#{organizationLoginBean.username}" />
-						</p:outputPanel>
-
-						<p:outputPanel
-							styleClass="col-lg-5 col-md-4 col-sm-4 col-xs-3 loginMiddle">
-							<p:password id="password_org" placeholder="Insert your org password"
-								required="true" styleClass="pass inputLoginHeader"
-								requiredMessage="Password required" maxlength="45" tabindex="2"
-								value="#{organizationLoginBean.password}" />
-						</p:outputPanel>
-
-						<p:outputPanel
-							styleClass="col-lg-1 col-md-2 col-sm-2 col-xs-1 loginRight">
-							<h:commandButton value="Log in"
-								styleClass="customBtn btnSub inputLoginHeader"
-								action="#{organizationLoginBean.login}" />
-						</p:outputPanel>
-
-					</h:form>
-				</p:outputPanel>
-
 
 			</p:outputPanel>
 
@@ -86,16 +58,48 @@
 				rendered="#{userBean.loggedIn}">
 				<h:form styleClass="logout">
 					<h:commandLink styleClass="row" value="Log out"
-						action="#{loginBean.logout}" />
+						action="#{userLoginBean.logout}" />
 				</h:form>
 			</p:outputPanel>
-			
+
 			<p:outputPanel layout="block"
 				styleClass="col-lg-4 col-md-4 col-sm-4 col-xs-4"
 				rendered="#{organizationBean.loggedIn}">
 				<h:form styleClass="logout">
 					<h:commandLink styleClass="row" value="Log out"
-						action="#{loginBean.logout}" />
+						action="#{userLoginBean.logout}" />
+				</h:form>
+			</p:outputPanel>
+
+			<p:outputPanel
+				rendered="#{!organizationBean.loggedIn and !userBean.loggedIn}">
+				<h:form>
+					<p:commandLink onclick="PF('dialogOrganizationLogin').show();"
+						value="Or login as organization" process="@this"
+						style="margin-left: 4em; font-size:13px;" />
+					<p:dialog header="Login as organization" widgetVar="dialogOrganizationLogin"
+						resizable="false">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="username_org" value="Username:"
+								styleClass="credentialsBlack" />
+							<p:inputText id="username_org" required="true"
+								styleClass="user inputLoginHeader"
+								requiredMessage="Username required" tabindex="1"
+								value="#{organizationLoginBean.username}" />
+							<h:outputLabel for="password_org" value="Password:"
+								styleClass="credentialsBlack" />
+							<p:password id="password_org" required="true"
+								styleClass="pass inputLoginHeader"
+								requiredMessage="Password required" maxlength="45" tabindex="2"
+								value="#{organizationLoginBean.password}" />
+							<f:facet name="footer">
+								<p:commandButton value="Login"
+									styleClass="customBtn btnSub inputLoginHeader"
+									action="#{organizationLoginBean.login}"
+									oncomplete="PF('dialogOrganizationLogin').hide();" />
+							</f:facet>
+						</h:panelGrid>
+					</p:dialog>
 				</h:form>
 			</p:outputPanel>
 
@@ -103,15 +107,19 @@
 				<p:link value="About us" styleClass="helpMenu-item"
 					outcome="about.xhtml" />
 				<p:link value="Dashboard" styleClass="helpMenu-item"
-					outcome="dashboard.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
+					outcome="dashboard.xhtml"
+					rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 				<p:link value="Settings" styleClass="helpMenu-item"
-					outcome="settings.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
+					outcome="settings.xhtml"
+					rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 				<p:link value="PersonFinder" styleClass="helpMenu-item"
-					outcome="personFinder.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
+					outcome="personFinder.xhtml"
+					rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 				<p:link value="Common Alerting Protocol" styleClass="helpMenu-item"
 					outcome="cap.xhtml" rendered="#{organizationBean.loggedIn}" />
 				<p:link value="Location Services" styleClass="helpMenu-item"
-					outcome="geolocation.xhtml" rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
+					outcome="geolocation.xhtml"
+					rendered="#{userBean.loggedIn or organizationBean.loggedIn}" />
 
 			</p:outputPanel>
 		</ui:insert>

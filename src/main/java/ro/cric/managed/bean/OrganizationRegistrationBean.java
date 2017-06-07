@@ -7,6 +7,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 import ro.cric.model.Organization;
 import ro.cric.service.OrganizationService;
 
@@ -36,7 +38,8 @@ public class OrganizationRegistrationBean {
 	}
 
 	public String register() {
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
 		FacesMessage message = null;
 		if ((organizationService.doesEmailExist(organization.getEmail()))) {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Register error", "Email already in use");
@@ -44,13 +47,15 @@ public class OrganizationRegistrationBean {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Register error", "Username already in use");
 		} else {
 			organizationService.register(organization);
-			message = new FacesMessage("The organization with the username "
-					+ this.organization.getUsername() + " is Registered Successfully");
+			RequestContext.getCurrentInstance().closeDialog(null);
+			message = new FacesMessage("The organization with the username " + this.organization.getUsername()
+			+ " is Registered Successfully");
 		}
 
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		ec.getFlash().setKeepMessages(true);
-
+		
 		return "home?faces-redirect=true";
+		
 	}
 }
