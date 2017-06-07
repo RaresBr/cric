@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.cric.dao.UserDao;
 import ro.cric.model.User;
 import ro.cric.service.UserService;
+import ro.cric.util.Haversine;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
@@ -42,13 +43,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User getUserByCredentials(String password, String username) {
 		return userDao.getByCredentials(password, username);
 	}
 
+    @Override
+    @Transactional
 	public Set<User> getAllFriends(User user) {
 		return userDao.getAllFriends(user);
 	}
+    
 	@Transactional
 	public void addFriend(User requestee, User toBeFriended) {
 		userDao.addFriend(requestee, toBeFriended);
@@ -57,6 +62,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserByUsername(String username) {
 		return userDao.getUserByUsername(username);
+	}
+	
+	@Override
+	@Transactional
+	public void notifyUsersInTheArea(double latitude, double longitude, double radius) {
+		List<User> allUsers = userDao.getAll();
+		for (User currentUser : allUsers) {
+			if (currentUser.getLatitude() != null && currentUser.getLongitude() != null) {
+				double distanceBetweenUserAndAlertLocation = Haversine.distance(currentUser.getLatitude(),
+						currentUser.getLongitude(), latitude, longitude);
+				if (distanceBetweenUserAndAlertLocation <= radius)
+					System.out.println("User " + currentUser.getEmail() + " inside the radius");
+				else
+					System.out.println("User " + currentUser.getEmail() + " outside the radius");
+			}
+
+		}
 	}
 
 }

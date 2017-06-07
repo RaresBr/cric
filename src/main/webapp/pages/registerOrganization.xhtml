@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<h:form>
+		<p:inputText placeholder="E-mail address" required="true"
+			label="Email"
+			styleClass="col-lg-12 personalContact inputName inputLoginHeader"
+			value="#{organizationRegistrationBean.organization.email}" />
+
+		<p:inputText placeholder="Username" required="true" label="Username"
+			styleClass="col-lg-12 personalContact inputName inputLoginHeader"
+			value="#{organizationRegistrationBean.organization.username}" />
+
+
+		<p:password id="pwd1" placeholder="Password" match="pwd2"
+			label="Password 1" required="true"
+			styleClass="inputName inputLoginHeader"
+			value="#{organizationRegistrationBean.organization.password}" />
+
+		<p:password id="pwd2" placeholder="Confirm password"
+			label="Password 2" required="true"
+			styleClass="inputName inputLoginHeader" />
+
+		<p:commandButton value="Register" id="nonAjax"
+			action="#{organizationRegistrationBean.register}" ajax="false"
+			styleClass="col-lg-2 registerBtn">
+		</p:commandButton>
+	</h:form>
+</h:body>
+
+</html>

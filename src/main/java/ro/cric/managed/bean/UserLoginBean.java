@@ -11,10 +11,10 @@ import ro.cric.component.SessionData;
 import ro.cric.model.User;
 import ro.cric.service.UserService;
 
-@ManagedBean(name = "loginBean")
+@ManagedBean(name = "userLoginBean")
 @ViewScoped
-public class LoginBean {
-	
+public class UserLoginBean {
+
 	private String username;
 	private String password;
 

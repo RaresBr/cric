@@ -1,10 +1,15 @@
 package ro.cric.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +19,7 @@ public class Organization {
 	@Id
 	@Column(name = "ORGANIZATION_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long organizationId;
+	private Long organizationId;
 
 	@Column(name = "USERNAME", unique = true)
 	private String username;
@@ -24,6 +29,10 @@ public class Organization {
 
 	@Column(name = "PASSWORD")
 	private String password;
+
+	@Column(name = "ALERT_ID")
+	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Alert> alerts = new ArrayList<>();
 
 	public Organization() {
 
@@ -37,7 +46,7 @@ public class Organization {
 		this.email = email;
 	}
 
-	public long getOrganizationId() {
+	public Long getOrganizationId() {
 		return organizationId;
 	}
 

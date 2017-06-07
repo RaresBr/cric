@@ -10,9 +10,9 @@ import javax.faces.context.FacesContext;
 import ro.cric.model.User;
 import ro.cric.service.UserService;
 
-@ManagedBean(name = "registrationBean")
+@ManagedBean(name = "userRegistrationBean")
 @ViewScoped
-public class RegistrationBean {
+public class UserRegistrationBean {
 	
 	@ManagedProperty("#{userService}")
 	private UserService userService;
@@ -51,6 +51,6 @@ public class RegistrationBean {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		ec.getFlash().setKeepMessages(true);
 
-		return "/pages/home";
+		return "home?faces-redirect=true";
 	}
 }

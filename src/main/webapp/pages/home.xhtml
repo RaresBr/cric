@@ -30,43 +30,77 @@
 
 						<p:inputText placeholder="First name" required="true"
 							label="Firstname" styleClass="inputName inputLoginHeader"
-							value="#{registrationBean.user.firstName}" />
+							value="#{userRegistrationBean.user.firstName}" />
 
 						<p:inputText placeholder="Last name" required="true"
-							label="Lastname" styleClass="inputName inputLoginHeader" 
-							value="#{registrationBean.user.lastName}" />
+							label="Lastname" styleClass="inputName inputLoginHeader"
+							value="#{userRegistrationBean.user.lastName}" />
 
 						<p:inputText placeholder="E-mail address" required="true"
 							label="Email"
-							styleClass="col-lg-12 personalContact inputName inputLoginHeader" 
-							value="#{registrationBean.user.email}" />
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader"
+							value="#{userRegistrationBean.user.email}" />
 
 						<p:inputText placeholder="Username" required="true"
 							label="Username"
-							styleClass="col-lg-12 personalContact inputName inputLoginHeader" 
-							value="#{registrationBean.user.username}" />
+							styleClass="col-lg-12 personalContact inputName inputLoginHeader"
+							value="#{userRegistrationBean.user.username}" />
 
 
 						<p:password id="pwd1" placeholder="Password" match="pwd2"
 							label="Password 1" required="true"
 							styleClass="inputName inputLoginHeader"
-							value="#{registrationBean.user.password}" />
+							value="#{userRegistrationBean.user.password}" />
 						<p:password id="pwd2" placeholder="Confirm password"
 							label="Password 2" required="true"
 							styleClass="inputName inputLoginHeader" />
 
-
-						<h:outputLabel value="Account type:" styleClass="col-lg-4 accountType" />
-						<p:selectOneRadio id="console" styleClass="col-lg-8">
-							<f:selectItem itemLabel="User" itemValue="User" />
-							<f:selectItem itemLabel="Organisation" itemValue="Organisation" />
-						</p:selectOneRadio>
-
-						<p:commandButton value="Register" id="nonAjax" action="#{registrationBean.register}" 
-							ajax="false" styleClass="col-lg-2 registerBtn" />
+						<p:commandButton value="Register" id="nonAjax"
+							action="#{userRegistrationBean.register}" ajax="false"
+							styleClass="col-lg-2 registerBtn" />
 
 					</h:form>
+					<p:outputPanel styleClass="col-lg-12 registerLinkContainer">
+						<h:form>
+							<p:commandLink onclick="PF('dialogOrganizationRegister').show();"
+								value="Or register as organization" process="@this"
+								style="font-size:13px;" />
+							<p:dialog header="Register as organization"
+								widgetVar="dialogOrganizationRegister" resizable="false">
+								<h:panelGrid columns="2" cellpadding="5">
+									<h:outputLabel for="username_org" value="E-mail address:"
+										styleClass="credentialsBlack" />
+									<p:inputText required="true" label="Email"
+										value="#{organizationRegistrationBean.organization.email}" />
+
+									<h:outputLabel for="username_org" value="Username:"
+										styleClass="credentialsBlack" />
+									<p:inputText required="true" label="Username"
+										styleClass="personalContact inputName inputLoginHeader"
+										value="#{organizationRegistrationBean.organization.username}" />
+
+									<h:outputLabel for="username_org" value="Password"
+										styleClass="credentialsBlack" />
+									<p:password id="pwd1" match="pwd2" label="Password 1"
+										required="true" styleClass="inputName inputLoginHeader"
+										value="#{organizationRegistrationBean.organization.password}" />
+
+									<h:outputLabel for="username_org" value="Confirm password"
+										styleClass="credentialsBlack" />
+									<p:password id="pwd2" label="Password 2" required="true"
+										styleClass="inputName inputLoginHeader" />
+									<f:facet name="footer">
+										<p:commandButton value="Register"
+											styleClass="customBtn btnSub inputLoginHeader"
+											action="#{organizationRegistrationBean.register}"
+											oncomplete="PF('dialogOrganizationRegister').hide();" />
+									</f:facet>
+								</h:panelGrid>
+							</p:dialog>
+						</h:form>
+					</p:outputPanel>
 				</p:outputPanel>
+
 
 
 				<p:outputPanel styleClass="col-md-6 col-md-pull-6 leftPanel">
@@ -74,10 +108,10 @@
 						src="https://www.google.org/crisismap/weather_and_events?hl=en&amp;llbox=56.53%2C13.36%2C-26.64%2C-146.69&amp;t=TERRAIN&amp;layers=30%2C1%2C31%2C32%2C20%2Clayer11%2C49%2C15%2C11%2C48%2C46%2C45%2C38%2C40%2C47%2C24%2C51%2C50%2C43%2C42%2C41%2C36%2C35%2C34%2C33%2C12%2Clayer9%2Clayer8%2C2%2C1340721268837&amp;embedded=true"
 						style="border: 1px solid #ccc"></iframe>
 				</p:outputPanel>
+
 			</p:outputPanel>
 		</ui:define>
 	</ui:composition>
 
 </h:body>
-
 </html>

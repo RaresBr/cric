@@ -60,14 +60,12 @@
 											<f:selectItem itemLabel="Volcanoes"
 												itemValue="https://fusiontables.google.com/embedviz?q=select+col5+from+1tZIzI5AjVIj6U10XsEyZ_62XQQZVWTteAH3KiG0n&amp;viz=MAP&amp;h=false&amp;lat=8.503668613405686&amp;lng=44.72085105657584&amp;t=1&amp;z=4&amp;l=col5&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG
 										" />
-										
+
 										</p:selectOneRadio>
 									</h:panelGrid>
 
 									<p:commandButton value="Submit" update="fusionTable"
 										icon="ui-icon-check" />
-
-
 
 								</h:form>
 							</h:panelGrid>
@@ -136,7 +134,7 @@
 					position="center">
 					<p:outputPanel styleClass="map" id="fusionTable">
 						<iframe width="100%" height="95%" scrolling="no" frameborder="0"
-							src="#{radioView.console}"></iframe>
+							src="#{fusionTableBean.console}"></iframe>
 					</p:outputPanel>
 				</p:layoutUnit>
 
