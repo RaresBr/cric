@@ -55,7 +55,7 @@ public class User {
 	@Column(name = "LATITUDE", nullable = true)
 	private Double latitude;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ORGANIZATION_ID")
 	private Organization organization;
 

@@ -33,20 +33,16 @@ public class GeoBean {
 		System.out.println(latitude);
 	}
 
-	public void action() {
-		longitude = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
-				.get("myForm:longitude"));
-		latitude = Double.parseDouble(
-				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("myForm:latitude"));
-		System.out.println(longitude);
-		System.out.println(latitude);
-	}
-
+	/*
+	 * public void action() { longitude =
+	 * Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext()
+	 * .getRequestParameterMap() .get("geolocationForm:longitude")); latitude =
+	 * Double.parseDouble(
+	 * FacesContext.getCurrentInstance().getExternalContext().
+	 * getRequestParameterMap().get("geolocationForm:latitude"));
+	 * System.out.println(longitude); System.out.println(latitude); }
+	 */
 	public void updateLocation() {
-		longitude = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
-				.get("myForm:longitude"));
-		latitude = Double.parseDouble(
-				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("myForm:latitude"));
 		user.setLongitude(longitude);
 		user.setLatitude(latitude);
 		userService.register(user);

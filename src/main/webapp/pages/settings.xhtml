@@ -15,61 +15,92 @@
 			<p:outputPanel styleClass="row wrapper">
 				<h:outputText value="Settings" styleClass="settings" />
 
-				<h:form styleClass="tabView">
-					<p:tabView orientation="left">
-						<p:tab title="Security">
-							<h:panelGrid columns="2" cellpadding="10">
-								<h:form prependId="false">
-									<p:messages autoUpdate="true" />
 
-									<h:panelGrid columns="2" style="margin-bottom:10px"
-										cellpadding="5">
-										<p:outputLabel for="emergencyOrganizationSelect"
-											value="Emergency Organization: " styleClass="optionsPanel" />
-										<p:selectOneMenu id="emergencyOrganizationSelect"
-											value="#{settingsBean.selectedOrganization.organizationId}"
-											styleClass="optionsPanel values">
-											<f:selectItem itemLabel="Select One" itemValue="" />
-											<f:selectItems value="#{settingsBean.getAllOrganizations()}"
-												var="organization" itemLabel="#{organization.name}"
-												itemValue="#{organization.organizationId}" />
-										</p:selectOneMenu>
-									</h:panelGrid>
+				<p:tabView orientation="left">
+					<p:tab title="Security">
+						<h:panelGrid columns="2" cellpadding="10">
+							<h:form id="organizationEmergencyForm">
+								<p:messages autoUpdate="true" />
 
-									<p:commandButton value="Submit" icon="ui-icon-check"
-										styleClass="customBtn"
-										action="#{settingsBean.setEmergencyOrganization()}" />
+								<h:panelGrid columns="2" style="margin-bottom:10px"
+									cellpadding="5">
+									<p:outputLabel for="emergencyOrganizationSelect"
+										value="Emergency Organization: " styleClass="optionsPanel" />
+									<p:selectOneMenu id="emergencyOrganizationSelect"
+										value="#{settingsBean.organizationId}"
+										styleClass="optionsPanel values">
+										<f:selectItem itemLabel="Select One" itemValue="" />
+										<f:selectItems value="#{settingsBean.getAllOrganizations()}"
+											var="organization" itemLabel="#{organization.name}"
+											itemValue="#{organization.organizationId}" />
+									</p:selectOneMenu>
+								</h:panelGrid>
+
+								<p:commandButton value="Submit" icon="ui-icon-check"
+									styleClass="customBtn"
+									action="#{settingsBean.setEmergencyOrganization()}"
+									process="organizationEmergencyForm" />
 
 
-								</h:form>
-							</h:panelGrid>
-						</p:tab>
-						<p:tab title="Account">
-							<h:panelGrid columns="2" cellpadding="10">
-								<h:form id="form" prependId="false">
-									<p:messages id="messages" showDetail="true" autoUpdate="true" />
+							</h:form>
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Account">
+						<h:panelGrid columns="2" cellpadding="10">
+							<h:form id="passwordChangeForm">
+								<p:messages id="messages" showDetail="true" autoUpdate="true" />
 
-									<h:panelGrid columns="2" id="matchGrid">
+								<h:panelGrid columns="2" id="matchGrid">
 
-										<h:outputLabel value="Current password: "
-											styleClass="optionsPanel" />
-										<p:password value="#{changePasswordBean.oldPassword}"
-											required="true" styleClass="optionsPanel values" />
+									<h:outputLabel value="Current password: "
+										styleClass="optionsPanel" />
+									<p:password value="#{changePasswordBean.oldPassword}"
+										required="true" styleClass="optionsPanel values" />
 
-										<h:outputLabel value="New password:" styleClass="optionsPanel" />
-										<p:password value="#{changePasswordBean.newPassword}"
-											required="true" styleClass="optionsPanel values" />
+									<h:outputLabel value="New password:" styleClass="optionsPanel" />
+									<p:password value="#{changePasswordBean.newPassword}"
+										required="true" styleClass="optionsPanel values" />
 
-									</h:panelGrid>
+								</h:panelGrid>
 
-									<p:commandButton value="Save"
-										action="#{changePasswordBean.changePassword()}"
-										styleClass="customBtn" process="@form" />
-								</h:form>
-							</h:panelGrid>
-						</p:tab>
-					</p:tabView>
-				</h:form>
+								<p:commandButton value="Save"
+									action="#{changePasswordBean.changePassword()}"
+									styleClass="customBtn" process="passwordChangeForm" />
+							</h:form>
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Location" id="locationTab">
+
+						<h:form>
+							<h:commandButton value="Find Me!" onclick="geoFindMe()"
+								update="geolocationForm" />
+						</h:form>
+						<h:form id="geolocationForm" rendered="#{!userBean.loggedIn}">
+							<p:inputText id="longitude" value="#{geoBean.longitude}" />
+							<p:inputText id="latitude" value="#{geoBean.latitude}" />
+							<h:commandButton value="Persist Me!" id="persistBtn"
+								action="#{geoBean.updateLocation}" process="geolocationForm" />
+						</h:form>
+
+						<script type="text/javascript">
+							function geoFindMe() {
+								var form = document.getElementById("locationTab:geolocationForm");
+								navigator.geolocation
+										.getCurrentPosition(function(position) {
+											var latitude = position.coords.latitude;
+											var longitude = position.coords.longitude;
+											alert(latitude);
+											document
+													.getElementById("locationTab:geolocationForm:latitude").value = latitude;
+											document
+													.getElementById("locationTab:geolocationForm:longitude").value = longitude;
+											form.submit();
+										});
+							}
+						</script>
+
+					</p:tab>
+				</p:tabView>
 			</p:outputPanel>
 		</ui:define>
 	</ui:composition>

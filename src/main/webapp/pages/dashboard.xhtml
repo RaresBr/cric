@@ -15,34 +15,6 @@
 			<p:layout fullPage="true">
 
 
-				<p:layoutUnit position="north" size="45" styleClass="top">
-					<p:tabMenu scrollable="false" activeIndex="#{param.i}"
-						styleClass="tabMenu">
-						<p:menuitem value="Overview" outcome="dashboard"
-							icon="ui-icon-star" styleClass="navigationBtn">
-							<f:param name="i" value="0" />
-
-						</p:menuitem>
-						<p:menuitem value="Alerts" outcome="dashboard"
-							icon="ui-icon-person" styleClass="navigationBtn">
-							<f:param name="i" value="4" />
-						</p:menuitem>
-						<p:menuitem value="History" outcome="dashboard"
-							icon="ui-icon-search" styleClass="navigationBtn">
-							<f:param name="i" value="1" />
-						</p:menuitem>
-						<p:menuitem value="Documentation" outcome="dashboard"
-							icon="ui-icon-document" styleClass="navigationBtn">
-							<f:param name="i" value="2" />
-						</p:menuitem>
-						<p:menuitem value="Support" outcome="dashboard"
-							icon="ui-icon-wrench" styleClass="navigationBtn">
-							<f:param name="i" value="3" />
-						</p:menuitem>
-
-					</p:tabMenu>
-				</p:layoutUnit>
-
 				<p:layoutUnit styleClass="col-lg-2 col-md-2 west" position="west"
 					size="200" header="Viewing Options">
 					<p:accordionPanel multiple="true">
@@ -52,7 +24,8 @@
 									<h:panelGrid columns="2" style="margin-bottom:10px"
 										cellpadding="5">
 										<p:outputLabel for="console" value="Console:" />
-										<p:selectOneRadio id="console" value="#{fusionTableBean.console}">
+										<p:selectOneMenu id="console"
+											value="#{fusionTableBean.console}">
 											<f:selectItem itemLabel="Fires"
 												itemValue="https://fusiontables.google.com/embedviz?q=select+col0+from+1SRI7zre4JJvBVwJJbGYAcZhme5sgfYJZMUb9byXr&amp;viz=MAP&amp;h=false&amp;lat=25.874586044069243&amp;lng=33.63231139087679&amp;t=3&amp;z=3&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
 											<f:selectItem itemLabel="Earthquakes"
@@ -60,7 +33,7 @@
 											<f:selectItem itemLabel="Volcanoes"
 												itemValue="https://fusiontables.google.com/embedviz?q=select+col5+from+1tZIzI5AjVIj6U10XsEyZ_62XQQZVWTteAH3KiG0n&amp;viz=MAP&amp;h=false&amp;lat=8.503668613405686&amp;lng=44.72085105657584&amp;t=1&amp;z=4&amp;l=col5&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG" />
 
-										</p:selectOneRadio>
+										</p:selectOneMenu>
 									</h:panelGrid>
 
 									<p:commandButton value="Submit" update="fusionTable"
@@ -75,7 +48,8 @@
 									<h:panelGrid columns="2" style="margin-bottom:10px"
 										cellpadding="5">
 										<p:outputLabel for="console" value="Console:" />
-										<p:selectOneRadio id="console" value="#{fusionTableBean.console}">
+										<p:selectOneRadio id="console"
+											value="#{fusionTableBean.console}">
 											<f:selectItem itemLabel="Crisis Map"
 												itemValue="http://google.org/crisismap/a/gmail.com/crictw?hl=en&amp;llbox=84.1%2C-84.1%2C180%2C-180&amp;t=HYBRID&amp;layers=2%2C1&amp;embedded=true" />
 

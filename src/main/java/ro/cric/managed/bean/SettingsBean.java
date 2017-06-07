@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -17,7 +17,7 @@ import ro.cric.service.OrganizationService;
 import ro.cric.service.UserService;
 
 @ManagedBean(name = "settingsBean")
-@RequestScoped
+@ViewScoped
 public class SettingsBean {
 
 	@ManagedProperty("#{sessionComponent}")
@@ -31,7 +31,7 @@ public class SettingsBean {
 
 	private User user;
 
-	private Organization selectedOrganization = new Organization();
+	private Long organizationId;
 
 	@PostConstruct
 	private void init() {
@@ -78,19 +78,21 @@ public class SettingsBean {
 		return organizationService.getAllOrganizations();
 	}
 
-	public Organization getSelectedOrganization() {
-		return selectedOrganization;
+	public Long getOrganizationId() {
+		return organizationId;
 	}
 
-	public void setSelectedOrganization(Organization selectedOrganization) {
-		this.selectedOrganization = selectedOrganization;
+	public void setOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
 	}
 
 	public String setEmergencyOrganization() {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		FacesMessage message = null;
 
-		System.out.println(selectedOrganization);
+		Organization selectedOrganization = organizationService.getOrganizationById(organizationId);
+
+		System.out.println(selectedOrganization.getName());
 		user.setOrganization(selectedOrganization);
 		userService.register(user);
 
