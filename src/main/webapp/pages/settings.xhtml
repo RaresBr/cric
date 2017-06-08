@@ -84,7 +84,8 @@
 
 						<script type="text/javascript">
 							function geoFindMe() {
-								var form = document.getElementById("locationTab:geolocationForm");
+								var form = document
+										.getElementById("locationTab:geolocationForm");
 								navigator.geolocation
 										.getCurrentPosition(function(position) {
 											var latitude = position.coords.latitude;
@@ -98,7 +99,6 @@
 										});
 							}
 						</script>
-
 					</p:tab>
 				</p:tabView>
 			</p:outputPanel>
