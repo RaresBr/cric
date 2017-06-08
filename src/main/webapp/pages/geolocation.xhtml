@@ -17,13 +17,16 @@
 		<ui:define name="content">
 			<h:outputStylesheet name="css/geolocation.css" />
 			<p:outputPanel styleClass="container">
+				<p:growl id="growl" sticky="true" showDetail="true" />
 				<h:commandButton value="Find Me!" onclick="geoFindMe()"
 					styleClass="customBtn btnSub" style="margin-top:20px;" />
 				<h:form id="myForm">
+
 					<p:inputText id="longitude" value="#{geoBean.longitude}" />
 					<p:inputText id="latitude" value="#{geoBean.latitude}" />
 					<h:commandButton value="Persist Me!"
-						action="#{geoBean.updateLocation}" styleClass="customBtn btnSub" style="margin-top: 15px;" />
+						action="#{geoBean.updateLocation}" styleClass="customBtn btnSub"
+						style="margin-top: 15px;" />
 				</h:form>
 			</p:outputPanel>
 			<script>

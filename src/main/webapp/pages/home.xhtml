@@ -66,12 +66,19 @@
 								value="Or register as organization" process="@this"
 								style="font-size:13px;" />
 							<p:dialog header="Register as organization"
-								widgetVar="dialogOrganizationRegister" resizable="false" modal="true">
+								widgetVar="dialogOrganizationRegister" resizable="false"
+								modal="true">
 								<h:panelGrid columns="2" cellpadding="5">
 									<h:outputLabel for="username_org" value="E-mail address:"
 										styleClass="credentialsBlack" />
 									<p:inputText required="true" label="Email"
 										value="#{organizationRegistrationBean.organization.email}" />
+
+									<h:outputLabel for="name_org" value="Name:"
+										styleClass="credentialsBlack" />
+									<p:inputText required="true" label="Name"
+										styleClass="personalContact inputName inputLoginHeader"
+										value="#{organizationRegistrationBean.organization.name}" />
 
 									<h:outputLabel for="username_org" value="Username:"
 										styleClass="credentialsBlack" />
